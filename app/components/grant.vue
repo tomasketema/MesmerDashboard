@@ -4,7 +4,7 @@ const VueApexCharts = defineAsyncComponent(() =>
 );
 // import { calculateGrantPercentage, calculateGrantTotal } from '../data/data.js';
 
-const series = [67];
+const series = [100];
 const total = 100;
 const chartOptions = {
   chart: {
@@ -58,13 +58,14 @@ const chartOptions = {
       }
     }
   },
+  colors: ['#FDBA74'], 
   fill: {
     type: 'gradient',
     gradient: {
       shade: 'dark',
       type: 'horizontal',
       shadeIntensity: 0.5,
-      gradientToColors: ['#ABE5A1'],
+      gradientToColors: ['#C2410C'],
       inverseColors: true,
       opacityFrom: 1,
       opacityTo: 1,
@@ -86,7 +87,7 @@ const chartOptions = {
       width="180%"
       height="180%"
     />
-    <div class="mt-2 text-lg font-semibold">
+    <div class="mt-2 text-lg font-bold">
       {{ total }} Informal Enterprises
     </div>
   </div>

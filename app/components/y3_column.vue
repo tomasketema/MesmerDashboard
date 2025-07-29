@@ -3,8 +3,8 @@ import VueApexCharts from 'vue3-apexcharts';
 
 const series = [
   {
-    name: 'Registered Users',
-    data: [17,40,24,18]
+    name: 'Value',
+    data: [17460, 32306]
   }
 ];
 
@@ -13,10 +13,11 @@ const chartOptions = {
     height: 50,
     type: 'bar'
   },
-  colors: ['#155d99'],
+  colors: ['#f38429', '#155d99'],
   plotOptions: {
     bar: {
       borderRadius: 10,
+      distributed: true,
       dataLabels: {
         position: 'top' // top, center, bottom
       }
@@ -25,7 +26,7 @@ const chartOptions = {
   dataLabels: {
     enabled: true,
     formatter: function (val) {
-      return val + "%";
+      return val;
     },
     offsetY: -20,
     style: {
@@ -34,7 +35,7 @@ const chartOptions = {
     }
   },
   xaxis: {
-    categories: ['Abyssinia', 'Awash', 'Dashen', 'Hibret'],
+    categories: ['Target', 'Achievement'],
     position: 'bottom',
     axisBorder: {
       show: false
@@ -68,7 +69,7 @@ const chartOptions = {
     labels: {
       show: true,
       formatter: function (val) {
-        return val + "%";
+        return val;
       }
     }
   },
@@ -82,7 +83,7 @@ const chartOptions = {
         type="bar"
         :series="series"
         :options="chartOptions"
-        width="100%"
+        width="200%"
         height="200%"
       />
     </div>

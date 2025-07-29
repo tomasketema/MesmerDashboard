@@ -9,7 +9,7 @@
 
       <div class="flex items-center pr-10">
         <NuxtLink
-          to="/"
+          to="#home"
           exact
           class="text-black no-underline mx-1 transition-colors duration-300 hover:text-blue-200 hover:underline"
           active-class="!text-orange-400 !font-bold !underline"
@@ -24,14 +24,13 @@
         >
           Credit
         </a>
-
-        <!-- <span class="text-black mx-1">|</span> -->
-        <!-- <NuxtLink
-          to="/about"
+        <span class="text-black mx-1">|</span>
+        <a
+          href="#bds"
           class="text-black no-underline mx-1 transition-colors duration-300 hover:text-blue-200 hover:underline"
-          active-class="!text-orange-400 !font-bold !underline"
-          >Insert</NuxtLink
-        > -->
+        >
+          BDS
+        </a>
       </div>
     </nav>
     <div class="max-w-full mx-auto pt-24 px-5 font-sans text-gray-800">

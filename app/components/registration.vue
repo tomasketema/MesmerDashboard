@@ -11,6 +11,7 @@ const chartOptions = {
     type: "pie",
   },
   labels: ["Self-Registred", "Assisted"],
+  colors: ['#f38429', '#155d99'],
   responsive: [
     {
       breakpoint: 480,
@@ -34,7 +35,7 @@ const chartOptions = {
 
       <div class="flex flex-col gap-4">
         <div
-          class="bg-[#f38429] rounded-[50px] shadow  max-w-[100%] max-h-[100%] text-center"
+          class="bg-[#76859b] rounded-[50px] shadow  max-w-[100%] max-h-[100%] text-center"
         >
           <div class="w-full max-w-full p-2 text-sm font-bold break-words">
             Total: <span class="font-bold">{{ series[0]+series[1] }}</span>
@@ -42,7 +43,7 @@ const chartOptions = {
         </div>
 
         <div
-          class="bg-[#218be7] rounded-[50px] shadow max-w-[100%] max-h-[100%] text-center"
+          class="bg-[#f38429] rounded-[50px] shadow max-w-[100%] max-h-[100%] text-center"
         >
           <div class="w-full max-w-full p-2 text-sm font-bold break-words">
             Self-Registred: <span class="font-bold">{{ series[0] }}</span>
@@ -50,7 +51,7 @@ const chartOptions = {
         </div>
 
         <div
-          class="bg-[#20f0a0] rounded-[50px] shadow max-w-[100%] max-h-[100%] text-center"
+          class="bg-[#155d99] rounded-[50px] shadow max-w-[100%] max-h-[100%] text-center"
         >
           <div class="w-full max-w-full p-2 text-sm font-bold break-words">
             Assisted: <span class="font-bold">{{ series[1] }}</span>
