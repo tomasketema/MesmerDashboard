@@ -10,7 +10,7 @@ const chartOptions = {
   chart: {
     height: 300,
     type: 'radialBar',
-    toolbar: { show: true }
+    toolbar: { show: false }
   },
   plotOptions: {
     radialBar: {
@@ -84,12 +84,9 @@ const chartOptions = {
       type="radialBar"
       :series="series"
       :options="chartOptions"
-      width="180%"
-      height="180%"
+      width="250%"
+      height="250%"
     />
-    <div class="mt-2 text-lg font-bold">
-      {{ total }} Informal Enterprises
-    </div>
   </div>
   </client-only>
 </template>

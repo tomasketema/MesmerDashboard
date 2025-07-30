@@ -30,34 +30,23 @@ const chartOptions = {
 
 <template>
   <client-only>
-    
+    <div>
     <div class="flex justify-center p-10 gap-8 flex-wrap">
+  <div class="w-full max-w-full p-2 text-lg font-bold break-words">
+    Registered at:
+  </div>
 
-      <div class="flex flex-col gap-4">
-        <div
-          class="bg-[#76859b] rounded-[50px] shadow  max-w-[100%] max-h-[100%] text-center"
-        >
-          <div class="w-full max-w-full p-2 text-sm font-bold break-words">
-            Total: <span class="font-bold">{{ series[0]+series[1] }}</span>
-          </div>
-        </div>
-
-        <div
-          class="bg-[#f38429] rounded-[50px] shadow max-w-[100%] max-h-[100%] text-center"
-        >
-          <div class="w-full max-w-full p-2 text-sm font-bold break-words">
-            Self-Registred: <span class="font-bold">{{ series[0] }}</span>
-          </div>
-        </div>
-
-        <div
-          class="bg-[#155d99] rounded-[50px] shadow max-w-[100%] max-h-[100%] text-center"
-        >
-          <div class="w-full max-w-full p-2 text-sm font-bold break-words">
-            Assisted: <span class="font-bold">{{ series[1] }}</span>
-          </div>
-        </div>
+  <div class="flex flex-col gap-4">
+    <div
+      class=" bg-[#76859b] rounded-[30px] shadow text-center px-20 py-2"
+    >
+      <div class="text-lg font-bold text-black whitespace-nowrap">
+        Total: <span class="font-bold">{{ series[0] + series[1] }}</span>
       </div>
+    </div>
+  </div>
+</div>
+
       <div>
         <VueApexCharts
           type="pie"

@@ -11,9 +11,15 @@ const series = [
 const chartOptions = {
   chart: {
     height: 50,
-    type: 'bar'
+    type: 'bar',
+    toolbar: {
+      show: false
+    }
   },
-  colors: ['#f38429', '#155d99'],
+    legend: {
+    show: false
+  },
+  colors: ['#60a5fa', '#1E293B'],
   plotOptions: {
     bar: {
       borderRadius: 10,
@@ -56,7 +62,7 @@ const chartOptions = {
       }
     },
     tooltip: {
-      enabled: true
+      enabled: false
     }
   },
   yaxis: {
@@ -67,12 +73,19 @@ const chartOptions = {
       show: false
     },
     labels: {
-      show: true,
+      show: false,
       formatter: function (val) {
         return val;
       }
     }
   },
+  grid: {
+    yaxis: {
+      lines: {
+        show: false
+      }
+    }
+  }
 };
 </script>
 
@@ -83,8 +96,8 @@ const chartOptions = {
         type="bar"
         :series="series"
         :options="chartOptions"
-        width="200%"
-        height="200%"
+        width="250%"
+        height="250%"
       />
     </div>
   </client-only>

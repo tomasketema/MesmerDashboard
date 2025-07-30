@@ -11,7 +11,10 @@ const series = [
 const chartOptions = {
   chart: {
     height: 50,
-    type: 'bar'
+    type: 'bar',
+    toolbar: {
+      show: false
+    }
   },
   colors: ['#155d99'],
   plotOptions: {
@@ -55,7 +58,7 @@ const chartOptions = {
       }
     },
     tooltip: {
-      enabled: true
+      enabled: false
     }
   },
   yaxis: {
@@ -66,12 +69,19 @@ const chartOptions = {
       show: false
     },
     labels: {
-      show: true,
+      show: false,
       formatter: function (val) {
         return val + "%";
       }
     }
   },
+  grid: {
+    yaxis: {
+      lines: {
+        show: false
+      }
+    }
+  }
 };
 </script>
 

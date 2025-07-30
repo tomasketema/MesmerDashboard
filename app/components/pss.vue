@@ -2,17 +2,16 @@
 const VueApexCharts = defineAsyncComponent(() =>
   import("vue3-apexcharts")
 );
-// import { calculatePssPercentage, calculatePssTotal } from '../data/data.js';
 
 const series = [100];
 const total = 100;
 
 const chartOptions = {
-  // Copy the same options as grant.vue, but change the label:
+  
   chart: {
     height: 300,
     type: 'radialBar',
-    toolbar: { show: true }
+    toolbar: { show: false }
   },
   plotOptions: {
     radialBar: {
@@ -60,6 +59,7 @@ const chartOptions = {
       }
     }
   },
+  
  colors: ['#FDBA74'], 
   fill: {
     type: 'gradient',
@@ -86,13 +86,9 @@ const chartOptions = {
       type="radialBar"
       :series="series"
       :options="chartOptions"
-      width="180%"
-      height="180%"
+      width="250%"
+      height="250%"
     />
-    <div class="mt-2 text-lg font-bold">
-     10,192 Informal Enterprises &
-     6,000 Formal Enterprises
-    </div>
   </div>
   </client-only>
 </template>

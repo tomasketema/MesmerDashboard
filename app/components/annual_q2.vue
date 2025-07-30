@@ -16,10 +16,10 @@ const chartOptions = {
       show: false
     }
   },
-  legend: {
+    legend: {
     show: false
   },
-  colors: ['#f38429', '#155d99'],
+  colors: ['#38bdf8', '#1e3a8a'],
   plotOptions: {
     bar: {
       borderRadius: 10,
