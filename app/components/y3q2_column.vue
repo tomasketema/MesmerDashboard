@@ -96,8 +96,8 @@ const chartOptions = {
         type="bar"
         :series="series"
         :options="chartOptions"
-        width="380"
-        height="380"
+        width="250%"
+        height="250%"
       />
     </div>
   </client-only>

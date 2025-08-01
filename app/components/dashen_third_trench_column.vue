@@ -16,10 +16,10 @@ const chartOptions = {
       show: false
     }
   },
-    legend: {
+  legend: {
     show: false
   },
-  colors: ['#002B5B', '#F7941D'],
+  colors: ['#f38429', '#155d99'],
   plotOptions: {
     bar: {
       borderRadius: 10,
@@ -91,13 +91,13 @@ const chartOptions = {
 
 <template>
   <client-only>
-    <div class="flex justify-center p-10">
+      <div  class="flex justify-center p-10">
       <VueApexCharts
         type="bar"
         :series="series"
         :options="chartOptions"
-        width="250%"
-        height="250%"
+        width="100%"
+        height="250px"
       />
     </div>
   </client-only>

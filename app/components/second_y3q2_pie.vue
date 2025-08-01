@@ -1,7 +1,7 @@
 <script setup>
 import VueApexCharts from 'vue3-apexcharts';
 
-const series = [185];
+const series = [22];
 
 const chartOptions = {
   chart: {
@@ -30,19 +30,19 @@ const chartOptions = {
       }
     }
   },
-   fill: {
+  fill: {
   type: 'gradient',
   gradient: {
     shade: 'light',
     type: 'horizontal',
     shadeIntensity: 0.5,
-    gradientToColors: ['#1E293B'],
+    gradientToColors: ['#5A2E0F'],
     inverseColors: false,
     opacityFrom: 1,
     opacityTo: 1,
     stops: [0, 100]
   },
-  colors: ['#475569'] 
+  colors: ['#5A2E0F'] 
   },
   stroke: {
     dashArray: 4

@@ -36,13 +36,13 @@ const chartOptions = {
     shade: 'light',
     type: 'horizontal',
     shadeIntensity: 0.5,
-    gradientToColors: ['#1E293B'],
+    gradientToColors: ['#1e3a8a'],
     inverseColors: false,
     opacityFrom: 1,
     opacityTo: 1,
     stops: [0, 100]
   },
-  colors: ['#475569'] 
+  colors: ['#4b6cb7'] 
   },
   stroke: {
     dashArray: 4

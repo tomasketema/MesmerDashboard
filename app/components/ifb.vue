@@ -62,7 +62,7 @@ const chartOptions = {
         type="radialBar"
         :series="series"
         :options="chartOptions"
-        width="150%"
+        width="350%"
         height="150%"
       />
     </div>

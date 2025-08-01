@@ -31,15 +31,18 @@ const chartOptions = {
     }
   },
   fill: {
-    type: 'gradient',
-    gradient: {
-      shade: 'dark',
-      shadeIntensity: 0.15,
-      inverseColors: false,
-      opacityFrom: 1,
-      opacityTo: 1,
-      stops: [0, 50, 65, 91]
-    }
+  type: 'gradient',
+  gradient: {
+    shade: 'light',
+    type: 'horizontal',
+    shadeIntensity: 0.5,
+    gradientToColors: ['#155d99'],
+    inverseColors: false,
+    opacityFrom: 1,
+    opacityTo: 1,
+    stops: [0, 100]
+  },
+  colors: ['#4d84b3'] 
   },
   stroke: {
     dashArray: 4
@@ -55,8 +58,8 @@ const chartOptions = {
         type="radialBar"
         :series="series"
         :options="chartOptions"
-        width="300"
-        height="300"
+        width="200"
+        height="200"
       />
     </div>
   </client-only>

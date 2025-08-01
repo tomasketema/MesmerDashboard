@@ -84,10 +84,20 @@ const chartOptions = {
   }
 };
 </script>
-
 <template>
   <client-only>
-    <div  class="flex justify-center p-10">
+    <div>
+    <div class="flex justify-center p-10 gap-8 flex-wrap">
+  <div class="flex flex-col gap-4">
+    <div class="text-center px-20 py-2">
+      <div class="text-lg font-bold text-black whitespace-nowrap">
+        <h3 class="text-lg font-extrabold mb-4 text-gray-800">Assisted Bank Registration to date</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div  class="flex justify-center p-10">
       <VueApexCharts
         type="bar"
         :series="series"
@@ -95,6 +105,7 @@ const chartOptions = {
         width="100%"
         height="200%"
       />
+    </div>
     </div>
   </client-only>
 </template>

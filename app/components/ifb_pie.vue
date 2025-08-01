@@ -5,45 +5,40 @@ const series = [70];
 
 const chartOptions = {
   chart: {
-    height: 350,
-    type: 'radialBar'
+    type: 'radialBar',
   },
   plotOptions: {
     radialBar: {
-      hollow: {
-        size: '50%'
-      },
-      track: {
-        strokeWidth: '100%'
-      },
+      hollow: { size: '50%' },
+      track: { strokeWidth: '100%' },
       dataLabels: {
-        name: {
-          show: false
-        },
+        name: { show: false },
         value: {
           show: true,
-          fontSize: '24px',
+          fontSize: '18px',
           fontWeight: 600,
-          color: '#1E293B'
-        }
-      }
-    }
+          color: '#1E293B',
+        },
+      },
+    },
   },
   fill: {
-    colors: ['#374151']
+  colors: ['#1e3a8a'],
   },
-  labels: []
+
+  labels: [],
 };
 </script>
 
 <template>
   <client-only>
-    <div class="flex justify-center p-10">
+    <div class="w-full h-[140px]">
       <VueApexCharts
         type="radialBar"
         :options="chartOptions"
         :series="series"
-        height="200"
+        height="150%"
+        width="200"
       />
     </div>
   </client-only>

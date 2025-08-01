@@ -25,7 +25,7 @@ const chartOptions = {
       borderRadius: 10,
       distributed: true,
       dataLabels: {
-        position: 'top' // top, center, bottom
+        position: 'top'
       }
     }
   },
