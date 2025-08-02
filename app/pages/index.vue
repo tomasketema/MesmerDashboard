@@ -6,6 +6,7 @@ import { useState } from "#imports";
 import Abyssinia_column from "~/components/abyssinia_column.vue";
 import Hibret_column from "~/components/hibret_column.vue";
 import { DashenThirdTrenchColumn } from "#components";
+import CountUp from '~/components/countup.vue'
 const currentDate = useState("currentDate", () => {
   const today = new Date();
   const options = { day: "2-digit", month: "long", year: "numeric" };
@@ -13,40 +14,7 @@ const currentDate = useState("currentDate", () => {
   return formatted.toUpperCase();
 });
 
-import { ref, onMounted } from 'vue'
 
-const displayNumber = ref(0)
-const finalNumber = 344622
-let animationFinished = false
-
-function animateCountUp(start, end, duration = 2000) {
-  let startTime = null
-
-  function step(timestamp) {
-    if (!startTime) startTime = timestamp
-    const progress = timestamp - startTime
-    const current = Math.min(Math.floor(start + (progress / duration) * (end - start)), end)
-    displayNumber.value = current.toLocaleString()
-
-    if (current < end) {
-      requestAnimationFrame(step)
-    } else {
-      animationFinished = true
-    }
-  }
-
-  requestAnimationFrame(step)
-}
-
-onMounted(() => {
-  animateCountUp(0, finalNumber)
-
-  setTimeout(() => {
-    if (!animationFinished || displayNumber.value === '0') {
-      displayNumber.value = finalNumber.toLocaleString()
-    }
-  }, 3000)
-})
 </script>
 
 <template>
@@ -54,50 +22,114 @@ onMounted(() => {
     <div
       class="bg-gradient-to-r from-teal-700 to-blue-700 rounded-xl p-1 w-full max-w-3xl"
     >
-      <h1 class="text-3xl font-bold text-white text-center tracking-wide">
+      <h1 class="text-3xl font-bold font-serif text-white text-center tracking-wide">
         Dashboard, {{ currentDate }}
       </h1>
     </div>
   </div>
+  <div class="flex justify-center">
+    <div class="bg-white rounded-xl p-1 pt-8 w-full max-w-3xl">
+      <h1 class="text-3xl font-bold font-serif text-black text-center tracking-wide">
+         <p>
+        <span style="color: #FF7F50 ;">MESMER</span> Supported
+      </p>
+      </h1>
+    </div>
+  </div>
+
+<div class="bg-white rounded-xl shadow-md p-6 mb-10">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+    
+    <!-- Left: Paragraph Content -->
+   <div class="space-y-6">
+    
+      <div class="text-center flex-1">
+      <p class="text-3xl font-bold text-black mb-3">
+        Youth Employment
+      </p>
+      <div
+        class="inline-block bg-gray-200 border border-gray-500 text-black font-bold font-mono px-5 py-3 rounded-xl shadow text-2xl"
+      >
+      <CountUp :end="344622" />
+      </div>
+      <p class="mt-3 font-serif font-extrabold text-gray-1000 text-lg">Employed</p>
+      </div>
+    </div>
+
+
+    <!-- Right: Pie Chart + Image -->
+   <div class="flex flex-col items-center justify-center space-y-4">
+ <p class="text-3xl font-bold text-black mb-1">
+        Woman Employment
+      </p>
+  <div class="pt-6 flex flex-row items-center justify-center space-x-8">
+    <!-- Chart -->
+    <div class="w-[200px] h-[200px]">
+      <ClientOnly> 
+        <WomanEmploymentPie />
+      </ClientOnly>
+    </div>
+
+    <!-- Image -->
+    <div class="w-[150px] h-[150px]">
+      <img src="@/assets/mesmerLogo/businesswoman.png" alt="business woman"
+        class="rounded-lg shadow w-full h-full object-contain"
+      />
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+
+
+
 <div class="bg-white rounded-xl shadow-md p-6 mb-10">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
     
     <!-- Left: Paragraph Content -->
    <div class="space-y-6">
       <div class="text-center flex-1">
-      <p class="text-3xl font-bold text-black mb-3">
-        <span style="color: #FF7F50 ;">MESMER</span> Supported
+       <p class="text-3xl font-bold text-black mb-3">
+        Enterprises
       </p>
       <div
         class="inline-block bg-gray-200 border border-gray-500 text-black font-bold font-mono px-5 py-3 rounded-xl shadow text-2xl"
       >
-        {{ displayNumber }}
+        <CountUp :end="76692" />
       </div>
-      <p class="mt-3 font-serif font-extrabold text-gray-1000 text-lg">EMPLOYMENT</p>
+      <p class="mt-3 font-serif font-extrabold text-gray-1000 text-lg">Supported</p>
       </div>
     </div>
 
 
     <!-- Right: Pie Chart + Image -->
-    <div class="flex flex-col items-center justify-center space-y-4">
-      <!-- Pie Chart -->
-      <div class="w-[200px] h-[200px]">
-        <client-only>
-          <!-- <FundingPieChart /> -->
-        </client-only>
-      </div>
+   <div class="flex flex-col items-center justify-center space-y-4">
 
-      <!-- Image -->
-      <div class="w-[150px] h-auto">
-        <!-- <img src="/images/loan_progress.png" alt="Loan Progress" class="rounded-lg shadow" /> -->
+   <div class="text-center flex-1">
+      <p class="text-3xl font-bold text-black mb-3">
+        Outreach Individuals
+      </p>
+      <div
+        class="inline-block bg-gray-200 border border-gray-500 text-black font-bold font-mono px-5 py-3 rounded-xl shadow text-2xl"
+      >
+        <CountUp :end="538667" />
+      </div>
+      <p class="mt-3 font-serif font-extrabold text-gray-1000 text-lg">Reached</p>
       </div>
     </div>
-  </div>
 </div>
+  </div>
 
+
+
+
+
+   <!-- Informal Enterprise -->
   <div class="flex justify-center">
-    <div class="bg-white rounded-xl p-1 pt-8 w-full max-w-3xl">
-      <h1 class="text-3xl font-bold text-black text-center tracking-wide">
+    <div
+        class="bg-gradient-to-r from-teal-700 to-blue-700 shadow-xl rounded-xl p-1 w-full max-w-3xl"
+      >
+      <h1 class="text-3xl font-bold font-serif text-white text-center tracking-wide">
         Informal Enterprise
       </h1>
     </div>
@@ -141,90 +173,74 @@ onMounted(() => {
 
     <div class="flex justify-center">
       <div
-        id="#bds"
         class="bg-gradient-to-r from-teal-700 to-blue-700 shadow-xl rounded-xl p-1 w-full max-w-3xl"
       >
-        <h1 class="text-3xl font-bold text-white text-center tracking-wide">
-          formal Enterprise
+        <h1 class="text-3xl font-bold  font-serif text-white text-center tracking-wide">
+          Formal Enterprise
         </h1>
       </div>
     </div>
     <div class="flex justify-center">
-      <div class="bg-white rounded-xl p-1 pt- w-full max-w-3xl">
-        <h1 class="text-3xl font-bold text-black text-center tracking-wide">
+      <div class="bg-white rounded-xl p-1 w-full max-w-3xl">
+        <h1 class="text-3xl font-bold font-serif text-black text-center tracking-wide">
           Registration Status
         </h1>
       </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <!-- registration -->
-      <div class="bg-white rounded-xl p-6 min-h-[200px] min-w-[300px]">
-        <div
-          class="w-full h-full flex items-center justify-center bg-white shadow-lg rounded-lg"
-        >
-          <client-only>
-            <RegistrationChart />
-          </client-only>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-[2px] items-stretch">
+  <!-- registration -->
+  <div id="registration" class="bg-white rounded-xl p-4 min-h-[200px] w-full h-full flex flex-col">
+    <div class="w-full h-full flex items-center justify-center bg-white shadow-md rounded-lg">
+      <client-only>
+        <RegistrationChart />
+      </client-only>
+    </div>
+  </div>
+
+  <!-- BANKS -->
+  <div class="bg-white rounded-xl p-4 min-h-[200px] w-full h-full flex flex-col">
+    <div class="w-full h-full flex items-center justify-center bg-white shadow-md rounded-lg">
+      <client-only>
+        <banks />
+      </client-only>
+    </div>
+  </div>
+
+  <!-- IFB -->
+  <div class="bg-white rounded-xl p-4 min-h-[200px] w-full h-full flex flex-col">
+    <div class="w-full h-full flex items-center justify-center bg-white shadow-md rounded-lg">
+      <div class="bg-white rounded-xl p-4 w-full flex flex-col items-center justify-center space-y-6">
+        <!-- Interest-Free Banking -->
+        <div class="text-center">
+          <p class="text-xl font-semibold text-black mb-2">
+            Interest-Free Banking registration
+          </p>
+          <div class="inline-block bg-blue-200 border border-blue-500 text-blue-800 font-bold font-mono px-4 py-2 rounded-lg shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
+            <CountUp :end="21518" />
+          </div>
         </div>
-      </div>
 
-      <!-- BANKS -->
-      <div
-        id="registration"
-        class="bg-white rounded-xl p-6 min-h-[200px] min-w-[300px]"
-      >
-        <div
-          class="w-full h-full flex items-center justify-center bg-white shadow-lg rounded-lg"
-        >
-          <client-only>
-            <banks />
-          </client-only>
-        </div>
-      </div>
-
-      <!-- IFB -->
-      <div class="bg-white rounded-xl p-6 min-h-[200px] min-w-[300px]">
-        <div
-          class="w-full h-full flex items-center justify-center bg-white shadow-lg rounded-lg"
-        >
-          <div
-            class="bg-white rounded-xl p-4 min-h-[200px] w-full flex flex-col items-center justify-center space-y-6"
-          >
-            <!-- Interest-Free Banking -->
-            <div class="text-center">
-              <p class="text-xl font-semibold text-black mb-2">
-                Interest-Free Banking registration
-              </p>
-              <div
-                class="inline-block bg-blue-200 border border-blue-500 text-blue-800 font-bold font-mono px-4 py-2 rounded-lg shadow"
-              >
-                21,518
-              </div>
-            </div>
-
-            <!-- Disability -->
-            <div class="text-center">
-              <p class="text-xl font-semibold text-black mb-2">
-                Disability registration
-              </p>
-              <div
-                class="inline-block bg-blue-200 border border-blue-500 text-blue-800 font-bold font-mono px-4 py-2 rounded-lg shadow"
-              >
-                2,253
-              </div>
-            </div>
+        <!-- Disability -->
+        <div class="text-center">
+          <p class="text-xl font-semibold text-black mb-2">
+            Disability registration
+          </p>
+          <div class="inline-block bg-blue-200 border border-blue-500 text-blue-800 font-bold font-mono px-4 py-2 rounded-lg shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
+            <CountUp :end="2253" />
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
 
     <!-- BDS -->
     <div id="bds" class="flex justify-center">
       <div
-        id="#bds"
         class="bg-gradient-to-r from-teal-700 to-blue-700 shadow-xl rounded-xl p-1 w-full max-w-3xl"
       >
-        <h1 class="text-3xl font-bold text-white text-center tracking-wide">
+        <h1 class="text-3xl font-bold font-serif text-white text-center tracking-wide">
           BDS Status
         </h1>
       </div>
@@ -293,12 +309,12 @@ onMounted(() => {
   </div>
 
   <!-- Credi Disbursement -->
-  <div id="bds" class="flex justify-center pt-6">
+  <div id="credit" class="flex justify-center pt-6">
     <div
-      id="#bds"
+      
       class="bg-gradient-to-r from-teal-700 to-blue-700 shadow-xl rounded-xl p-1 w-full max-w-3xl"
     >
-      <h1 class="text-3xl font-bold text-white text-center tracking-wide">
+      <h1 class="text-3xl font-bold font-serif text-white text-center tracking-wide">
         Credit Disbursement
       </h1>
     </div>
@@ -385,12 +401,10 @@ onMounted(() => {
 
 
 
-
-
    <!-- Finance -->
 <div class="flex justify-center pt-6">
   <div class="bg-gradient-to-r from-teal-700 to-blue-700 shadow-xl rounded-xl p-1 w-full max-w-3xl">
-    <h1 class="text-3xl font-bold text-white text-center tracking-wide">
+    <h1 class="text-3xl font-bold font-serif text-white text-center tracking-wide">
       Finance
     </h1>
   </div>
@@ -398,38 +412,68 @@ onMounted(() => {
 
 <div class="space-y-8">
   <!-- 1st Trench -->
-  <div class="bg-white rounded-xl p-6 shadow-md">
-    <h2 class="text-2xl font-bold text-gray-800 mb-4">1st Trench Disbursement</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+  <div class="bg-white rounded-xl p-6">
+    <h2 id="finance" class="text-2xl font-bold text-gray-800 mb-4">1st Trench Disbursement</h2>
+    <div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
+      <div class="flex items-center justify-center bg-white shadow-md rounded-lg p-4">
       <client-only>
       <Abyssinia_column />
+      </client-only>
+      </div>
+<div class="flex items-center justify-center bg-white shadow-md rounded-lg p-4">
+      <ClientOnly>
       <Hibret_column />
+      </ClientOnly>
+      </div>
+<div class="flex items-center justify-center bg-white shadow-md rounded-lg p-4">
+      <client-only>
       <AwashThirdTrenchColumn />
+      </client-only>
+      </div>
+<div class="flex items-center justify-center bg-white shadow-md rounded-lg p-4">
+      <client-only>
       <DashenThirdTrenchColumn />
       </client-only>
+</div>
     </div>
   </div>
 
   <!-- 2nd Trench -->
-  <div class="bg-white rounded-xl p-6 shadow-md">
+  <div class="bg-white rounded-xl p-6">
     <h2 class="text-2xl font-bold text-gray-800 mb-4">2nd Trench Disbursement</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="flex items-center justify-center bg-white shadow-md rounded-lg p-4">
   <client-only>
       <Hibret_column />
+      </client-only>
+</div>
+<div class="flex items-center justify-center bg-white shadow-md rounded-lg p-4">
+      <client-only>
       <AwashThirdTrenchColumn />
+      </client-only>
+</div>
+<div class="flex items-center justify-center bg-white shadow-md rounded-lg p-4">
+      <client-only>
       <DashenThirdTrenchColumn />
       </client-only>
+</div>
     </div>
   </div>
 
   <!-- 3rd Trench -->
-  <div class="bg-white rounded-xl p-6 shadow-md">
+  <div class="bg-white rounded-xl p-6">
     <h2 class="text-2xl font-bold text-gray-800 mb-4">3rd Trench Disbursement</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="flex items-center justify-center bg-white shadow-md rounded-lg p-4">
       <client-only>
       <AwashThirdTrenchColumn />
+      </client-only>
+      </div>
+      <div class="flex items-center justify-center bg-white shadow-md rounded-lg p-4">
+      <client-only>
       <DashenThirdTrenchColumn />
       </client-only>
+      </div>
     </div>
   </div>
 </div>

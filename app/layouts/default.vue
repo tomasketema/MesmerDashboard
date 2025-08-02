@@ -12,6 +12,13 @@
       </a>
 
       <div class="flex items-center pr-10">
+                <a
+          href="#registration"
+          class="text-black no-underline mx-1 transition-colors duration-300 hover:text-blue-200 hover:underline"
+        >
+          Registration
+        </a>
+        <span class="text-black mx-1">|</span>
         <a
           href="#bds"
           class="text-black no-underline mx-1 transition-colors duration-300 hover:text-blue-200 hover:underline"
@@ -20,10 +27,17 @@
         </a>
         <span class="text-black mx-1">|</span>
         <a
-          href="#registration"
+          href="#credit"
           class="text-black no-underline mx-1 transition-colors duration-300 hover:text-blue-200 hover:underline"
         >
           Credit
+        </a>
+                <span class="text-black mx-1">|</span>
+        <a
+          href="#finance"
+          class="text-black no-underline mx-1 transition-colors duration-300 hover:text-blue-200 hover:underline"
+        >
+          Finance
         </a>
       </div>
     </nav>
