@@ -4,7 +4,7 @@ import VueApexCharts from 'vue3-apexcharts';
 const series = [
   {
     name: 'value',
-    data: [356700000,44800000]
+    data: [269000000,487600000]
   }
 ];
 
@@ -19,7 +19,9 @@ const chartOptions = {
   legend: {
     show: false
   },
-  colors: ['#f38429', '#155d99'],
+  colors: ['#2563EB', '#F59E0B'
+
+],
   plotOptions: {
     bar: {
       borderRadius: 10,
@@ -95,7 +97,7 @@ const chartOptions = {
 <div class="flex flex-col items-center p-10 space-y-4">
     
       <h2 class="text-xl font-semibold text-gray-800">
-        Awash Bank
+        Abyssinia Bank
       </h2>
       <VueApexCharts
         type="bar"

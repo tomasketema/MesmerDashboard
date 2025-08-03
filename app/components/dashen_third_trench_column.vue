@@ -4,7 +4,7 @@ import VueApexCharts from 'vue3-apexcharts';
 const series = [
   {
     name: 'value',
-    data: [4656,1021]
+    data: [360100000,232900000]
   }
 ];
 
@@ -41,7 +41,7 @@ const chartOptions = {
     }
   },
   xaxis: {
-    categories: ['Target', 'Achievemnet'],
+    categories: ['Trench amount', 'Amount Dispursed'],
     position: 'bottom',
     axisBorder: {
       show: false
@@ -90,13 +90,18 @@ const chartOptions = {
 </script>
 
 <template>
+  
   <client-only>
-      <div  class="flex justify-center p-10">
+<div class="flex flex-col items-center p-10 space-y-4">
+    
+      <h2 class="text-xl font-semibold text-gray-800">
+        Dashen Bank
+      </h2>
       <VueApexCharts
         type="bar"
         :series="series"
         :options="chartOptions"
-        width="100%"
+        width="150%"
         height="250px"
       />
     </div>

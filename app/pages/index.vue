@@ -3,10 +3,11 @@ import GrantChart from "../components/grant.vue";
 import PssChart from "../components/pss.vue";
 import RegistrationChart from "../components/registration.vue";
 import { useState } from "#imports";
-import Abyssinia_column from "~/components/abyssinia_column.vue";
-import Hibret_column from "~/components/hibret_column.vue";
+import Abyssinia_column from "~/components/abyssinia_first_trench_column.vue";
+import Hibret_column from "~/components/hibret_second_trench_column.vue";
 import { DashenThirdTrenchColumn } from "#components";
 import CountUp from '~/components/countup.vue'
+import Hibret_first_trench_column from "~/components/hibret_first_trench_column.vue";
 const currentDate = useState("currentDate", () => {
   const today = new Date();
   const options = { day: "2-digit", month: "long", year: "numeric" };
@@ -422,17 +423,17 @@ const currentDate = useState("currentDate", () => {
       </div>
 <div class="flex items-center justify-center bg-white shadow-md rounded-lg p-4">
       <ClientOnly>
-      <Hibret_column />
+      <Hibret_first_trench_column />
       </ClientOnly>
       </div>
 <div class="flex items-center justify-center bg-white shadow-md rounded-lg p-4">
       <client-only>
-      <AwashThirdTrenchColumn />
+      <Awash_first_trench_column />
       </client-only>
       </div>
 <div class="flex items-center justify-center bg-white shadow-md rounded-lg p-4">
       <client-only>
-      <DashenThirdTrenchColumn />
+      <Dashen_first_trench_column />
       </client-only>
 </div>
     </div>
@@ -449,12 +450,12 @@ const currentDate = useState("currentDate", () => {
 </div>
 <div class="flex items-center justify-center bg-white shadow-md rounded-lg p-4">
       <client-only>
-      <AwashThirdTrenchColumn />
+      <AwashSecondTrenchColumn/>
       </client-only>
 </div>
 <div class="flex items-center justify-center bg-white shadow-md rounded-lg p-4">
       <client-only>
-      <DashenThirdTrenchColumn />
+      <DashenSecondTrenchColumn />
       </client-only>
 </div>
     </div>

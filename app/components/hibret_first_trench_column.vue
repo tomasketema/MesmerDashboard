@@ -4,7 +4,7 @@ import VueApexCharts from 'vue3-apexcharts';
 const series = [
   {
     name: 'value',
-    data: [356700000,44800000]
+    data: [100,100]
   }
 ];
 
@@ -95,7 +95,7 @@ const chartOptions = {
 <div class="flex flex-col items-center p-10 space-y-4">
     
       <h2 class="text-xl font-semibold text-gray-800">
-        Awash Bank
+        Hibret Bank
       </h2>
       <VueApexCharts
         type="bar"
