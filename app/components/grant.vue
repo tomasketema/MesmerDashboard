@@ -1,11 +1,11 @@
 <script setup>
+import { ref, onMounted, defineAsyncComponent } from 'vue'
+
 const VueApexCharts = defineAsyncComponent(() =>
   import("vue3-apexcharts")
-);
-// import { calculateGrantPercentage, calculateGrantTotal } from '../data/data.js';
+)
 
-const series = [100];
-const total = 100;
+const series = ref([0])
 const chartOptions = {
   chart: {
     height: 300,
@@ -58,7 +58,7 @@ const chartOptions = {
       }
     }
   },
-  colors: ['#FDBA74'], 
+  colors: ['#FDBA74'],
   fill: {
     type: 'gradient',
     gradient: {
@@ -74,19 +74,26 @@ const chartOptions = {
   },
   stroke: { lineCap: 'round' },
   labels: ['GRANT']
-};
+}
+
+onMounted(() => {
+  const savedGrant = localStorage.getItem("grantValue")
+  if (savedGrant) {
+    series.value = [parseFloat(savedGrant)]
+  }
+})
 </script>
 
 <template>
   <client-only>
-  <div class="flex flex-col items-center">
-    <VueApexCharts
-      type="radialBar"
-      :series="series"
-      :options="chartOptions"
-      width="250%"
-      height="250%"
-    />
-  </div>
+    <div class="flex flex-col items-center">
+      <VueApexCharts
+        type="radialBar"
+        :series="series"
+        :options="chartOptions"
+        width="250%"
+        height="250%"
+      />
+    </div>
   </client-only>
 </template>
