@@ -19,7 +19,7 @@ const chartOptions = {
   legend: {
     show: false
   },
-  colors: ['#f38429', '#155d99'],
+  colors: ['#00A499', '#4B2485'],
   plotOptions: {
     bar: {
       borderRadius: 10,

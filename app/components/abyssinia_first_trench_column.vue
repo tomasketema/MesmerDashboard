@@ -19,7 +19,9 @@ const chartOptions = {
   legend: {
     show: false
   },
-  colors: ['#2563EB', '#F59E0B'
+  colors: ['#FFC20E', '#000000'
+
+
 
 ],
   plotOptions: {
