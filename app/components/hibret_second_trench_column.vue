@@ -90,13 +90,13 @@ const chartOptions = {
 </script>
 
 <template>
-  
   <client-only>
-<div class="flex flex-col items-center p-10 space-y-4">
-    
-      <h2 class="text-xl font-semibold text-gray-800">
-        Hibret Bank
-      </h2>
+    <div class="flex flex-col items-center p-10 space-y-4">
+      <img
+        src="/images/banks/HibretLogo.png"
+        alt="Hibret Bank"
+        class="h-10 object-contain"
+      />
       <VueApexCharts
         type="bar"
         :series="series"

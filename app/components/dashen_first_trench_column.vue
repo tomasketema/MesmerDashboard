@@ -4,7 +4,7 @@ import VueApexCharts from 'vue3-apexcharts';
 const series = [
   {
     name: 'value',
-    data: [100,100]
+    data: [269000000,269000000]
   }
 ];
 
@@ -91,19 +91,21 @@ const chartOptions = {
 </script>
 
 <template>
-  
   <client-only>
-<div class="flex flex-col items-center p-10 space-y-4">
-    
-      <h2 class="text-xl font-semibold text-gray-800">
-        Dashen Bank
-      </h2>
+    <div class="flex flex-col items-center p-10">
+      <img
+        src="/images/banks/Dashen.png"
+        alt="Dashen Bank"
+        class="h-13 max-w-[200px] object-contain"
+
+      />
       <VueApexCharts
         type="bar"
         :series="series"
         :options="chartOptions"
         width="150%"
         height="250px"
+        
       />
     </div>
   </client-only>

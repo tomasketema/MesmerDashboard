@@ -94,13 +94,13 @@ const chartOptions = {
 </script>
 
 <template>
-  
   <client-only>
-<div class="flex flex-col items-center p-10 space-y-4">
-    
-      <h2 class="text-xl font-semibold text-gray-800">
-        Abyssinia Bank
-      </h2>
+    <div class="flex flex-col items-center p-10 space-y-4">
+      <img
+        src="/images/banks/AbyssiniaLogo.png"
+        alt="Abyssinia Bank"
+        class="h-16 object-contain"
+      />
       <VueApexCharts
         type="bar"
         :series="series"
@@ -111,3 +111,4 @@ const chartOptions = {
     </div>
   </client-only>
 </template>
+

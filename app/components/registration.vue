@@ -52,7 +52,7 @@ const chartOptions = {
           type="pie"
           :series="series"
           :options="chartOptions"
-          width="350"
+          width="100%"
           height="350"
         />
       </div>
