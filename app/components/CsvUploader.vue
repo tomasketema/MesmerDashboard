@@ -1,33 +1,34 @@
 <template>
-  <div class="space-y-4 p-6 bg-white rounded-xl shadow-lg">
-    <h2 class="text-xl font-bold">Upload CSV</h2>
-    <input type="file" @change="handleFile" accept=".csv" class="border p-2 rounded" />
-  </div>
+  <form @submit.prevent="upload">
+    <input type="file" @change="handleFile" accept=".csv" />
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Upload CSV</button>
+  </form>
 </template>
 
 <script setup>
-import Papa from 'papaparse'
+import { ref } from 'vue'
 
-function handleFile(e) {
-  const file = e.target.files[0]
-  if (!file) return
+const file = ref(null)
 
-  Papa.parse(file, {
-    header: true,
-    skipEmptyLines: true,
-    complete: function (results) {
-      const jsonData = results.data
-      console.log("Parsed CSV JSON:", JSON.stringify(jsonData, null, 2))
+function handleFile(event) {
+  file.value = event.target.files[0]
+}
 
-      const grantRow = jsonData.find(row => row.metric?.trim() === 'grant_value')
-      const grantValue = grantRow && grantRow.value
-        ? parseFloat(grantRow.value)
-        : 0
+async function upload() {
+  if (!file.value) return alert('Please select a CSV file')
 
-      localStorage.setItem("grantValue", grantValue)
-      alert("Grant value saved to localStorage: " + grantValue)
-    }
-  })
+  const formData = new FormData()
+  formData.append('file', file.value)
+
+  try {
+    const res = await $fetch('/api/upload', {
+      method: 'POST',
+      body: formData
+    })
+    alert(res.message)
+  } catch (err) {
+    console.error(err)
+    alert('Upload failed')
+  }
 }
 </script>
-
