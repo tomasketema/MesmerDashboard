@@ -39,8 +39,6 @@
         >
           Finance
         </a>
-        <span class="text-black mx-1">|</span>
-        <NuxtLink to="/admin" class="text-blue-500 hover:underline">Go to Admin Page</NuxtLink>
       </div>
       
     </nav>
