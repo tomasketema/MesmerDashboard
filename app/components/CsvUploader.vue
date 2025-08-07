@@ -53,16 +53,16 @@ async function uploadCSV() {
 
     const result = await response.json()
 
-    if (response.ok && result.status === 'success') {
+    if (response.ok && result.status === '🎉success') {
       statusMessage.value = result.message
       statusType.value = 'success'
     } else {
-      statusMessage.value = result.message || 'Upload failed.'
+      statusMessage.value = result.message || '⚠️Upload failed.'
       statusType.value = 'error'
     }
   } catch (error) {
     console.error('Upload failed:', error)
-    statusMessage.value = 'Upload failed. Please try again.'
+    statusMessage.value = '🔄Upload failed. Please try again.'
     statusType.value = 'error'
   }
 }
