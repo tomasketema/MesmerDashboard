@@ -1,19 +1,19 @@
 <script setup>
 import VueApexCharts from 'vue3-apexcharts';
 
-const series = [
+const series = ref([
   {
     name: 'value',
-    data: [4656, 1021],
-  },
-];
+    data: [0, 0]
+  }
+])
 
 const chartOptions = {
   chart: {
     type: 'bar',
     toolbar: { show: false },
     margin: {
-    top: 30, // Add space at the top to avoid label clipping
+    top: 30,
   },
   },
   legend: { show: false },
@@ -47,7 +47,22 @@ const chartOptions = {
   grid: {
     yaxis: { lines: { show: false } },
   },
-};
+}
+onMounted(async () => {
+  try {
+    const res = await fetch(
+      '/api/get-latest-data?section=Credit Disbursement&names=Program Target,Program Achievement'
+    )
+    const data = await res.json()
+    console.log('Program API data:', data)
+
+    const target = Number(data.find(item => item.name === 'Program Target')?.value) || 0
+    const achievement = Number(data.find(item => item.name === 'Program Achievement')?.value) || 0
+    series.value[0].data = [target, achievement]
+  } catch (err) {
+    console.error('Failed to fetch Program data:', err)
+  }
+})
 </script>
 
 <template>

@@ -1,7 +1,8 @@
 <script setup>
-import VueApexCharts from 'vue3-apexcharts';
+import { ref, onMounted } from 'vue'
+import VueApexCharts from 'vue3-apexcharts'
 
-const series = [22];
+const series = ref([0]) // default, to be replaced with percentage
 
 const chartOptions = {
   chart: {
@@ -23,32 +24,47 @@ const chartOptions = {
           offsetY: 76,
           fontSize: '22px',
           color: undefined,
-          formatter: function (val) {
-            return val + '%';
-          }
+          formatter: val => val + '%'
         }
       }
     }
   },
   fill: {
-  type: 'gradient',
-  gradient: {
-    shade: 'light',
-    type: 'horizontal',
-    shadeIntensity: 0.5,
-    gradientToColors: ['#155d99'],
-    inverseColors: false,
-    opacityFrom: 1,
-    opacityTo: 1,
-    stops: [0, 100]
-  },
-  colors: ['#4d84b3'] 
+    type: 'gradient',
+    gradient: {
+      shade: 'light',
+      type: 'horizontal',
+      shadeIntensity: 0.5,
+      gradientToColors: ['#155d99'],
+      inverseColors: false,
+      opacityFrom: 1,
+      opacityTo: 1,
+      stops: [0, 100]
+    },
+    colors: ['#4d84b3']
   },
   stroke: {
     dashArray: 4
   },
   labels: ['']
-};
+}
+
+// 🔄 On mount, fetch "Y3Q2 Target" and "Y3Q2 Achievement" from API
+onMounted(async () => {
+  try {
+    const res = await fetch('/api/get-latest-data?section=BDS Status&names=Y3Q2 Target,Y3Q2 Achievement')
+    const data = await res.json()
+
+    const target = Number(data.find(item => item.name === 'Y3Q2 Target')?.value) || 0
+    const achievement = Number(data.find(item => item.name === 'Y3Q2 Achievement')?.value) || 0
+
+    const percentage = target > 0 ? Math.round((achievement / target) * 100) : 0
+
+    series.value = [percentage]
+  } catch (err) {
+    console.error('Failed to fetch Y3Q2 radial chart data:', err)
+  }
+})
 </script>
 
 <template>

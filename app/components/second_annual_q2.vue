@@ -1,12 +1,13 @@
 <script setup>
-import VueApexCharts from 'vue3-apexcharts';
+import { ref, onMounted } from 'vue'
+import VueApexCharts from 'vue3-apexcharts'
 
-const series = [
+const series = ref([
   {
     name: 'value',
-    data: [4656,1021]
+    data: [0, 0]
   }
-];
+])
 
 const chartOptions = {
   chart: {
@@ -16,7 +17,7 @@ const chartOptions = {
       show: false
     }
   },
-    legend: {
+  legend: {
     show: false
   },
   colors: ['#002B5B', '#F7941D'],
@@ -32,7 +33,7 @@ const chartOptions = {
   dataLabels: {
     enabled: true,
     formatter: function (val) {
-      return val;
+      return val
     },
     offsetY: -20,
     style: {
@@ -75,7 +76,7 @@ const chartOptions = {
     labels: {
       show: false,
       formatter: function (val) {
-        return val;
+        return val
       }
     }
   },
@@ -86,7 +87,23 @@ const chartOptions = {
       }
     }
   }
-};
+}
+
+onMounted(async () => {
+  try {
+    const res = await fetch(
+      '/api/get-latest-data?section=Credit Disbursement&names=Annual Q2 Target,Annual Q2 Achievement'
+    )
+    const data = await res.json()
+    console.log('Second Annual Q2 API data:', data)
+
+    const target = Number(data.find(item => item.name === 'Annual Q2 Target')?.value) || 0
+    const achievement = Number(data.find(item => item.name === 'Annual Q2 Achievement')?.value) || 0
+    series.value[0].data = [target, achievement]
+  } catch (err) {
+    console.error('Failed to fetch second annual Q2 data:', err)
+  }
+})
 </script>
 
 <template>

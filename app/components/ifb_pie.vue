@@ -1,7 +1,7 @@
 <script setup>
 import VueApexCharts from 'vue3-apexcharts';
 
-const series = [70];
+const series = ref([0])
 
 const chartOptions = {
   chart: {
@@ -27,7 +27,23 @@ const chartOptions = {
   },
 
   labels: [],
-};
+}
+onMounted(async () => {
+  try {
+    const res = await fetch('/api/get-latest-data?section=Credit Disbursement&names=Program Target,Program Achievement'
+    )
+    const data = await res.json()
+
+    const target = Number(data.find(item => item.name === 'Program Target')?.value) || 0
+    const achievement = Number(data.find(item => item.name === 'Program Achievement')?.value) || 0
+
+    const percentage = target > 0 ? Math.round((achievement / target) * 100) : 0
+
+    series.value = [percentage]
+  } catch (err) {
+    console.error('Failed to fetch Program data:', err)
+  }
+})
 </script>
 
 <template>

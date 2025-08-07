@@ -1,92 +1,75 @@
 <script setup>
-import VueApexCharts from 'vue3-apexcharts';
+import { ref, onMounted } from "vue";
+import VueApexCharts from "vue3-apexcharts";
 
-const series = [
-  {
-    name: 'value',
-    data: [809100000,681800000]
-  }
-];
+const series = ref([{ name: "value", data: [0, 0] }]);
 
 const chartOptions = {
-  chart: {
-    height: 50,
-    type: 'bar',
-    toolbar: {
-      show: false
-    }
-  },
-  legend: {
-    show: false
-  },
-  colors: ['#00A499', '#4B2485'],
+  chart: { height: 50, type: "bar", toolbar: { show: false } },
+  legend: { show: false },
+  colors: ['#00A499', '#4B2485'
+],
   plotOptions: {
     bar: {
       borderRadius: 10,
       distributed: true,
-      dataLabels: {
-        position: 'top' // top, center, bottom
-      }
-    }
+      dataLabels: { position: "top" },
+    },
   },
   dataLabels: {
     enabled: true,
-    formatter: function (val) {
-      return val;
-    },
+    formatter: (val) => val,
     offsetY: -20,
-    style: {
-      fontSize: '12px',
-      colors: ['#304758']
-    }
+    style: { fontSize: "12px", colors: ["#304758"] },
   },
   xaxis: {
-    categories: ['Trench amount', 'Amount Dispursed'],
-    position: 'bottom',
-    axisBorder: {
-      show: false
-    },
-    axisTicks: {
-      show: false
-    },
+    categories: ["Trench amount", "Amount Dispursed"],
+    position: "bottom",
+    axisBorder: { show: false },
+    axisTicks: { show: false },
     crosshairs: {
       fill: {
-        type: 'gradient',
+        type: "gradient",
         gradient: {
-          colorFrom: '#D8E3F0',
-          colorTo: '#BED1E6',
+          colorFrom: "#D8E3F0",
+          colorTo: "#BED1E6",
           stops: [0, 100],
           opacityFrom: 0.4,
-          opacityTo: 0.5
-        }
-      }
+          opacityTo: 0.5,
+        },
+      },
     },
-    tooltip: {
-      enabled: false
-    }
+    tooltip: { enabled: false },
   },
   yaxis: {
-    axisBorder: {
-      show: false
-    },
-    axisTicks: {
-      show: false
-    },
-    labels: {
-      show: false,
-      formatter: function (val) {
-        return val;
-      }
-    }
+    axisBorder: { show: false },
+    axisTicks: { show: false },
+    labels: { show: false },
   },
-  grid: {
-    yaxis: {
-      lines: {
-        show: false
-      }
-    }
-  }
+  grid: { yaxis: { lines: { show: false } } },
 };
+
+onMounted(async () => {
+  try {
+    const res = await fetch(
+      "/api/get-latest-data?section=Finance - 2nd Trench&names=Hibret Trench Amount,Hibret Amount Disbursed"
+    );
+    const data = await res.json();
+    console.log("API data:", data);
+
+    const trench =
+      Number(
+        data.find((item) => item.name === "Hibret Trench Amount")?.value
+      ) || 0;
+    const dispursed =
+      Number(
+        data.find((item) => item.name === "Hibret Amount Disbursed")?.value
+      ) || 0;
+    series.value[0].data = [trench, dispursed];
+  } catch (err) {
+    console.error("Failed to fetch chart data:", err);
+  }
+});
 </script>
 
 <template>
@@ -95,7 +78,7 @@ const chartOptions = {
       <img
         src="/images/banks/HibretLogo.png"
         alt="Hibret Bank"
-        class="h-10 object-contain"
+        class="h-16 object-contain"
       />
       <VueApexCharts
         type="bar"
@@ -107,3 +90,4 @@ const chartOptions = {
     </div>
   </client-only>
 </template>
+ 

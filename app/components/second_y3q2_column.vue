@@ -1,14 +1,15 @@
 <script setup>
-import VueApexCharts from 'vue3-apexcharts';
+import { ref, onMounted } from 'vue'
+import VueApexCharts from 'vue3-apexcharts'
 
-const series = [
+const series = ref([
   {
     name: 'value',
-    data: [4656,1021]
+    data: [0, 0]
   }
-];
+])
 
-const chartOptions = {
+const chartOptions = ref({
   chart: {
     height: 50,
     type: 'bar',
@@ -25,14 +26,14 @@ const chartOptions = {
       borderRadius: 10,
       distributed: true,
       dataLabels: {
-        position: 'top' // top, center, bottom
+        position: 'top'
       }
     }
   },
   dataLabels: {
     enabled: true,
     formatter: function (val) {
-      return val;
+      return val
     },
     offsetY: -20,
     style: {
@@ -41,14 +42,10 @@ const chartOptions = {
     }
   },
   xaxis: {
-    categories: ['Target', 'Achievemnet'],
+    categories: ['Target', 'Achievement'],
     position: 'bottom',
-    axisBorder: {
-      show: false
-    },
-    axisTicks: {
-      show: false
-    },
+    axisBorder: { show: false },
+    axisTicks: { show: false },
     crosshairs: {
       fill: {
         type: 'gradient',
@@ -61,32 +58,40 @@ const chartOptions = {
         }
       }
     },
-    tooltip: {
-      enabled: false
-    }
+    tooltip: { enabled: false }
   },
   yaxis: {
-    axisBorder: {
-      show: false
-    },
-    axisTicks: {
-      show: false
-    },
+    axisBorder: { show: false },
+    axisTicks: { show: false },
     labels: {
       show: false,
-      formatter: function (val) {
-        return val;
-      }
+      formatter: val => val
     }
   },
   grid: {
-    yaxis: {
-      lines: {
-        show: false
-      }
-    }
+    yaxis: { lines: { show: false } }
   }
-};
+})
+
+// 🔄 Fetch latest data for Y3Q2 Target and Achievement
+onMounted(async () => {
+  try {
+    const res = await fetch('/api/get-latest-data?section=Credit Disbursement&names=Y3Q2 Target,Y3Q2 Achievement')
+    const data = await res.json()
+
+    const target = Number(data.find(d => d.name === 'Y3Q2 Target')?.value) || 0
+    const achievement = Number(data.find(d => d.name === 'Y3Q2 Achievement')?.value) || 0
+
+    series.value = [
+      {
+        name: 'value',
+        data: [target, achievement]
+      }
+    ]
+  } catch (err) {
+    console.error('Failed to load bar chart data:', err)
+  }
+})
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 <script setup>
 import VueApexCharts from 'vue3-apexcharts';
 
-const series = [22];
+const series = ref([0])
 
 const chartOptions = {
   chart: {
@@ -48,7 +48,23 @@ const chartOptions = {
     dashArray: 4
   },
   labels: ['']
-};
+}
+onMounted(async () => {
+  try {
+    const res = await fetch('/api/get-latest-data?section=Credit Disbursement&names=Annual Q2 Target,Annual Q2 Achievement'
+    )
+    const data = await res.json()
+
+    const target = Number(data.find(item => item.name === 'Annual Q2 Target')?.value) || 0
+    const achievement = Number(data.find(item => item.name === 'Annual Q2 Achievement')?.value) || 0
+
+    const percentage = target > 0 ? Math.round((achievement / target) * 100) : 0
+
+    series.value = [percentage]
+  } catch (err) {
+    console.error('Failed to fetch radial chart data:', err)
+  }
+})
 </script>
 
 <template>

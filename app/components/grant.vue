@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, defineAsyncComponent } from 'vue'
+import { ref, defineAsyncComponent, onMounted } from 'vue'
 
 const VueApexCharts = defineAsyncComponent(() =>
   import("vue3-apexcharts")
@@ -76,10 +76,16 @@ const chartOptions = {
   labels: ['GRANT']
 }
 
-onMounted(() => {
-  const savedGrant = localStorage.getItem("grantValue")
-  if (savedGrant) {
-    series.value = [parseFloat(savedGrant)]
+onMounted(async () => {
+  try {
+    const res = await fetch('/api/get-latest-data?section=Informal Enterprise&names=Grant')
+    const data = await res.json()
+    console.log('Grant API data:', data)
+
+    const grantValue = Number(data.find(item => item.name === 'Grant')?.value) || 0
+    series.value = [grantValue]
+  } catch (err) {
+    console.error('Failed to fetch grant data:', err)
   }
 })
 </script>

@@ -3,3 +3,9 @@ Add caching or validation
 🔧 Add error logs/history page
 
 🔄 Setup auto-refresh charts on interval
+
+Cache results if the dataset is large (since updates are weekly).
+
+Validation on the frontend to ensure correct CSV format before upload.
+
+Error handling in charts if no data exists yet.

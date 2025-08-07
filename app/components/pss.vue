@@ -1,10 +1,11 @@
 <script setup>
+import { ref, defineAsyncComponent, onMounted } from 'vue'
+
 const VueApexCharts = defineAsyncComponent(() =>
   import("vue3-apexcharts")
 );
 
-const series = [100];
-const total = 100;
+const series = ref([0]);
 
 const chartOptions = {
   
@@ -77,6 +78,19 @@ const chartOptions = {
   stroke: { lineCap: 'round' },
   labels: ['PSS']
 };
+
+onMounted(async () => {
+  try {
+    const res = await fetch('/api/get-latest-data?section=Informal Enterprise&names=PSS')
+    const data = await res.json()
+    console.log('PSS API data:', data)
+
+    const pssValue = Number(data.find(item => item.name === 'PSS')?.value) || 0
+    series.value = [pssValue]
+  } catch (err) {
+    console.error('Failed to fetch PSS data:', err)
+  }
+})
 </script>
 
 <template>

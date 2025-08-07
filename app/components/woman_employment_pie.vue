@@ -1,9 +1,10 @@
 <script setup>
-import VueApexCharts from 'vue3-apexcharts';
+import { ref, onMounted } from 'vue'
+import VueApexCharts from 'vue3-apexcharts'
 
-const series = [58];
+const series = ref([0]) // percentage value
 
-const chartOptions = {
+const chartOptions = ref({
   chart: {
     type: 'radialBar',
   },
@@ -23,11 +24,21 @@ const chartOptions = {
     },
   },
   fill: {
-  colors: ['#1e3a8a'],
+    colors: ['#1e3a8a'],
   },
-
   labels: [],
-};
+})
+
+onMounted(async () => {
+  try {
+    const res = await fetch('/api/get-latest-data?section=MESMER Supported&names=Woman Employment')
+    const data = await res.json()
+    const percentage = Number(data.find(item => item.name === 'Woman Employment')?.value) || 0
+    series.value = [percentage]
+  } catch (error) {
+    console.error('Failed to fetch Woman Employment data:', error)
+  }
+})
 </script>
 
 <template>

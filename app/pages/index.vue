@@ -5,11 +5,19 @@ import RegistrationChart from "../components/registration.vue";
 import { useState } from "#imports";
 import Abyssinia_column from "~/components/abyssinia_first_trench_column.vue";
 import Hibret_column from "~/components/hibret_second_trench_column.vue";
-import { DashenThirdTrenchColumn } from "#components";
+import DashenThirdTrenchColumn from "~/components/dashen_third_trench_column.vue";
 import CountUp from "~/components/countup.vue";
 import Hibret_first_trench_column from "~/components/hibret_first_trench_column.vue";
-import IfbDisbursement from '~/components/ifb_disbursement.vue'
-import IFBFOMTotalDisbursement from '../components/ifb_fom_total_disbursement.vue'
+import IfbDisbursement from '~/components/ifb_disbursement.vue';
+import YouthEmployment from '~/components/youth_employment.vue';
+import IFBFOMTotalDisbursement from '~/components/ifb_fom_total_disbursement.vue';
+import IFBRegistration from '~/components/ifb_registration.vue'
+import DisabilityRegistration from '~/components/disability_registration.vue'
+import FormalEnterprisesNumber from '~/components/formal_enterprises_number.vue'
+import Y3Q2Column from '~/components/y3q2_column.vue'
+
+
+
 const currentDate = useState("currentDate", () => {
   const today = new Date();
   const options = { day: "2-digit", month: "long", year: "numeric" };
@@ -35,7 +43,7 @@ const currentDate = useState("currentDate", () => {
       <h1
         class="text-3xl font-bold font-serif text-black text-center tracking-wide"
       >
-        <p><span style="color: #ff7f50">MESMER</span> Supported</p>
+        <p><span class="text-[#ff7f50] ">MESMER</span> Supported</p>
       </h1>
     </div>
   </div>
@@ -49,7 +57,7 @@ const currentDate = useState("currentDate", () => {
           <div
             class="inline-block bg-gray-200 border border-gray-500 text-black font-bold font-mono px-5 py-3 rounded-xl shadow text-2xl"
           >
-            <CountUp :end="344622" />
+            <YouthEmployment />
           </div>
           <p class="mt-3 font-serif font-extrabold text-gray-1000 text-lg">
             Employed
@@ -90,7 +98,7 @@ const currentDate = useState("currentDate", () => {
           <div
             class="inline-block bg-gray-200 border border-gray-500 text-black font-bold font-mono px-5 py-3 rounded-xl shadow text-2xl"
           >
-            <CountUp :end="76692" />
+            <EnterprisesSupported />
           </div>
           <p class="mt-3 font-serif font-extrabold text-gray-1000 text-lg">
             Supported
@@ -105,7 +113,7 @@ const currentDate = useState("currentDate", () => {
           <div
             class="inline-block bg-gray-200 border border-gray-500 text-black font-bold font-mono px-5 py-3 rounded-xl shadow text-2xl"
           >
-            <CountUp :end="538667" />
+            <OutreachedIndividuals />
           </div>
           <p class="mt-3 font-serif font-extrabold text-gray-1000 text-lg">
             Reached
@@ -155,10 +163,12 @@ const currentDate = useState("currentDate", () => {
             </client-only>
           </div>
           <div class="w-1/2 text-center">
-            <p class="text-xl font-bold text-black">
-              10,192 Informal Enterprises <br />
-              6,000 Formal Enterprises
-            </p>
+             <p class="text-gray-700 text-base">
+    <span class="inline-block"><InformalEnterprisesNumber /></span> Informal Enterprises
+  </p>
+   <p class="text-gray-700 text-base">
+    <span class="inline-block"><FormalEnterprisesNumber /></span> Formal Enterprises
+  </p>
           </div>
         </div>
       </div>
@@ -220,7 +230,7 @@ const currentDate = useState("currentDate", () => {
               <div
                 class="inline-block bg-blue-200 border border-blue-500 text-blue-800 font-bold font-mono px-4 py-2 rounded-lg shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
               >
-                <CountUp :end="21518" />
+                <IFBRegistration />
               </div>
             </div>
 
@@ -232,7 +242,7 @@ const currentDate = useState("currentDate", () => {
               <div
                 class="inline-block bg-blue-200 border border-blue-500 text-blue-800 font-bold font-mono px-4 py-2 rounded-lg shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
               >
-                <CountUp :end="2253" />
+                <DisabilityRegistration />
               </div>
             </div>
           </div>
@@ -343,7 +353,6 @@ const currentDate = useState("currentDate", () => {
         <div class="flex items-center justify-center bg-white rounded-lg p-4">
           <client-only>
             <SecondY3q2Pie />
-            <!-- create -->
           </client-only>
         </div>
       </div>
@@ -397,9 +406,14 @@ const currentDate = useState("currentDate", () => {
           <div
             class="inline-block bg-gray-200 border border-gray-500 text-black font-bold font-mono px-4 py-2 rounded-lg shadow"
           >
-            21,518
+             <IfbDisbursement />  
           </div>
-          <p class="mt-2 text-gray-700">6% of the total Disbursement</p>
+          
+          <p class="mt-2 text-gray-700"> <span class="inline-flex items-center">
+    <IFBFOMTotalDisbursement /><span>%</span></span>of the total Disbursement
+</p>
+
+
         </div>
       </div>
     </div>

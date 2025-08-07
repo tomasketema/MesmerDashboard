@@ -1,104 +1,57 @@
 <script setup>
-import VueApexCharts from 'vue3-apexcharts';
+import { ref, onMounted } from 'vue'
+import VueApexCharts from 'vue3-apexcharts'
 
-const series = [
-  {
-    name: 'value',
-    data: [4656,1021]
-  }
-];
+const series = ref([
+  { name: 'value', data: [0, 0] }
+])
 
 const chartOptions = {
-  chart: {
-    height: 50,
-    type: 'bar',
-    toolbar: {
-      show: false
-    }
-  },
-    legend: {
-    show: false
-  },
+  chart: { height: 50, type: 'bar', toolbar: { show: false } },
+  legend: { show: false },
   colors: ['#38bdf8', '#1e3a8a'],
   plotOptions: {
-    bar: {
-      borderRadius: 10,
-      distributed: true,
-      dataLabels: {
-        position: 'top' // top, center, bottom
-      }
-    }
+    bar: { borderRadius: 10, distributed: true, dataLabels: { position: 'top' } }
   },
   dataLabels: {
     enabled: true,
-    formatter: function (val) {
-      return val;
-    },
+    formatter: val => val,
     offsetY: -20,
-    style: {
-      fontSize: '12px',
-      colors: ['#304758']
-    }
+    style: { fontSize: '12px', colors: ['#304758'] }
   },
   xaxis: {
     categories: ['Target', 'Achievemnet'],
     position: 'bottom',
-    axisBorder: {
-      show: false
-    },
-    axisTicks: {
-      show: false
-    },
-    crosshairs: {
-      fill: {
-        type: 'gradient',
-        gradient: {
-          colorFrom: '#D8E3F0',
-          colorTo: '#BED1E6',
-          stops: [0, 100],
-          opacityFrom: 0.4,
-          opacityTo: 0.5
-        }
-      }
-    },
-    tooltip: {
-      enabled: false
-    }
+    axisBorder: { show: false },
+    axisTicks: { show: false },
+    crosshairs: { fill: { type: 'gradient', gradient: { colorFrom: '#D8E3F0', colorTo: '#BED1E6', stops: [0, 100], opacityFrom: 0.4, opacityTo: 0.5 } } },
+    tooltip: { enabled: false }
   },
-  yaxis: {
-    axisBorder: {
-      show: false
-    },
-    axisTicks: {
-      show: false
-    },
-    labels: {
-      show: false,
-      formatter: function (val) {
-        return val;
-      }
-    }
-  },
-  grid: {
-    yaxis: {
-      lines: {
-        show: false
-      }
-    }
+  yaxis: { axisBorder: { show: false }, axisTicks: { show: false }, labels: { show: false } },
+  grid: { yaxis: { lines: { show: false } } }
+}
+
+onMounted(async () => {
+  try {
+    const res = await fetch(
+      '/api/get-latest-data?section=BDS Status&names=Annual Q2 Target,Annual Q2 Achievement'
+    )
+    const data = await res.json()
+    console.log('API data:', data)
+
+    const target = Number(data.find(item => item.name === 'Annual Q2 Target')?.value) || 0
+    const achievement = Number(data.find(item => item.name === 'Annual Q2 Achievement')?.value) || 0
+    series.value[0].data = [target, achievement]
+  } catch (err) {
+    console.error('Failed to fetch chart data:', err)
   }
-};
+})
 </script>
 
 <template>
   <client-only>
     <div class="flex justify-center p-10">
-      <VueApexCharts
-        type="bar"
-        :series="series"
-        :options="chartOptions"
-        width="250%"
-        height="250%"
-      />
+      <VueApexCharts type="bar" :series="series" :options="chartOptions" width="250%" height="250%" />
     </div>
   </client-only>
 </template>
