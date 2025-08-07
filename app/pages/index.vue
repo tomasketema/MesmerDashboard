@@ -8,6 +8,8 @@ import Hibret_column from "~/components/hibret_second_trench_column.vue";
 import { DashenThirdTrenchColumn } from "#components";
 import CountUp from "~/components/countup.vue";
 import Hibret_first_trench_column from "~/components/hibret_first_trench_column.vue";
+import IfbDisbursement from '~/components/ifb_disbursement.vue'
+import IFBFOMTotalDisbursement from '../components/ifb_fom_total_disbursement.vue'
 const currentDate = useState("currentDate", () => {
   const today = new Date();
   const options = { day: "2-digit", month: "long", year: "numeric" };
