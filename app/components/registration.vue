@@ -1,5 +1,6 @@
 <script setup>
 import { ref, defineAsyncComponent, onMounted } from 'vue'
+import CountUp from '/components/CountUp.vue'
 
 const VueApexCharts = defineAsyncComponent(() =>
   import("vue3-apexcharts")
@@ -60,11 +61,12 @@ onMounted(async () => {
           Registered at:
         </div>
 
-        <div class="flex flex-col gap-4">
-          <div class=" bg-[#76859b] rounded-[30px] shadow text-center px-20 py-2">
-            <div class="text-lg font-bold text-black whitespace-nowrap">
-              Total: <span class="font-bold">{{ total }}</span>
+        <div class="flex flex-col gap-2">
+          <div class=" bg-[#76859b] rounded-[30px] shadow text-center px-10 -py-1">
+            <div class="text-lg font-bold text-black whitespace-nowrap flex items-center justify-center gap-2">
+              Total: <span class="font-bold"><CountUp :end="total" /></span>
             </div>
+
           </div>
         </div>
       </div>
@@ -74,7 +76,7 @@ onMounted(async () => {
           type="pie"
           :series="series"
           :options="chartOptions"
-          width="100%"
+          width="300"
           height="350"
         />
       </div>

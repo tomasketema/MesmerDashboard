@@ -228,7 +228,7 @@ const currentDate = useState("currentDate", () => {
                 Interest-Free Banking registration
               </p>
               <div
-                class="inline-block bg-blue-200 border border-blue-500 text-blue-800 font-bold font-mono px-4 py-2 rounded-lg shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
+                class="inline-block bg-blue-200 border border-blue-500 text-blue-800 font-bold px-4 py-2 rounded-lg shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
               >
                 <IFBRegistration />
               </div>
@@ -240,7 +240,7 @@ const currentDate = useState("currentDate", () => {
                 Disability registration
               </p>
               <div
-                class="inline-block bg-blue-200 border border-blue-500 text-blue-800 font-bold font-mono px-4 py-2 rounded-lg shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
+                class="inline-block bg-blue-200 border border-blue-500 text-blue-800 font-bold px-4 py-2  rounded-lg shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
               >
                 <DisabilityRegistration />
               </div>

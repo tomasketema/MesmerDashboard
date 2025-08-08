@@ -1,18 +1,18 @@
 <template>
   <div class="p-6 bg-white rounded-xl shadow-md space-y-4">
-    <h2 class="text-xl font-semibold">📤 Upload CSV for Chart Data</h2>
+    <h2 class="text-xl font-semibold font-serif">📤 Upload CSV for Chart Data</h2>
 
     <input
       type="file"
       accept=".csv,.tsv"
       @change="handleFileUpload"
-      class="border p-2 rounded w-full"
+      class="border p-2 rounded w-full font-serif"
     />
 
     <button
       @click="uploadCSV"
       :disabled="!csvFile"
-      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+      class="bg-blue-600 text-white font-serif px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
     >
       Upload
     </button>
@@ -20,7 +20,7 @@
     <p
       v-if="statusMessage"
       :class="statusType === 'success' ? 'text-green-600' : 'text-red-600'"
-      class="font-medium"
+      class="font-medium font-serif"
     >
       {{ statusMessage }}
     </p>
@@ -53,7 +53,7 @@ async function uploadCSV() {
 
     const result = await response.json()
 
-    if (response.ok && result.status === '🎉success') {
+    if (response.ok && result.status === 'success') {
       statusMessage.value = result.message
       statusType.value = 'success'
     } else {

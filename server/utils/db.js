@@ -1,15 +1,15 @@
-import mysql from 'mysql2/promise'
+import mysql from 'mysql2/promise';
 
-let connection
+const pool = mysql.createPool({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'mesmer_dashboard',
+  waitForConnections: true,
+  connectionLimit: 10,  // how many connections at once
+  queueLimit: 0
+});
 
 export async function getDbConnection() {
-  if (!connection) {
-    connection = await mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      password: '',
-      database: 'mesmer_dashboard',
-    })
-  }
-  return connection
+  return pool;
 }
