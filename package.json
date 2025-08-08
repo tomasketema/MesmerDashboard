@@ -16,6 +16,7 @@
     "axios": "^1.11.0",
     "csv-parse": "^6.1.0",
     "formidable": "^3.5.4",
+    "locomotive-scroll": "^4.1.4",
     "mysql2": "^3.14.3",
     "node-cache": "^5.1.2",
     "nuxt": "^4.0.1",

@@ -16,7 +16,21 @@ import DisabilityRegistration from '~/components/disability_registration.vue'
 import FormalEnterprisesNumber from '~/components/formal_enterprises_number.vue'
 import Y3Q2Column from '~/components/y3q2_column.vue'
 
+onMounted(async () => {
+  // Dynamically import locomotive-scroll only on client
+  const LocomotiveScroll = (await import('locomotive-scroll')).default
+  // import css as well (optional if globally imported)
+  await import('locomotive-scroll/dist/locomotive-scroll.css')
 
+  locoScroll = new LocomotiveScroll({
+    el: document.querySelector('#scroll-container'),
+    smooth: true,
+  })
+})
+
+onBeforeUnmount(() => {
+  if (locoScroll) locoScroll.destroy()
+})
 
 const currentDate = useState("currentDate", () => {
   const today = new Date();
@@ -27,6 +41,7 @@ const currentDate = useState("currentDate", () => {
 </script>
 
 <template>
+  <div id="scroll-container" data-scroll-container>
   <div id="home" class="flex justify-center">
     <div
       class="bg-gradient-to-r from-teal-700 to-blue-700 rounded-xl p-1 w-full max-w-3xl"
@@ -522,5 +537,6 @@ const currentDate = useState("currentDate", () => {
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
