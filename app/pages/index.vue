@@ -200,7 +200,7 @@ const currentDate = useState("currentDate", () => {
     </div>
   </div>
     <div class="grid grid-cols-1 md:grid-cols-12 gap-2 items-stretch mt-4">
-      <!-- Registration (Left) - slightly smaller -->
+      <!-- Registration (Left) -->
       <div
         id="registration"
         class="bg-white rounded-xl p-4 min-h-[200px] w-full h-full flex flex-col md:col-span-3"
@@ -214,7 +214,7 @@ const currentDate = useState("currentDate", () => {
         </div>
       </div>
 
-      <!-- BANKS (Middle) - slightly larger and shifted left -->
+      <!-- BANKS (Middle) -->
       <div
         class="bg-white rounded-xl p-4 min-h-[200px] w-full h-full flex flex-col md:col-span-6 md:-mr-2"
       >

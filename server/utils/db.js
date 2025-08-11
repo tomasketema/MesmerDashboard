@@ -6,7 +6,7 @@ const pool = mysql.createPool({
   password: '',
   database: 'mesmer_dashboard',
   waitForConnections: true,
-  connectionLimit: 10,  // how many connections at once
+  connectionLimit: 10,
   queueLimit: 0
 });
 

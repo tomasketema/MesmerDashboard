@@ -63,7 +63,7 @@ onMounted(async () => {
 
         <div class="flex flex-col gap-2">
           <div class=" bg-[#76859b] rounded-[30px] shadow text-center px-10 -py-1">
-            <div class="text-lg font-bold text-black whitespace-nowrap flex items-center justify-center gap-2">
+            <div class="text-lg font-bold text-black-800 whitespace-nowrap flex items-center justify-center gap-2">
               Total: <span class="font-bold"><CountUp :end="total" /></span>
             </div>
 
