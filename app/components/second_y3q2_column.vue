@@ -41,11 +41,26 @@ const chartOptions = ref({
       colors: ['#304758']
     }
   },
-  xaxis: {
+   xaxis: {
     categories: ['Target', 'Achievement'],
     position: 'bottom',
     axisBorder: { show: false },
     axisTicks: { show: false },
+    labels: {
+      rotate: 0,
+      rotateAlways: false,
+      hideOverlappingLabels: false,
+      trim: false,
+      minHeight: undefined,
+      maxHeight: 120,
+      style: {
+        colors: [],
+        fontSize: '12px',
+        fontFamily: 'Helvetica, Arial, sans-serif',
+        fontWeight: 400,
+        cssClass: 'apexcharts-xaxis-label'
+      }
+    },
     crosshairs: {
       fill: {
         type: 'gradient',

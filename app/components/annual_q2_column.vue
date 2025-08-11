@@ -20,10 +20,25 @@ const chartOptions = {
     style: { fontSize: '12px', colors: ['#304758'] }
   },
   xaxis: {
-    categories: ['Target', 'Achievemnet'],
+    categories: ['Target', 'Achievement'],
     position: 'bottom',
     axisBorder: { show: false },
     axisTicks: { show: false },
+    labels: {
+      rotate: 0,
+      rotateAlways: false,
+      hideOverlappingLabels: false,
+      trim: false,
+      minHeight: undefined,
+      maxHeight: 120,
+      style: {
+        colors: [],
+        fontSize: '12px',
+        fontFamily: 'Helvetica, Arial, sans-serif',
+        fontWeight: 400,
+        cssClass: 'apexcharts-xaxis-label'
+      }
+    },
     crosshairs: { fill: { type: 'gradient', gradient: { colorFrom: '#D8E3F0', colorTo: '#BED1E6', stops: [0, 100], opacityFrom: 0.4, opacityTo: 0.5 } } },
     tooltip: { enabled: false }
   },
