@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 
 const props = defineProps({
   end: {
@@ -17,11 +17,15 @@ let animationFinished = false
 
 function animateCountUp(start, end, duration) {
   let startTime = null
+  animationFinished = false
 
   function step(timestamp) {
     if (!startTime) startTime = timestamp
     const progress = timestamp - startTime
-    const current = Math.min(Math.floor(start + (progress / duration) * (end - start)), end)
+    const current = Math.min(
+      Math.floor(start + (progress / duration) * (end - start)),
+      end
+    )
     displayNumber.value = current.toLocaleString()
 
     if (current < end) {
@@ -34,14 +38,24 @@ function animateCountUp(start, end, duration) {
   requestAnimationFrame(step)
 }
 
-onMounted(() => {
+function startAnimation() {
+  displayNumber.value = 0
   animateCountUp(0, props.end, props.duration)
 
   setTimeout(() => {
     if (!animationFinished || displayNumber.value === '0') {
-      displayNumber.value = props.end.toLocaleString()
+      displayNumber.value = props.end
     }
   }, props.duration + 1000)
+}
+
+onMounted(() => {
+  startAnimation()
+})
+watch(() => props.end, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    startAnimation()
+  }
 })
 </script>
 
