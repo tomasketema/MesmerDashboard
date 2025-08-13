@@ -6,9 +6,8 @@
       type="file"
       accept=".csv,.tsv"
       @change="handleFileUpload"
-      class="border p-2 rounded w-full font-serif"
+      class="p-2 w-full font-serif"
     />
-
     <button
       @click="uploadCSV"
       :disabled="!csvFile"
@@ -19,7 +18,7 @@
 
     <p
       v-if="statusMessage"
-      :class="statusType === 'success' ? 'text-green-600' : 'text-red-600'"
+      :class="statusType === 'success' ? 'text-green-700' : 'text-red-600'"
       class="font-medium font-serif"
     >
       {{ statusMessage }}
@@ -62,7 +61,7 @@ async function uploadCSV() {
     }
   } catch (error) {
     console.error('Upload failed:', error)
-    statusMessage.value = '🔄Upload failed. Please try again.'
+    statusMessage.value = '🔄Upload failed. Please refresh the page and try again.'
     statusType.value = 'error'
   }
 }

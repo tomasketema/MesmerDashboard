@@ -22,29 +22,28 @@ export default defineEventHandler(async (event) => {
       });
     });
 
-    // Get uploaded file
+   
     const uploadedFile = Array.isArray(files.file) ? files.file[0] : files.file;
     if (!uploadedFile || !uploadedFile.filepath) {
       throw new Error('No file uploaded');
     }
 
-    // Read CSV content
     const csvContent = fs.readFileSync(uploadedFile.filepath, 'utf-8');
 
-    // Parse CSV into objects
+
     const records = parse(csvContent, {
       columns: (header) => header.map((h) => h.trim().toLowerCase()),
       skip_empty_lines: true,
       trim: true,
-      delimiter: csvContent.includes('\t') ? '\t' : ',', // auto-detect
+      delimiter: csvContent.includes('\t') ? '\t' : ',',
     });
 
     if (!records.length) throw new Error('CSV has no data');
 
-    // Get DB connection pool
+
     const db = await getDbConnection();
 
-    // Prepare rows for insertion
+ 
     const insertValues = [];
     for (const row of records) {
       const section = row.section?.trim();
@@ -60,14 +59,14 @@ export default defineEventHandler(async (event) => {
 
     if (!insertValues.length) throw new Error('No valid rows to insert');
 
-    // Insert into DB
+
     const insertQuery = `
       INSERT INTO chart_data (section, name, chart_type, value, created_at)
       VALUES ?
     `;
     await db.query(insertQuery, [insertValues]);
 
-    // Clear the cache after successful insert
+
     chartCache.flushAll();
 
     return { status: 'success', message: 'CSV uploaded successfully!' };

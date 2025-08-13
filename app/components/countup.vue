@@ -1,4 +1,3 @@
-<!-- components/CountUp.vue -->
 <script setup>
 import { ref, onMounted } from 'vue'
 

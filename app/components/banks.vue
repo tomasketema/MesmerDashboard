@@ -1,6 +1,27 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
+
+// Responsive chart sizing optimized for 14-inch laptops
+const chartWidth = computed(() => {
+  if (typeof window !== 'undefined') {
+    const width = window.innerWidth
+    if (width < 1024) return '100%'   // mobile/tablet
+    if (width < 1400) return '150%'   // 14-inch laptops (1366x768)
+    return '200%'                     // larger screens
+  }
+  return '200%'
+})
+
+const chartHeight = computed(() => {
+  if (typeof window !== 'undefined') {
+    const width = window.innerWidth
+    if (width < 1024) return '200px'  // mobile/tablet
+    if (width < 1400) return '220px'  // 14-inch laptops
+    return '250px'                    // larger screens
+  }
+  return '250px'
+})
 
 const series = ref([
   {
@@ -93,35 +114,35 @@ onMounted(async () => {
 <template>
   <client-only>
     <div>
-      <div class="flex justify-center p-10 gap-8 flex-wrap">
-        <div class="text-lg font-bold text-black whitespace-nowrap">
-          <h3 class="text-lg font-extrabold mb-4 text-gray-800">
+      <div class="flex justify-center p-4 lg:p-6 xl:p-10 gap-4 lg:gap-6 xl:gap-8 flex-wrap">
+        <div class="text-base lg:text-lg font-bold text-black whitespace-nowrap">
+          <h3 class="text-base lg:text-lg font-extrabold mb-3 lg:mb-4 text-gray-800">
             Assisted Bank Registration to date
           </h3>
         </div>
       </div>
 
-      <div class="flex justify-center p-10 flex-col items-center" style="width: 100%">
+      <div class="flex justify-center p-4 lg:p-6 xl:p-10 flex-col items-center w-full">
         <VueApexCharts
           type="bar"
           :series="series"
           :options="chartOptions"
-          width="200%"
-          height="250px"
+          :width="chartWidth"
+          :height="chartHeight"
         />
 
-        <div class="flex justify-between -mt-6" style="width: 100%; max-width: 800px">
-          <div class="flex justify-center" style="flex: 1">
-            <img src="/images/banks/AbyssiniaLogo.png" alt="Abyssinia" class="h-12 object-contain" />
+        <div class="flex justify-between -mt-4 lg:-mt-5 xl:-mt-6 w-full max-w-xs lg:max-w-md xl:max-w-2xl">
+          <div class="flex justify-center flex-1">
+            <img src="/images/banks/AbyssiniaLogo.png" alt="Abyssinia" class="h-8 lg:h-10 xl:h-12 object-contain" />
           </div>
-          <div class="flex justify-center" style="flex: 1">
-            <img src="/images/banks/AwashLogo.png" alt="Awash" class="h-10 object-contain" />
+          <div class="flex justify-center flex-1">
+            <img src="/images/banks/AwashLogo.png" alt="Awash" class="h-6 lg:h-8 xl:h-10 object-contain" />
           </div>
-          <div class="flex justify-center" style="flex: 1">
-            <img src="/images/banks/Dashen.png" alt="Dashen" class="h-12 object-contain" />
+          <div class="flex justify-center flex-1">
+            <img src="/images/banks/Dashen.png" alt="Dashen" class="h-8 lg:h-10 xl:h-12 object-contain" />
           </div>
-          <div class="flex justify-center" style="flex: 1">
-            <img src="/images/banks/HibretLogo.png" alt="Hibret" class="h-10 object-contain" />
+          <div class="flex justify-center flex-1">
+            <img src="/images/banks/HibretLogo.png" alt="Hibret" class="h-6 lg:h-8 xl:h-10 object-contain" />
           </div>
         </div>
       </div>

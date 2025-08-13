@@ -17,9 +17,7 @@ import FormalEnterprisesNumber from '~/components/formal_enterprises_number.vue'
 import Y3Q2Column from '~/components/y3q2_column.vue'
 
 onMounted(async () => {
-  // Dynamically import locomotive-scroll only on client
   const LocomotiveScroll = (await import('locomotive-scroll')).default
-  // import css as well (optional if globally imported)
   await import('locomotive-scroll/dist/locomotive-scroll.css')
 
   locoScroll = new LocomotiveScroll({
@@ -68,7 +66,7 @@ const currentDate = useState("currentDate", () => {
       <!-- Left: Paragraph Content -->
       <div class="space-y-6">
         <div class="text-center flex-1">
-          <p class="text-3xl font-bold text-black mb-3">Youth Employment</p>
+          <p class="text-3xl font-semibold text-black mb-3">Youth Employment</p>
           <div
             class="inline-block bg-gray-200 border border-gray-500 text-black font-bold font-mono px-5 py-3 rounded-xl shadow text-2xl"
           >
@@ -82,7 +80,7 @@ const currentDate = useState("currentDate", () => {
 
       <!-- Right: Pie Chart + Image -->
       <div class="flex flex-col items-center justify-center space-y-4">
-        <p class="text-3xl font-bold text-black mb-1">Woman Employment</p>
+        <p class="text-3xl font-semibold text-black mb-1">Woman Employment</p>
         <div class="pt-6 flex flex-row items-center justify-center space-x-8">
           <!-- Chart -->
           <div class="w-[200px] h-[200px]">
@@ -109,7 +107,7 @@ const currentDate = useState("currentDate", () => {
       <!-- Left: Paragraph Content -->
       <div class="space-y-6">
         <div class="text-center flex-1">
-          <p class="text-3xl font-bold text-black mb-3">Enterprises</p>
+          <p class="text-3xl font-semibold text-black mb-3">Enterprises</p>
           <div
             class="inline-block bg-gray-200 border border-gray-500 text-black font-bold font-mono px-5 py-3 rounded-xl shadow text-2xl"
           >
@@ -124,7 +122,7 @@ const currentDate = useState("currentDate", () => {
       <!-- Right: Pie Chart + Image -->
       <div class="flex flex-col items-center justify-center space-y-4">
         <div class="text-center flex-1">
-          <p class="text-3xl font-bold text-black mb-3">Outreach Individuals</p>
+          <p class="text-3xl font-semibold text-black mb-3">Outreach Individuals</p>
           <div
             class="inline-block bg-gray-200 border border-gray-500 text-black font-bold font-mono px-5 py-3 rounded-xl shadow text-2xl"
           >
@@ -155,7 +153,7 @@ const currentDate = useState("currentDate", () => {
       <div
         class="md:col-span-1 bg-white shadow-lg rounded-xl p-6 min-h-[400px]"
       >
-        <h2 class="text-xl font-extrabold mb-4 text-gray-800 text-center">
+        <h2 class="text-[2rem] font-semibold mb-2 text-gray-800 text-center">
           Grant
         </h2>
         <div class="w-full h-full flex items-center justify-center">
@@ -167,7 +165,7 @@ const currentDate = useState("currentDate", () => {
       <div
         class="md:col-span-1 bg-white shadow-lg rounded-xl p-6 min-h-[400px]"
       >
-        <h2 class="text-xl font-extrabold mb-4 text-gray-800 text-center">
+       <h2 class="text-[2rem] font-semibold mb-2 text-gray-800 text-center">
           PSS
         </h2>
 
@@ -279,20 +277,20 @@ const currentDate = useState("currentDate", () => {
     </div>
   </div>
 
-  <div class="grid grid-cols-1 pt-10 md:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 pt-10 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-5 xl:gap-6">
     <!-- Y3Q2 -->
-    <div class="bg-white shadow-lg rounded-xl p-6 min-h-[400px]">
-      <h3 class="text-lg font-extrabold mb-4 text-gray-800 text-center">
+    <div class="bg-white shadow-lg rounded-xl p-4 lg:p-5 xl:p-6 min-h-[350px] lg:min-h-[380px] xl:min-h-[400px]">
+      <h3 class="text-base lg:text-lg font-extrabold mb-3 lg:mb-4 text-gray-800 text-center">
         Y3Q2
       </h3>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap--1">
-        <div class="flex items-center justify-center bg-white rounded-lg p-4">
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-2 lg:gap-3 xl:gap-4">
+        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
           <client-only>
             <Y3q2Column />
           </client-only>
         </div>
-        <div class="flex items-center justify-center bg-white rounded-lg p-4">
+        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
           <client-only>
             <Y3q2Pie />
           </client-only>
@@ -300,18 +298,18 @@ const currentDate = useState("currentDate", () => {
       </div>
     </div>
     <!-- Annual Q2 -->
-    <div class="bg-white shadow-lg rounded-xl p-6 min-h-[400px]">
-      <h3 class="text-lg font-extrabold mb-4 text-gray-800 text-center">
+    <div class="bg-white shadow-lg rounded-xl p-4 lg:p-5 xl:p-6 min-h-[350px] lg:min-h-[380px] xl:min-h-[400px]">
+      <h3 class="text-base lg:text-lg font-extrabold mb-3 lg:mb-4 text-gray-800 text-center">
         Annual Q2
       </h3>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap--1">
-        <div class="flex items-center justify-center bg-white rounded-lg p-4">
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-2 lg:gap-3 xl:gap-4">
+        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
           <client-only>
             <AnnualQ2Column />
           </client-only>
         </div>
-        <div class="flex items-center justify-center bg-white rounded-lg p-4">
+        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
           <client-only>
             <AnnualQ2Pie />
           </client-only>
@@ -320,18 +318,18 @@ const currentDate = useState("currentDate", () => {
     </div>
 
     <!-- program target vs achievement to Date -->
-    <div class="bg-white shadow-lg rounded-xl p-6 min-h-[400px]">
-      <h3 class="text-lg font-extrabold mb-4 text-gray-800 text-center">
+    <div class="bg-white shadow-lg rounded-xl p-4 lg:p-5 xl:p-6 min-h-[350px] lg:min-h-[380px] xl:min-h-[400px] lg:col-span-2 xl:col-span-1">
+      <h3 class="text-base lg:text-lg font-extrabold mb-3 lg:mb-4 text-gray-800 text-center">
         program target vs achievement to Date
       </h3>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap--1">
-        <div class="flex items-center justify-center bg-white rounded-lg p-4">
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-2 lg:gap-3 xl:gap-4">
+        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
           <client-only>
             <Y3Column />
           </client-only>
         </div>
-        <div class="flex items-center justify-center bg-white rounded-lg p-4">
+        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
           <client-only>
             <Y3Pie />
           </client-only>
@@ -352,20 +350,20 @@ const currentDate = useState("currentDate", () => {
       </h1>
     </div>
   </div>
-  <div class="grid grid-cols-1 pt-10 md:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 pt-10 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-5 xl:gap-6">
     <!-- 2nd_Y3Q2 -->
-    <div class="bg-white shadow-lg rounded-xl p-6 min-h-[400px]">
-      <h3 class="text-lg font-extrabold mb-4 text-gray-800 text-center">
+    <div class="bg-white shadow-lg rounded-xl p-4 lg:p-5 xl:p-6 min-h-[350px] lg:min-h-[380px] xl:min-h-[400px]">
+      <h3 class="text-base lg:text-lg font-extrabold mb-3 lg:mb-4 text-gray-800 text-center">
         Y3Q2
       </h3>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap--1">
-        <div class="flex items-center justify-center bg-white rounded-lg p-4">
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-2 lg:gap-3 xl:gap-4">
+        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
           <client-only>
             <SecondY3q2Column />
           </client-only>
         </div>
-        <div class="flex items-center justify-center bg-white rounded-lg p-4">
+        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
           <client-only>
             <SecondY3q2Pie />
           </client-only>
@@ -373,17 +371,17 @@ const currentDate = useState("currentDate", () => {
       </div>
     </div>
     <!-- 2nd_Annual Q2 -->
-    <div class="bg-white shadow-lg rounded-xl p-6 min-h-[400px]">
-      <h3 class="text-lg font-extrabold mb-4 text-gray-800 text-center">
+    <div class="bg-white shadow-lg rounded-xl p-4 lg:p-5 xl:p-6 min-h-[350px] lg:min-h-[380px] xl:min-h-[400px]">
+      <h3 class="text-base lg:text-lg font-extrabold mb-3 lg:mb-4 text-gray-800 text-center">
         Annual Q2
       </h3>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap--1">
-        <div class="flex items-center justify-center bg-white rounded-lg p-4">
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-2 lg:gap-3 xl:gap-4">
+        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
           <client-only>
             <SecondAnnualQ2 />
           </client-only>
         </div>
-        <div class="flex items-center justify-center bg-white rounded-lg p-4">
+        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
           <client-only>
             <SecondAnnualQ2Pie />
             <!-- create -->
@@ -393,18 +391,18 @@ const currentDate = useState("currentDate", () => {
     </div>
 
     <!-- program target vs achievement to Date -->
-    <div class="bg-white shadow-lg rounded-xl p-6 min-h-[240px] space-y-6">
-      <h3 class="text-lg font-extrabold text-gray-800 text-center">
+    <div class="bg-white shadow-lg rounded-xl p-4 lg:p-5 xl:p-6 min-h-[350px] lg:min-h-[380px] xl:min-h-[400px] space-y-0 lg:space-y-0 xl:space-y-1 lg:col-span-2 xl:col-span-1">
+      <h3 class="text-base lg:text-lg font-extrabold text-gray-800 text-center">
         Program Target vs Achievement to Date
       </h3>
 
       <!-- Top Charts -->
-      <div class="w-full bg-white rounded-lg px-2 py-3 flex items-center gap-8">
-        <div class="w-[120px]">
+      <div class="w-full bg-white rounded-lg px-2 py-2 lg:py-3 flex flex-col lg:flex-row items-center gap-4 lg:gap-6 xl:gap-8">
+        <div class="w-[100px] lg:w-[110px] xl:w-[120px]">
           <IfbColumn />
         </div>
 
-        <div class="flex-1">
+        <div class="flex-1 w-full">
           <client-only>
             <IfbPie />
           </client-only>
@@ -412,23 +410,20 @@ const currentDate = useState("currentDate", () => {
       </div>
 
       <!-- Bottom Container -->
-
       <div
-        class="w-full text-2xl font-bold text-gray-700 rounded-lg pt-20 px-4 py-4 flex items-center gap-4"
+        class="w-full text-lg lg:text-xl xl:text-2xl font-bold text-gray-700 rounded-lg pt-1 lg:pt-3 xl:pt-10 px-3 lg:px-4 py-3 lg:py-4 flex items-center gap-3 lg:gap-4"
       >
         <div class="text-center flex-1">
-          <p class="text-xxl font-semibold text-black mb-2">IFB Disbursement</p>
+          <p class="text-lg lg:text-xl xl:text-2xl font-semibold text-black mb-2">IFB Disbursement</p>
           <div
-            class="inline-block bg-gray-200 border border-gray-500 text-black font-bold font-mono px-4 py-2 rounded-lg shadow"
+            class="inline-block bg-gray-200 border border-gray-500 text-black font-bold font-mono px-3 lg:px-4 py-2 rounded-lg shadow text-sm lg:text-base xl:text-lg"
           >
-             <IfbDisbursement />  
+             <IfbDisbursement />
           </div>
-          
-          <p class="mt-2 text-gray-700"> <span class="inline-flex items-center">
-    <IFBFOMTotalDisbursement /><span>%</span></span>of the total Disbursement
+
+          <p class="mt-2 text-gray-700 text-sm lg:text-base"> <span class="inline-flex items-center">
+    <IFBFOMTotalDisbursement /><span>% </span></span> of the total Disbursement
 </p>
-
-
         </div>
       </div>
     </div>

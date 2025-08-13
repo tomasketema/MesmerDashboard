@@ -1,6 +1,27 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
+
+// Responsive chart sizing optimized for 14-inch screens
+const chartWidth = computed(() => {
+  if (typeof window !== 'undefined') {
+    const width = window.innerWidth
+    if (width < 1024) return '100%'   // mobile/tablet
+    if (width < 1400) return '140%'   // 14-inch screens - wider charts for better labels
+    return '250%'                     // larger screens - restore original size
+  }
+  return '250%'
+})
+
+const chartHeight = computed(() => {
+  if (typeof window !== 'undefined') {
+    const width = window.innerWidth
+    if (width < 1024) return '200'    // mobile/tablet
+    if (width < 1400) return '220'    // 14-inch screens
+    return '250'                      // larger screens
+  }
+  return '250'
+})
 
 const series = ref([
   {
@@ -27,10 +48,11 @@ const chartOptions = ref({
   dataLabels: {
     enabled: true,
     formatter: val => val,
-    offsetY: -20,
+    offsetY: -15,
     style: {
-      fontSize: '12px',
-      colors: ['#304758']
+      fontSize: '10px',
+      colors: ['#304758'],
+      fontWeight: 'bold'
     }
   },
    xaxis: {
@@ -44,12 +66,12 @@ const chartOptions = ref({
       hideOverlappingLabels: false,
       trim: false,
       minHeight: undefined,
-      maxHeight: 120,
+      maxHeight: 100,
       style: {
         colors: [],
-        fontSize: '12px',
+        fontSize: '11px',
         fontFamily: 'Helvetica, Arial, sans-serif',
-        fontWeight: 400,
+        fontWeight: 500,
         cssClass: 'apexcharts-xaxis-label'
       }
     },
@@ -98,13 +120,13 @@ onMounted(async () => {
 
 <template>
   <client-only>
-    <div class="flex justify-center p-10">
+    <div class="w-full h-full flex justify-center items-center p-2">
       <VueApexCharts
         type="bar"
         :series="series"
         :options="chartOptions"
-        width="250%"
-        height="250%"
+        :width="chartWidth"
+        :height="chartHeight"
       />
     </div>
   </client-only>

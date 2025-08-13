@@ -1,5 +1,27 @@
 <script setup>
-import VueApexCharts from 'vue3-apexcharts';
+import { ref, onMounted, computed } from 'vue'
+import VueApexCharts from 'vue3-apexcharts'
+
+// Responsive chart sizing optimized for 14-inch laptops
+const chartWidth = computed(() => {
+  if (typeof window !== 'undefined') {
+    const width = window.innerWidth
+    if (width < 1024) return '100%'   // mobile/tablet
+    if (width < 1400) return '140%'   // 14-inch laptops (1366x768)
+    return '170%'                     // larger screens
+  }
+  return '170%'
+})
+
+const chartHeight = computed(() => {
+  if (typeof window !== 'undefined') {
+    const width = window.innerWidth
+    if (width < 1024) return '180px'  // mobile/tablet
+    if (width < 1400) return '200px'  // 14-inch laptops
+    return '250px'                    // larger screens
+  }
+  return '250px'
+})
 
 const series = ref([
   {
@@ -23,7 +45,8 @@ const chartOptions = {
       borderRadius: 6,
       distributed: true,
       dataLabels: { position: 'top' },
-      columnWidth: '50%',
+      columnWidth: '70%',
+      barGap: 70
     },
   },
   dataLabels: {
@@ -46,12 +69,12 @@ const chartOptions = {
       hideOverlappingLabels: false,
       trim: false,
       minHeight: undefined,
-      maxHeight: 120,
+      maxHeight: 100,
       style: {
         colors: [],
-        fontSize: '12px',
+        fontSize: '11px',
         fontFamily: 'Helvetica, Arial, sans-serif',
-        fontWeight: 400,
+        fontWeight: 500,
         cssClass: 'apexcharts-xaxis-label'
       }
     }
@@ -82,13 +105,13 @@ onMounted(async () => {
 
 <template>
   <client-only>
-    <div class="w-full h-[140px]">
+    <div class="w-full h-full flex items-center justify-center">
       <VueApexCharts
         type="bar"
         :series="series"
         :options="chartOptions"
-        height="250px"
-        width="170%"
+        :height="chartHeight"
+        :width="chartWidth"
       />
     </div>
   </client-only>
