@@ -3,7 +3,7 @@
     <nav
       class="fixed top-0 left-0 w-full bg-white bg-opacity-99 px-5 py-2.5 z-50 flex justify-between items-center font-semibold shadow-md"
     >
-      <a href="/" class="block">
+      <a href="/try2" class="block">
         <img
           src="../assets/mesmerLogo/MESMERFULL.png"
           alt="MESMER Dashboard Logo"
@@ -11,34 +11,17 @@
         />
       </a>
 
-      <div class="flex items-center pr-10">
-                <a
-          href="#registration"
-          class="text-black no-underline mx-1 transition-colors duration-300 hover:text-blue-200 hover:underline"
-        >
-          Registration
-        </a>
-        <span class="text-black mx-1">|</span>
-        <a
-          href="#bds"
-          class="text-black no-underline mx-1 transition-colors duration-300 hover:text-blue-200 hover:underline"
-        >
-          BDS
-        </a>
-        <span class="text-black mx-1">|</span>
-        <a
-          href="#credit"
-          class="text-black no-underline mx-1 transition-colors duration-300 hover:text-blue-200 hover:underline"
-        >
-          Credit
-        </a>
-                <span class="text-black mx-1">|</span>
-        <a
-          href="#finance"
-          class="text-black no-underline mx-1 transition-colors duration-300 hover:text-blue-200 hover:underline"
-        >
-          Finance
-        </a>
+      <div class="flex items-center">
+       <img
+          src="../assets/MasterCardLogo/mastercard_foundation.svg"
+          alt="MasterCard Foundation Logo"
+           class="h-10 w-auto object-contain mx-10 transform scale-150"
+        />
+         <img
+          src="../assets/FCLOGO/FC logo (1).png"
+          alt="First consult Logo"
+          class="h-10 w-auto "
+        />
       </div>
       
     </nav>

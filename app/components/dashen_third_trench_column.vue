@@ -76,7 +76,7 @@ onMounted(async () => {
   <client-only>
     <div class="flex flex-col items-center p-10 space-y-4">
       <img
-        src="/images/banks/Dashen.png"
+        src="/images/banks/Dashen-remove.png"
         alt="Dashen Bank"
         class="h-16 object-contain"
       />

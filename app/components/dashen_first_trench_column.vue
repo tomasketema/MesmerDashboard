@@ -27,6 +27,21 @@ const chartOptions = {
     position: "bottom",
     axisBorder: { show: false },
     axisTicks: { show: false },
+     labels: {
+      rotate: 0,
+      rotateAlways: false,
+      hideOverlappingLabels: false,
+      trim: false,
+      minHeight: undefined,
+      maxHeight: 100,
+      style: {
+        colors: [],
+        fontSize: '11px',
+        fontFamily: 'Helvetica, Arial, sans-serif',
+        fontWeight: 500,
+        cssClass: 'apexcharts-xaxis-label'
+      }
+    },
     crosshairs: {
       fill: {
         type: "gradient",
@@ -76,7 +91,7 @@ onMounted(async () => {
   <client-only>
     <div class="flex flex-col items-center p-10 space-y-4">
       <img
-        src="/images/banks/Dashen.png"
+        src="/images/banks/Dashen-remove.png"
         alt="Dashen Bank"
         class="h-16 object-contain"
       />

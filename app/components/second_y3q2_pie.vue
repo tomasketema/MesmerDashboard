@@ -51,7 +51,6 @@ const chartOptions = ref({
   labels: ['']
 })
 
-// 🔄 Fetch Target and Achievement and calculate % dynamically
 onMounted(async () => {
   try {
     const res = await fetch('/api/get-latest-data?section=Credit Disbursement&names=Y3Q2 Target,Y3Q2 Achievement')

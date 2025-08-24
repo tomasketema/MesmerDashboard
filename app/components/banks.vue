@@ -114,13 +114,7 @@ onMounted(async () => {
 <template>
   <client-only>
     <div>
-      <div class="flex justify-center p-4 lg:p-6 xl:p-10 gap-4 lg:gap-6 xl:gap-8 flex-wrap">
-        <div class="text-base lg:text-lg font-bold text-black whitespace-nowrap">
-          <h3 class="text-base lg:text-lg font-extrabold mb-3 lg:mb-4 text-gray-800">
-            Assisted Bank Registration to date
-          </h3>
-        </div>
-      </div>
+      
 
       <div class="flex justify-center p-4 lg:p-6 xl:p-10 flex-col items-center w-full">
         <VueApexCharts
@@ -139,7 +133,7 @@ onMounted(async () => {
             <img src="/images/banks/AwashLogo.png" alt="Awash" class="h-6 lg:h-8 xl:h-10 object-contain" />
           </div>
           <div class="flex justify-center flex-1">
-            <img src="/images/banks/Dashen.png" alt="Dashen" class="h-8 lg:h-10 xl:h-12 object-contain" />
+            <img src="/images/banks/Dashen-remove.png" alt="Dashen" class="h-8 lg:h-10 xl:h-12 object-contain" />
           </div>
           <div class="flex justify-center flex-1">
             <img src="/images/banks/HibretLogo.png" alt="Hibret" class="h-6 lg:h-8 xl:h-10 object-contain" />
