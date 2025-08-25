@@ -3,6 +3,7 @@ import GrantChart from '../components/grant.vue'
 import PssChart from '../components/pss.vue'
 import RegistrationChart from '../components/registration.vue'
 import { useState } from '#imports'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import Abyssinia_column from '~/components/abyssinia_first_trench_column.vue'
 import Hibret_column from '~/components/hibret_second_trench_column.vue'
 import DashenThirdTrenchColumn from '~/components/dashen_third_trench_column.vue'
@@ -44,7 +45,30 @@ const currentDate = useState('currentDate', () => {
   return formatted.toUpperCase()
 })
 
+// Add reactive data for percentage changes
+const data = ref({
+  disability: { change: '0%' },
+  enterprises: { change: '0%' },
+  formalEnterprises: { change: '0%' },
+  informalEnterprises: { change: '0%' },
+  ifbRegistration: { change: '0%' },
+  ifbDisbursement: { change: '0%' },
+  outreach: { change: '0%' },
+  youthEmployment: { change: '0%' },
+  total: { change: '0%' }
+})
+
 onMounted(async () => {
+  // Fetch percentage change data
+  try {
+    const res = await fetch('/api/get-change-data')
+    const changeData = await res.json()
+    data.value = changeData
+  } catch (err) {
+    console.error('Failed to fetch change data:', err)
+  }
+
+  // Initialize Locomotive Scroll
   const LocomotiveScroll = (await import('locomotive-scroll')).default
   await import('locomotive-scroll/dist/locomotive-scroll.css')
 
@@ -135,7 +159,7 @@ onBeforeUnmount(() => {
                   </div>
 
                   <span class="absolute left-full ml-2 top-1/2 -translate-y-1/2 text-sm font-medium text-blue-900">
-                    +12%
+                    {{ data.youthEmployment.change }}
                   </span>
                 </div>
 
@@ -241,7 +265,7 @@ onBeforeUnmount(() => {
                   <div class="text-3xl font-bold text-gray-900">
                     <EnterprisesSupported />
                   </div>
-                  <span class="text-sm font-medium text-green-600">+12%</span>
+                  <span class="text-sm font-medium text-green-600">{{ data.enterprises.change }}</span>
                 </div>
                 <p class="text-sm text-gray-600 mt-1">Successfully Supported</p>
               </div>
@@ -297,7 +321,7 @@ onBeforeUnmount(() => {
                   <div class="text-3xl font-bold text-gray-900">
                     <OutreachedIndividuals />
                   </div>
-                  <span class="text-sm font-medium text-orange-600">+8%</span>
+                  <span class="text-sm font-medium text-orange-600">{{ data.outreach.change }}</span>
                 </div>
                 <p class="text-sm text-gray-600 mt-1">Community Impact</p>
               </div>
@@ -430,7 +454,7 @@ onBeforeUnmount(() => {
                     >
                       <InformalEnterprisesNumber />
                       <span class="text-sm font-medium text-blue-900"
-                        >+12%</span
+                        >{{ data.informalEnterprises.change }}</span
                       >
                     </div>
                     <p class="text-xs text-blue-600 mt-1">Enterprises</p>
@@ -450,7 +474,7 @@ onBeforeUnmount(() => {
                     >
                       <FormalEnterprisesNumber />
                       <span class="text-sm font-medium text-purple-900"
-                        >+12%</span
+                        >{{ data.formalEnterprises.change }}</span
                       >
                     </div>
                     <p class="text-xs text-purple-600 mt-1">Enterprises</p>
@@ -606,7 +630,7 @@ onBeforeUnmount(() => {
                     class="text-xl font-bold text-black flex items-baseline space-x-2"
                   >
                     <IFBRegistration />
-                    <span class="text-sm font-medium text-blue-900">+12%</span>
+                    <span class="text-sm font-medium text-blue-900">{{ data.ifbRegistration.change }}</span>
                   </div>
 
                   <p class="text-xs text-blue-600 mt-1">
@@ -629,7 +653,7 @@ onBeforeUnmount(() => {
                   >
                     <DisabilityRegistration />
                     <span class="text-sm font-medium text-emerald-900"
-                      >+12%</span
+                      >{{ data.disability.change }}</span
                     >
                   </div>
                   <p class="text-xs text-emerald-600 mt-1">
@@ -992,7 +1016,7 @@ onBeforeUnmount(() => {
                   class="flex text-xxl font-bold text-emerald-900 items-baseline space-x-2"
                 >
                   <IfbDisbursement />
-                  <span class="text-sm font-medium text-emerald-900">+12%</span>
+                  <span class="text-sm font-medium text-emerald-900">{{ data.ifbDisbursement.change }}</span>
                 </div>
 
                 <span

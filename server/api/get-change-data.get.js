@@ -20,6 +20,7 @@ export default defineEventHandler(async (event) => {
     { section: 'Informal Enterprise', name: 'Formal Enterprises', key: 'formalEnterprises' },
     { section: 'Informal Enterprise', name: 'Informal Enterprises', key: 'informalEnterprises' },
     { section: 'Formal Enterprise', name: 'IFB Registration', key: 'ifbRegistration' },
+    { section: 'Credit Disbursement', name: 'IFB Disbursement', key: 'ifbDisbursement' },
     { section: 'MESMER Supported', name: 'Outreach Individuals', key: 'outreach' },
     { section: 'MESMER Supported', name: 'Youth Employment', key: 'youthEmployment' },
     { section: 'Formal Enterprise', name: 'Total', key: 'total' }
@@ -59,7 +60,9 @@ export default defineEventHandler(async (event) => {
     const latestValue = entries[0] ? parseFloat(entries[0].value) : null
     const previousValue = entries[1] ? parseFloat(entries[1].value) : null
 
-    // Calculate percentage change
+
+
+    
     let change = null
     if (latestValue != null && previousValue != null) {
       if (previousValue === 0) {

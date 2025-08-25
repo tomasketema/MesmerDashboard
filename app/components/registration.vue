@@ -7,6 +7,10 @@ const VueApexCharts = defineAsyncComponent(() => import("vue3-apexcharts"));
 const series = ref([0, 0]);
 const total = ref(0);
 
+const data = ref({
+  total: { change: '0%' }
+});
+
 const chartOptions = {
   chart: {
     width: 380,
@@ -34,20 +38,26 @@ const chartOptions = {
 
 onMounted(async () => {
   try {
+    
     const res = await fetch(
       "/api/get-latest-data?section=Formal Enterprise&names=Self-Registered,Bank Assisted,Total"
     );
-    const data = await res.json();
-    console.log("Registration API data:", data);
+    const registrationData = await res.json();
+    console.log("Registration API data:", registrationData);
 
     const getValue = (name) =>
-      Number(data.find((item) => item.name === name)?.value) || 0;
+      Number(registrationData.find((item) => item.name === name)?.value) || 0;
 
     const selfRegistered = getValue("Self-Registered");
     const bankAssisted = getValue("Bank Assisted");
     total.value = getValue("Total");
 
     series.value = [selfRegistered, bankAssisted];
+
+
+    const changeRes = await fetch('/api/get-change-data');
+    const changeData = await changeRes.json();
+    data.value = changeData;
   } catch (err) {
     console.error("Failed to fetch registration data:", err);
   }
@@ -66,7 +76,7 @@ onMounted(async () => {
               class="text-lg font-bold text-gray-800 whitespace-nowrap flex items-center space-x-2 justify-center"
             >
               Total: <span class="font-bold"><CountUp :end="total" /></span>
-              <span class="text-sm font-medium text-blue-900 ">+12%</span>
+              <span class="text-sm font-medium text-blue-900 ">{{ data.total.change }}</span>
             </div>
           </div>
         </div>
@@ -84,4 +94,3 @@ onMounted(async () => {
     </div>
   </client-only>
 </template>
-flex items-baseline space-x-2
