@@ -3,7 +3,7 @@
     <nav
       class="fixed top-0 left-0 w-full bg-white bg-opacity-99 px-5 py-2.5 z-50 flex justify-between items-center font-semibold shadow-md"
     >
-      <a href="/try2" class="block">
+      <a href="/try2" class="block ">
         <img
           src="../assets/mesmerLogo/MESMERFULL.png"
           alt="MESMER Dashboard Logo"

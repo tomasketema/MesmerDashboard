@@ -50,7 +50,7 @@ const chartOptions = {
           fontSize: '17px'
         },
         value: {
-          formatter: (val) => parseInt(val),
+          formatter: (val) => `${parseInt(val)}%`,
           color: '#111',
           fontSize: '36px',
           show: true

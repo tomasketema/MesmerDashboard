@@ -21,8 +21,10 @@ onMounted(async () => {
 })
 </script>
 
+
 <template>
   <div class="text-center">
-   <span> <CountUp :end="ifbDisbursementPercent" :decimals="2" suffix="%" /></span>
+  <span>{{ ifbDisbursementPercent }}%</span>
+
   </div>
 </template>

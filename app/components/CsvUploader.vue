@@ -1,6 +1,7 @@
 <template>
   <div class="p-6 bg-white rounded-xl shadow-md space-y-4">
-    <h2 class="text-xl font-semibold font-serif">📤 Upload CSV for Chart Data</h2>
+    
+    <h2 class="text-xl font-semibold font-serif"><span class="inline-block animate-bounce [animation-duration:0.75s]">📤</span> Upload CSV for Chart Data</h2>
 
     <input
       type="file"

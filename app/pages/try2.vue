@@ -1,86 +1,85 @@
 <script setup>
-import GrantChart from '../components/grant.vue'
-import PssChart from '../components/pss.vue'
-import RegistrationChart from '../components/registration.vue'
-import { useState } from '#imports'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import Abyssinia_column from '~/components/abyssinia_first_trench_column.vue'
-import Hibret_column from '~/components/hibret_second_trench_column.vue'
-import DashenThirdTrenchColumn from '~/components/dashen_third_trench_column.vue'
-import CountUp from '~/components/countup.vue'
-import Hibret_first_trench_column from '~/components/hibret_first_trench_column.vue'
-import IfbDisbursement from '~/components/ifb_disbursement.vue'
-import YouthEmployment from '~/components/youth_employment.vue'
-import IFBFOMTotalDisbursement from '~/components/ifb_fom_total_disbursement.vue'
-import IFBRegistration from '~/components/ifb_registration.vue'
-import DisabilityRegistration from '~/components/disability_registration.vue'
-import FormalEnterprisesNumber from '~/components/formal_enterprises_number.vue'
-import Y3Q2Column from '~/components/y3q2_column.vue'
-import EnterprisesSupported from '~/components/enterprises_supported.vue'
-import OutreachedIndividuals from '~/components/Outreached_Individuals.vue'
-import InformalEnterprisesNumber from '~/components/informal_enterprises_number.vue'
-import WomanEmploymentPie from '~/components/woman_employment_pie.vue'
-import banks from '~/components/banks.vue'
-import Y3q2Column from '~/components/y3q2_column.vue'
-import Y3q2Pie from '~/components/y3q2_pie.vue'
-import AnnualQ2Column from '~/components/annual_q2_column.vue'
-import AnnualQ2Pie from '~/components/annual_q2_pie.vue'
-import Y3Column from '~/components/y3_column.vue'
-import Y3Pie from '~/components/y3_pie.vue'
-import SecondY3q2Column from '~/components/second_y3q2_column.vue'
-import SecondY3q2Pie from '~/components/second_y3q2_pie.vue'
-import SecondAnnualQ2 from '~/components/second_annual_q2.vue'
-import SecondAnnualQ2Pie from '~/components/second_annual_q2_pie.vue'
-import IfbColumn from '~/components/ifb_column.vue'
-import IfbPie from '~/components/ifb_pie.vue'
-import Awash_first_trench_column from '~/components/awash_first_trench_column.vue'
-import Dashen_first_trench_column from '~/components/dashen_first_trench_column.vue'
-import AwashSecondTrenchColumn from '~/components/awash_second_trench_column.vue'
-import DashenSecondTrenchColumn from '~/components/dashen_second_trench_column.vue'
-import AwashThirdTrenchColumn from '~/components/awash_third_trench_column.vue'
-const currentDate = useState('currentDate', () => {
-  const today = new Date()
-  const options = { day: '2-digit', month: 'long', year: 'numeric' }
-  const formatted = today.toLocaleDateString('en-US', options)
-  return formatted.toUpperCase()
-})
+import GrantChart from "../components/grant.vue";
+import PssChart from "../components/pss.vue";
+import RegistrationChart from "../components/registration.vue";
+import { useState } from "#imports";
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import Abyssinia_column from "~/components/abyssinia_first_trench_column.vue";
+import Hibret_column from "~/components/hibret_second_trench_column.vue";
+import DashenThirdTrenchColumn from "~/components/dashen_third_trench_column.vue";
+import CountUp from "~/components/countup.vue";
+import Hibret_first_trench_column from "~/components/hibret_first_trench_column.vue";
+import IfbDisbursement from "~/components/ifb_disbursement.vue";
+import YouthEmployment from "~/components/youth_employment.vue";
+import IFBFOMTotalDisbursement from "~/components/ifb_fom_total_disbursement.vue";
+import IFBRegistration from "~/components/ifb_registration.vue";
+import DisabilityRegistration from "~/components/disability_registration.vue";
+import FormalEnterprisesNumber from "~/components/formal_enterprises_number.vue";
+import Y3Q2Column from "~/components/y3q2_column.vue";
+import EnterprisesSupported from "~/components/enterprises_supported.vue";
+import OutreachedIndividuals from "~/components/Outreached_Individuals.vue";
+import InformalEnterprisesNumber from "~/components/informal_enterprises_number.vue";
+import WomanEmploymentPie from "~/components/woman_employment_pie.vue";
+import banks from "~/components/banks.vue";
+import Y3q2Column from "~/components/y3q2_column.vue";
+import Y3q2Pie from "~/components/y3q2_pie.vue";
+import AnnualQ2Column from "~/components/annual_q2_column.vue";
+import AnnualQ2Pie from "~/components/annual_q2_pie.vue";
+import Y3Column from "~/components/y3_column.vue";
+import Y3Pie from "~/components/y3_pie.vue";
+import SecondY3q2Column from "~/components/second_y3q2_column.vue";
+import SecondY3q2Pie from "~/components/second_y3q2_pie.vue";
+import SecondAnnualQ2 from "~/components/second_annual_q2.vue";
+import SecondAnnualQ2Pie from "~/components/second_annual_q2_pie.vue";
+import IfbColumn from "~/components/ifb_column.vue";
+import IfbPie from "~/components/ifb_pie.vue";
+import Awash_first_trench_column from "~/components/awash_first_trench_column.vue";
+import Dashen_first_trench_column from "~/components/dashen_first_trench_column.vue";
+import AwashSecondTrenchColumn from "~/components/awash_second_trench_column.vue";
+import DashenSecondTrenchColumn from "~/components/dashen_second_trench_column.vue";
+import AwashThirdTrenchColumn from "~/components/awash_third_trench_column.vue";
+const currentDate = useState("currentDate", () => {
+  const today = new Date();
+  const options = { day: "2-digit", month: "long", year: "numeric" };
+  const formatted = today.toLocaleDateString("en-US", options);
+  return formatted.toUpperCase();
+});
 
-// Add reactive data for percentage changes
 const data = ref({
-  disability: { change: '0%' },
-  enterprises: { change: '0%' },
-  formalEnterprises: { change: '0%' },
-  informalEnterprises: { change: '0%' },
-  ifbRegistration: { change: '0%' },
-  ifbDisbursement: { change: '0%' },
-  outreach: { change: '0%' },
-  youthEmployment: { change: '0%' },
-  total: { change: '0%' }
-})
+  disability: { change: "0%" },
+  enterprises: { change: "0%" },
+  formalEnterprises: { change: "0%" },
+  informalEnterprises: { change: "0%" },
+  ifbRegistration: { change: "0%" },
+  ifbDisbursement: { change: "0%" },
+  outreach: { change: "0%" },
+  youthEmployment: { change: "0%" },
+  total: { change: "0%" },
+});
 
 onMounted(async () => {
-  // Fetch percentage change data
+
   try {
-    const res = await fetch('/api/get-change-data')
-    const changeData = await res.json()
-    data.value = changeData
+    const res = await fetch("/api/get-change-data");
+    const changeData = await res.json();
+    data.value = changeData;
   } catch (err) {
-    console.error('Failed to fetch change data:', err)
+    console.error("Failed to fetch change data:", err);
   }
 
-  // Initialize Locomotive Scroll
-  const LocomotiveScroll = (await import('locomotive-scroll')).default
-  await import('locomotive-scroll/dist/locomotive-scroll.css')
+
+  const LocomotiveScroll = (await import("locomotive-scroll")).default;
+  await import("locomotive-scroll/dist/locomotive-scroll.css");
 
   locoScroll = new LocomotiveScroll({
-    el: document.querySelector('#scroll-container'),
-    smooth: true
-  })
-})
+    el: document.querySelector("#scroll-container"),
+    smooth: true,
+  });
+});
 
 onBeforeUnmount(() => {
-  if (locoScroll) locoScroll.destroy()
-})
+  if (locoScroll) locoScroll.destroy();
+});
 </script>
 <template>
   <div id="scroll-container" data-scroll-container>
@@ -103,9 +102,9 @@ onBeforeUnmount(() => {
         </div>
       </div>
 
-      <!-- Main Grid with Professional Layout -->
+      <!-- Main Grid  -->
       <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <!-- Hero Employment Card - Featured Design -->
+        
         <div
           class="lg:col-span-7 bg-gradient-to-br from-white to-blue-50 rounded-3xl shadow-xl border border-blue-100 overflow-hidden"
         >
@@ -158,7 +157,9 @@ onBeforeUnmount(() => {
                     <YouthEmployment />
                   </div>
 
-                  <span class="absolute left-full ml-2 top-1/2 -translate-y-1/2 text-sm font-medium text-blue-900">
+                  <span
+                    class="absolute left-full ml-2 top-1/2 -translate-y-1/2 text-sm font-medium text-blue-900"
+                  >
                     {{ data.youthEmployment.change }}
                   </span>
                 </div>
@@ -186,7 +187,7 @@ onBeforeUnmount(() => {
                     class="absolute -bottom-2 left-1/2 transform -translate-x-1/2"
                   >
                     <span
-                      class="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full"
+                      class="inline-block px-3 py-1 bg-purple-100 animate-bounce text-purple-700 text-xs font-semibold rounded-full"
                     >
                       Women
                     </span>
@@ -194,7 +195,7 @@ onBeforeUnmount(() => {
                 </div>
               </div>
 
-              <!-- Business Woman Illustration -->
+              <!-- Business Woman image -->
               <div class="flex justify-center">
                 <div class="relative">
                   <div
@@ -251,7 +252,7 @@ onBeforeUnmount(() => {
                 </svg>
               </div>
               <div class="text-right">
-                <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
               </div>
             </div>
             <div class="space-y-4">
@@ -265,7 +266,9 @@ onBeforeUnmount(() => {
                   <div class="text-3xl font-bold text-gray-900">
                     <EnterprisesSupported />
                   </div>
-                  <span class="text-sm font-medium text-green-600">{{ data.enterprises.change }}</span>
+                  <span class="text-sm font-medium text-green-600">{{
+                    data.enterprises.change
+                  }}</span>
                 </div>
                 <p class="text-sm text-gray-600 mt-1">Successfully Supported</p>
               </div>
@@ -304,7 +307,7 @@ onBeforeUnmount(() => {
               </div>
               <div class="text-right">
                 <span
-                  class="inline-block px-2 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full"
+                  class="inline-block px-2 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full "
                 >
                   Outreach
                 </span>
@@ -321,7 +324,9 @@ onBeforeUnmount(() => {
                   <div class="text-3xl font-bold text-gray-900">
                     <OutreachedIndividuals />
                   </div>
-                  <span class="text-sm font-medium text-orange-600">{{ data.outreach.change }}</span>
+                  <span class="text-sm font-medium text-orange-600">{{
+                    data.outreach.change
+                  }}</span>
                 </div>
                 <p class="text-sm text-gray-600 mt-1">Community Impact</p>
               </div>
@@ -352,19 +357,19 @@ onBeforeUnmount(() => {
           </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          <!-- Grant Card - Enhanced Design -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <!-- Grant Card -->
           <div
             class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
           >
-            <div class="p-8">
+            <div class="p-6">
               <div class="flex items-center justify-between mb-6">
                 <div class="flex items-center space-x-3">
                   <div
-                    class="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg"
+                    class="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center"
                   >
                     <svg
-                      class="w-6 h-6 text-white"
+                      class="w-5 h-5 text-white"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -378,35 +383,40 @@ onBeforeUnmount(() => {
                     </svg>
                   </div>
                   <div>
-                    <h3 class="text-xl font-bold text-gray-900">
+                    <h3 class="text-lg font-bold text-gray-900">
                       Grant Distribution
                     </h3>
                     <p class="text-sm text-gray-600">
-                      Financial assistance overview
+                      Financial assistance
                     </p>
                   </div>
                 </div>
+                <div
+                  class="w-2 h-2 bg-green-400 rounded-full animate-pulse"
+                ></div>
               </div>
-              <div class="h-80 flex items-center justify-center">
-                <client-only>
-                  <GrantChart />
-                </client-only>
+              <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-4 border border-green-100">
+                <div class="h-64 flex items-center justify-center">
+                  <client-only>
+                    <GrantChart />
+                  </client-only>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- PSS Card - Enhanced with Metrics -->
+          <!-- PSS Card -->
           <div
             class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
           >
-            <div class="p-8">
+            <div class="p-6">
               <div class="flex items-center justify-between mb-6">
                 <div class="flex items-center space-x-3">
                   <div
-                    class="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg"
+                    class="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center"
                   >
                     <svg
-                      class="w-6 h-6 text-white"
+                      class="w-5 h-5 text-white"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -420,65 +430,104 @@ onBeforeUnmount(() => {
                     </svg>
                   </div>
                   <div>
-                    <h3 class="text-xl font-bold text-gray-900">
+                    <h3 class="text-lg font-bold text-gray-900">
                       PSS Analytics
                     </h3>
                     <p class="text-sm text-gray-600">
-                      Business support services
+                      Business support
                     </p>
                   </div>
                 </div>
+                <div
+                  class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
+                ></div>
               </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                <!-- Chart Section -->
-                <div class="flex items-center justify-center">
+              <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100">
+                <div class="h-64 flex items-center justify-center">
                   <client-only>
                     <PssChart />
                   </client-only>
                 </div>
+              </div>
+            </div>
+          </div>
 
-                <!-- Metrics Section -->
-                <div class="space-y-4">
+          <!-- Metrics Card for Informal/Formal Enterprises -->
+          <div
+            class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+          >
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-3">
                   <div
-                    class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100"
+                    class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center"
                   >
-                    <div class="flex items-center justify-between mb-2">
-                      <span class="text-sm font-medium text-blue-700"
-                        >Informal</span
-                      >
-                      <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    </div>
-                    <div
-                      class="text-2xl font-bold text-blue-900 flex items-baseline space-x-2"
+                    <svg
+                      class="w-5 h-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
                     >
-                      <InformalEnterprisesNumber />
-                      <span class="text-sm font-medium text-blue-900"
-                        >{{ data.informalEnterprises.change }}</span
-                      >
-                    </div>
-                    <p class="text-xs text-blue-600 mt-1">Enterprises</p>
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                      ></path>
+                    </svg>
                   </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900">
+                      Enterprise Metrics
+                    </h3>
+                    <p class="text-sm text-gray-600">
+                      Formal & Informal
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="w-2 h-2 bg-purple-600 rounded-full animate-pulse"
+                ></div>
+              </div>
+              <div class="space-y-4">
+                <div
+                  class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100"
+                >
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium text-blue-700"
+                      >Informal</span
+                    >
+                    <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  </div>
+                  <div
+                    class="text-2xl font-bold text-blue-900 flex items-baseline space-x-2"
+                  >
+                    <InformalEnterprisesNumber />
+                    <span class="text-sm font-medium text-blue-900">{{
+                      data.informalEnterprises.change
+                    }}</span>
+                  </div>
+                  <p class="text-xs text-blue-600 mt-1">Enterprises</p>
+                </div>
 
-                  <div
-                    class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-4 border border-purple-100"
-                  >
-                    <div class="flex items-center justify-between mb-2">
-                      <span class="text-sm font-medium text-purple-700"
-                        >Formal</span
-                      >
-                      <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    </div>
-                    <div
-                      class="text-2xl font-bold text-purple-900 flex items-baseline space-x-2"
+                <div
+                  class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-4 border border-purple-100"
+                >
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium text-purple-700"
+                      >Formal</span
                     >
-                      <FormalEnterprisesNumber />
-                      <span class="text-sm font-medium text-purple-900"
-                        >{{ data.formalEnterprises.change }}</span
-                      >
-                    </div>
-                    <p class="text-xs text-purple-600 mt-1">Enterprises</p>
+                    <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
                   </div>
+                  <div
+                    class="text-2xl font-bold text-purple-900 flex items-baseline space-x-2"
+                  >
+                    <FormalEnterprisesNumber />
+                    <span class="text-sm font-medium text-purple-900">{{
+                      data.formalEnterprises.change
+                    }}</span>
+                  </div>
+                  <p class="text-xs text-purple-600 mt-1">Enterprises</p>
                 </div>
               </div>
             </div>
@@ -567,16 +616,16 @@ onBeforeUnmount(() => {
                     </h3>
                   </div>
                 </div>
-                <div class="flex space-x-1">
+                <div class="flex space-x-1 ">
                   <div
-                    class="w-2 h-2 bg-green-400 rounded-full animate-pulse"
+                    class="w-2 h-2 bg-green-600 rounded-full animate-pulse"
                   ></div>
                   <div
-                    class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
+                    class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"
                     style="animation-delay: 0.2s"
                   ></div>
                   <div
-                    class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"
+                    class="w-2 h-2 bg-red-600 rounded-full animate-pulse"
                     style="animation-delay: 0.4s"
                   ></div>
                 </div>
@@ -630,7 +679,9 @@ onBeforeUnmount(() => {
                     class="text-xl font-bold text-black flex items-baseline space-x-2"
                   >
                     <IFBRegistration />
-                    <span class="text-sm font-medium text-blue-900">{{ data.ifbRegistration.change }}</span>
+                    <span class="text-sm font-medium text-blue-900">{{
+                      data.ifbRegistration.change
+                    }}</span>
                   </div>
 
                   <p class="text-xs text-blue-600 mt-1">
@@ -652,9 +703,9 @@ onBeforeUnmount(() => {
                     class="text-xl font-bold text-black flex items-baseline space-x-2"
                   >
                     <DisabilityRegistration />
-                    <span class="text-sm font-medium text-emerald-900"
-                      >{{ data.disability.change }}</span
-                    >
+                    <span class="text-sm font-medium text-emerald-900">{{
+                      data.disability.change
+                    }}</span>
                   </div>
                   <p class="text-xs text-emerald-600 mt-1">
                     Special Registration
@@ -1016,13 +1067,15 @@ onBeforeUnmount(() => {
                   class="flex text-xxl font-bold text-emerald-900 items-baseline space-x-2"
                 >
                   <IfbDisbursement />
-                  <span class="text-sm font-medium text-emerald-900">{{ data.ifbDisbursement.change }}</span>
+                  <span class="text-sm font-medium text-emerald-900">{{
+                    data.ifbDisbursement.change
+                  }}</span>
                 </div>
 
                 <span
-                  class="inline-flex font-serif text-x text-emerald-600 mt-1"
+                  class="inline-flex font-serif text-xl  font-bold text-emerald-600 mt-1"
                 >
-                  <IFBFOMTotalDisbursement />% of total disbursement
+                  <IFBFOMTotalDisbursement /> of total disbursement
                 </span>
               </div>
             </div>
