@@ -167,7 +167,7 @@ onBeforeUnmount(() => {
                 <!-- Words (stay directly under the circle) -->
                 <div>
                   <p
-                    class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    class="text-sm font-medium text-gray-800 uppercase tracking-wide"
                   >
                     Youth
                   </p>
