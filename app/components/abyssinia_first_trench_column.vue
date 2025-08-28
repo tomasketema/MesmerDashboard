@@ -17,7 +17,9 @@ const chartOptions = {
   },
   dataLabels: {
     enabled: true,
-    formatter: (val) => val,
+    formatter: (val) => {
+      return new Intl.NumberFormat('en-US').format(val);
+    },
     offsetY: -20,
     style: { fontSize: "12px", colors: ["#304758"] },
   },

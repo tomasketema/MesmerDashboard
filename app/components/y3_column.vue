@@ -47,7 +47,9 @@ const chartOptions = ref({
   },
   dataLabels: {
     enabled: true,
-    formatter: val => val,
+    formatter: function (val) {
+      return new Intl.NumberFormat('en-US').format(val);
+    },
     offsetY: -15,
     style: {
       fontSize: '10px',
@@ -102,7 +104,7 @@ const chartOptions = ref({
   }
 })
 
-// 🔄 Fetch live data on mount
+
 onMounted(async () => {
   try {
     const res = await fetch('/api/get-latest-data?section=BDS Status&names=Program Target,Program Achievement')
