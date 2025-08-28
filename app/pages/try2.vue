@@ -201,6 +201,7 @@ onBeforeUnmount(() => {
                   <div
                     class="w-32 h-32 bg-gradient-to-br from-orange-100 to-pink-100 rounded-2xl p-3 shadow-lg"
                   >
+                  
                     <img
                       src="@/assets/mesmerLogo/businesswoman.png"
                       alt="business woman"
@@ -357,10 +358,10 @@ onBeforeUnmount(() => {
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-8">
           <!-- Grant Card -->
           <div
-            class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+            class="lg:col-span-2 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
           >
             <div class="p-6">
               <div class="flex items-center justify-between mb-6">
@@ -395,7 +396,7 @@ onBeforeUnmount(() => {
                   class="w-2 h-2 bg-green-400 rounded-full animate-pulse"
                 ></div>
               </div>
-              <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-4 border border-green-100">
+              <div class="bg-white rounded-2xl p-4">
                 <div class="h-64 flex items-center justify-center">
                   <client-only>
                     <GrantChart />
@@ -405,13 +406,13 @@ onBeforeUnmount(() => {
             </div>
           </div>
 
-          <!-- PSS Card -->
+          <!-- PSS Card with Enterprise Metrics -->
           <div
-            class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+            class="lg:col-span-3 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
           >
-            <div class="p-6">
-              <div class="flex items-center justify-between mb-6">
-                <div class="flex items-center space-x-3">
+            <div class="p-6 ">
+              <div class="flex items-center justify-between mb-6 ">
+                <div class="flex items-center space-x-3 ">
                   <div
                     class="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center"
                   >
@@ -442,96 +443,62 @@ onBeforeUnmount(() => {
                   class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
                 ></div>
               </div>
-              <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100">
-                <div class="h-64 flex items-center justify-center">
-                  <client-only>
-                    <PssChart />
-                  </client-only>
+              <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                <!-- PSS Chart -->
+                <div class=" bg-white rounded-2xl p-4 ">
+                  <div class="h-64 flex items-center justify-center">
+                    <client-only>
+                      <PssChart />
+                    </client-only>
+                  </div>
+                </div>
+
+                <div class="space-y-4 flex flex-col justify-center">
+                  <div
+                    class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100"
+                  >
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-sm font-medium text-blue-700"
+                        >Informal</span
+                      >
+                      <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    </div>
+                    <div
+                      class="text-2xl font-bold text-blue-900 flex items-baseline space-x-2"
+                    >
+                      <InformalEnterprisesNumber />
+                      <span class="text-sm font-medium text-blue-900">{{
+                        data.informalEnterprises.change
+                      }}</span>
+                    </div>
+                    <p class="text-xs text-blue-600 mt-1">Enterprises</p>
+                  </div>
+
+                  <div
+                    class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-4 border border-purple-100"
+                  >
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-sm font-medium text-purple-700"
+                        >Formal</span
+                      >
+                      <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    </div>
+                    <div
+                      class="text-2xl font-bold text-purple-900 flex items-baseline space-x-2"
+                    >
+                      <FormalEnterprisesNumber />
+                      <span class="text-sm font-medium text-purple-900">{{
+                        data.formalEnterprises.change
+                      }}</span>
+                    </div>
+                    <p class="text-xs text-purple-600 mt-1">Enterprises</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Metrics Card for Informal/Formal Enterprises -->
-          <div
-            class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
-          >
-            <div class="p-6">
-              <div class="flex items-center justify-between mb-6">
-                <div class="flex items-center space-x-3">
-                  <div
-                    class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="text-lg font-bold text-gray-900">
-                      Enterprise Metrics
-                    </h3>
-                    <p class="text-sm text-gray-600">
-                      Formal & Informal
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class="w-2 h-2 bg-purple-600 rounded-full animate-pulse"
-                ></div>
-              </div>
-              <div class="space-y-4">
-                <div
-                  class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100"
-                >
-                  <div class="flex items-center justify-between mb-2">
-                    <span class="text-sm font-medium text-blue-700"
-                      >Informal</span
-                    >
-                    <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  </div>
-                  <div
-                    class="text-2xl font-bold text-blue-900 flex items-baseline space-x-2"
-                  >
-                    <InformalEnterprisesNumber />
-                    <span class="text-sm font-medium text-blue-900">{{
-                      data.informalEnterprises.change
-                    }}</span>
-                  </div>
-                  <p class="text-xs text-blue-600 mt-1">Enterprises</p>
-                </div>
 
-                <div
-                  class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-4 border border-purple-100"
-                >
-                  <div class="flex items-center justify-between mb-2">
-                    <span class="text-sm font-medium text-purple-700"
-                      >Formal</span
-                    >
-                    <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  </div>
-                  <div
-                    class="text-2xl font-bold text-purple-900 flex items-baseline space-x-2"
-                  >
-                    <FormalEnterprisesNumber />
-                    <span class="text-sm font-medium text-purple-900">{{
-                      data.formalEnterprises.change
-                    }}</span>
-                  </div>
-                  <p class="text-xs text-purple-600 mt-1">Enterprises</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 

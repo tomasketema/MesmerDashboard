@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stat Tree</title>
+  <style>
+    /* Page layout */
+    :root{
+      --bg: #f1f5f9;      /* page bg */
+      --card: #ffffff;    /* card bg */
+      --tree: #0e7a7b;    /* tree color */
+      --ring-outer: #cfd3d6;
+      --ring-mid: #f2f4f6;
+      --ring-inner: #d63a2c;
+      --text: #ffffff;
+      --muted: #374151;
+    }
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color:var(--muted);
+    }
+    .center-wrap{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:16px;
+      padding:18px;
+      box-shadow:0 8px 30px rgba(2,6,23,0.08);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+      max-width:540px;
+      width:100%;
+    }
+
+    /* The container that determines how big the SVG will be.
+       Change width: 420px to make the whole tree bigger/smaller. */
+    .svg-wrap{ width:420px; max-width:94%; }
+
+    /* small caption */
+    .note{ font-size:13px; color:var(--muted); text-align:center; }
+
+    /* Responsive tweak */
+    @media (max-width:460px){
+      .card{ padding:12px; border-radius:12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="center-wrap">
+    <div class="card" role="main" aria-label="Statistic tree graphic">
+      <div class="svg-wrap">
+        <!-- SVG tree + rings -->
+        <svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" class="tree-svg" style="width:100%; height:auto; display:block;">
+          <defs>
+            <filter id="soft-shadow" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="3" stdDeviation="6" flood-opacity="0.08" />
+            </filter>
+          </defs>
+
+          <!-- Tree (trunk + branches) -->
+          <g fill="#0e7a7b" filter="url(#soft-shadow)">
+            <path d="M195 400c-5-60-18-118-64-168-9-10-20-19-32-26-3-2-4-6-1-9 19-20 41-33 64-45 10-5 21-10 31-16 3-2 7-2 10 0 10 6 21 11 31 16 23 12 45 25 64 45 3 3 2 7-1 9-12 7-23 16-32 26-46 50-59 108-64 168h-6z"/>
+            <path d="M160 190c-25-25-60-39-100-42-4 0-6-6-3-9 14-15 31-28 52-37 3-1 6-1 9 1 19 14 34 31 46 50l-4 37z"/>
+            <path d="M258 190c10-21 26-40 46-55 3-2 6-2 9-1 20 9 37 22 50 36 3 3 1 9-3 9-40 3-73 16-97 38l-5-27z"/>
+            <path d="M250 245c25-10 54-12 86-6 3 1 5 5 3 8-8 13-19 24-34 34-2 2-6 2-9 1-19-6-34-17-46-28v-9z"/>
+            <path d="M170 260c-15 13-34 23-56 29-3 1-6 0-8-2-11-9-20-20-26-31-2-3 0-7 3-8 32-7 59-4 83 7l4 5z"/>
+          </g>
+
+          <!-- top center ring -->
+          <g transform="translate(210 55)">
+            <circle r="46" fill="#cfd3d6"/>
+            <circle r="34" fill="#f2f4f6"/>
+            <circle r="30" fill="#d63a2c"/>
+            <text x="0" y="6" text-anchor="middle" font-size="18" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="#fff">156,093</text>
+          </g>
+
+          <!-- left upper ring -->
+          <g transform="translate(95 165)">
+            <circle r="46" fill="#cfd3d6"/>
+            <circle r="34" fill="#f2f4f6"/>
+            <circle r="30" fill="#d63a2c"/>
+            <text x="0" y="6" text-anchor="middle" font-size="18" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="#fff">57,163</text>
+          </g>
+
+          <!-- left lower ring -->
+          <g transform="translate(85 305)">
+            <circle r="46" fill="#cfd3d6"/>
+            <circle r="34" fill="#f2f4f6"/>
+            <circle r="30" fill="#d63a2c"/>
+            <text x="0" y="6" text-anchor="middle" font-size="18" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="#fff">16,192</text>
+          </g>
+
+          
+          <!-- right upper ring -->
+          <g transform="translate(340 150)">
+            <circle r="46" fill="#cfd3d6"/>
+            <circle r="34" fill="#f2f4f6"/>
+            <circle r="30" fill="#d63a2c"/>
+            <text x="0" y="6" text-anchor="middle" font-size="18" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="#fff">26,465</text>
+          </g>
+
+          <!-- right lower ring -->
+          <g transform="translate(335 305)">
+            <circle r="46" fill="#cfd3d6"/>
+            <circle r="34" fill="#f2f4f6"/>
+            <circle r="30" fill="#d63a2c"/>
+            <text x="0" y="6" text-anchor="middle" font-size="18" font-weight="700" font-family="Arial,Helvetica,sans-serif" fill="#fff">14,000</text>
+          </g>
+
+        </svg>
+      </div>
+
+      <div class="note">Stat tree — SVG graphic. To change the numbers open this file and edit the text values inside the &lt;text&gt; nodes.</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -17,11 +17,6 @@
           alt="MasterCard Foundation Logo"
            class="h-10 w-auto object-contain mx-10 transform scale-150"
         />
-         <img
-          src="../assets/FCLOGO/FC logo (1).png"
-          alt="First consult Logo"
-          class="h-10 w-auto "
-        />
       </div>
       
     </nav>
