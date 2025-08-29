@@ -9,31 +9,41 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: #f5f5f5;
+      background: #f0ede8;
+      margin: 0;
+      font-family: Arial, sans-serif;
     }
     svg {
-      width: 600px;  /* bigger size */
+      width: 900px;
       height: 700px;
     }
     .trunk {
-      stroke: #08143b;
-      stroke-width: 30; /* thicker trunk */
+      stroke: #1a5c5c;
+      stroke-width: 70;
       fill: none;
       stroke-linecap: round;
     }
     .branch {
-      stroke:#08143b;
-      stroke-width: 15; /* thicker branches */
+      stroke: #1a5c5c;
       fill: none;
       stroke-linecap: round;
     }
-    .circle {
-      fill: orangered;
-      stroke: #aaa;
+    .outer-ring {
+      fill: none;
+      stroke: #c0c0c0;
+      stroke-width: 8;
+    }
+    .middle-ring {
+      fill: none;
+      stroke: #e0e0e0;
       stroke-width: 6;
     }
+    .inner-circle {
+      fill: #d4543a;
+      stroke: none;
+    }
     .label {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: bold;
       fill: white;
       text-anchor: middle;
@@ -42,40 +52,68 @@
   </style>
 </head>
 <body>
-  <svg viewBox="0 0 400 500">
-    <!-- Trunk -->
-    <path d="M200 450 L200 250" class="trunk" />
+  <svg viewBox="0 0 800 600">
+    <!-- Curved trunk -->
+    <path d="M400 550 
+             C395 480, 405 400, 400 300" 
+          class="trunk" />
 
-    <!-- Left lower branch -->
-    <path d="M200 320 Q150 300 120 260" class="branch" />
+    <!-- Curved branches -->
+    <!-- Left upper -->
+    <path d="M400 310 
+             C340 280, 260 230, 180 180" 
+          class="branch" stroke-width="35" />
 
-    <!-- Left upper branch -->
-    <path d="M200 270 Q140 230 110 190" class="branch" />
+    <!-- Left lower -->
+    <path d="M400 350 
+             C330 360, 270 365, 220 360" 
+          class="branch" stroke-width="30" />
 
-    <!-- Right lower branch -->
-    <path d="M200 320 Q250 300 280 260" class="branch" />
+    <!-- Right upper -->
+    <path d="M400 310 
+             C460 280, 540 230, 620 180" 
+          class="branch" stroke-width="35" />
 
-    <!-- Right upper branch -->
-    <path d="M200 270 Q260 230 290 190" class="branch" />
+    <!-- Right lower -->
+    <path d="M400 350 
+             C470 360, 530 365, 580 360" 
+          class="branch" stroke-width="30" />
 
-    <!-- Top branch -->
-    <path d="M200 250 Q200 200 200 160" class="branch" />
+    <!-- Top center -->
+    <path d="M400 300 
+             C400 270, 400 240, 400 200" 
+          class="branch" stroke-width="25" />
 
-    <!-- Circles with numbers -->
-    <circle cx="110" cy="190" r="25" class="circle" />
-    <text x="110" y="190" class="label">1</text>
+    <!-- Circles with labels -->
+    <!-- Top -->
+    <circle cx="400" cy="200" r="50" class="outer-ring" />
+    <circle cx="400" cy="200" r="40" class="middle-ring" />
+    <circle cx="400" cy="200" r="32" class="inner-circle" />
+    <text x="400" y="200" class="label">156,093</text>
 
-    <circle cx="120" cy="260" r="25" class="circle" />
-    <text x="120" y="260" class="label">2</text>
+    <!-- Left upper -->
+    <circle cx="180" cy="180" r="50" class="outer-ring" />
+    <circle cx="180" cy="180" r="40" class="middle-ring" />
+    <circle cx="180" cy="180" r="32" class="inner-circle" />
+    <text x="180" y="180" class="label">57,163</text>
 
-    <circle cx="290" cy="190" r="25" class="circle" />
-    <text x="290" y="190" class="label">3</text>
+    <!-- Right upper -->
+    <circle cx="620" cy="180" r="50" class="outer-ring" />
+    <circle cx="620" cy="180" r="40" class="middle-ring" />
+    <circle cx="620" cy="180" r="32" class="inner-circle" />
+    <text x="620" y="180" class="label">26,465</text>
 
-    <circle cx="280" cy="260" r="25" class="circle" />
-    <text x="280" y="260" class="label">4</text>
+    <!-- Left lower -->
+    <circle cx="220" cy="360" r="50" class="outer-ring" />
+    <circle cx="220" cy="360" r="40" class="middle-ring" />
+    <circle cx="220" cy="360" r="32" class="inner-circle" />
+    <text x="220" y="360" class="label">16,192</text>
 
-    <circle cx="200" cy="160" r="25" class="circle" />
-    <text x="200" y="160" class="label">5</text>
+    <!-- Right lower -->
+    <circle cx="580" cy="360" r="50" class="outer-ring" />
+    <circle cx="580" cy="360" r="40" class="middle-ring" />
+    <circle cx="580" cy="360" r="32" class="inner-circle" />
+    <text x="580" y="360" class="label">14,000</text>
   </svg>
 </body>
 </html>

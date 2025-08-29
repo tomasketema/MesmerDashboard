@@ -94,7 +94,8 @@ onBeforeUnmount(() => {
           >
             Dashboard Overview
           </h1>
-          <p class="text-lg text-gray-600 font-medium">{{ currentDate }}</p>
+
+          <p class="text-xl text-gray-800 font-medium-sans">{{ currentDate }}</p>
           <div class="inline-block">
             <span class="text-2xl font-bold text-blue-600">MESMER</span>
             <span class="text-2xl font-bold text-gray-700 ml-2">Analytics</span>
@@ -106,7 +107,7 @@ onBeforeUnmount(() => {
       <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         <div
-          class="lg:col-span-7 bg-gradient-to-br from-white to-blue-50 rounded-3xl shadow-xl border border-blue-100 overflow-hidden"
+          class="lg:col-span-7 bg-white rounded-3xl shadow-xl border border-blue-100 overflow-hidden"
         >
           <div class="p-8">
             <!-- Header with Icon -->
@@ -151,7 +152,7 @@ onBeforeUnmount(() => {
               <div class="text-center space-y-3 relative">
                 <!-- Circle -->
                 <div
-                  class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-2xl shadow-lg relative"
+                  class="inline-flex items-center justify-center w-30 h-20 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-2xl shadow-lg relative"
                 >
                   <div class="text-2xl font-bold text-black">
                     <YouthEmployment />
@@ -163,8 +164,6 @@ onBeforeUnmount(() => {
                     {{ data.youthEmployment.change }}
                   </span>
                 </div>
-
-                <!-- Words (stay directly under the circle) -->
                 <div>
                   <p
                     class="text-sm font-medium text-gray-800 uppercase tracking-wide"
