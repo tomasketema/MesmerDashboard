@@ -1,6 +1,6 @@
 <script setup>
 import { ref, defineAsyncComponent, onMounted } from "vue";
-import CountUp from "/components/CountUp.vue";
+import CountUp from "./countup.vue";
 
 const VueApexCharts = defineAsyncComponent(() => import("vue3-apexcharts"));
 

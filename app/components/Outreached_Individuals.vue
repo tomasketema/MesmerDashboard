@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import CountUp from '/components/CountUp.vue'
+import CountUp from './countup.vue'
 
 const outreachIndividuals = ref(0)
 

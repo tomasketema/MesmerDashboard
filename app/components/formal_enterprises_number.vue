@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import CountUp from '/components/CountUp.vue'
+import CountUp from './countup.vue'
+// import CountUp from 'CountUp.vue'
 
 const value = ref(0)
 

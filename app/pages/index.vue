@@ -3,535 +3,1153 @@ import GrantChart from "../components/grant.vue";
 import PssChart from "../components/pss.vue";
 import RegistrationChart from "../components/registration.vue";
 import { useState } from "#imports";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import Abyssinia_column from "~/components/abyssinia_first_trench_column.vue";
 import Hibret_column from "~/components/hibret_second_trench_column.vue";
 import DashenThirdTrenchColumn from "~/components/dashen_third_trench_column.vue";
 import CountUp from "~/components/countup.vue";
 import Hibret_first_trench_column from "~/components/hibret_first_trench_column.vue";
-import IfbDisbursement from '~/components/ifb_disbursement.vue';
-import YouthEmployment from '~/components/youth_employment.vue';
-import IFBFOMTotalDisbursement from '~/components/ifb_fom_total_disbursement.vue';
-import IFBRegistration from '~/components/ifb_registration.vue'
-import DisabilityRegistration from '~/components/disability_registration.vue'
-import FormalEnterprisesNumber from '~/components/formal_enterprises_number.vue'
-import Y3Q2Column from '~/components/y3q2_column.vue'
-
-onMounted(async () => {
-  const LocomotiveScroll = (await import('locomotive-scroll')).default
-  await import('locomotive-scroll/dist/locomotive-scroll.css')
-
-  locoScroll = new LocomotiveScroll({
-    el: document.querySelector('#scroll-container'),
-    smooth: true,
-  })
-})
-
-onBeforeUnmount(() => {
-  if (locoScroll) locoScroll.destroy()
-})
-
+import IfbDisbursement from "~/components/ifb_disbursement.vue";
+import YouthEmployment from "~/components/youth_employment.vue";
+import IFBFOMTotalDisbursement from "~/components/ifb_fom_total_disbursement.vue";
+import IFBRegistration from "~/components/ifb_registration.vue";
+import DisabilityRegistration from "~/components/disability_registration.vue";
+import FormalEnterprisesNumber from "~/components/formal_enterprises_number.vue";
+import Y3Q2Column from "~/components/y3q2_column.vue";
+import EnterprisesSupported from "~/components/enterprises_supported.vue";
+import OutreachedIndividuals from "~/components/Outreached_Individuals.vue";
+import InformalEnterprisesNumber from "~/components/informal_enterprises_number.vue";
+import WomanEmploymentPie from "~/components/woman_employment_pie.vue";
+import banks from "~/components/banks.vue";
+import Y3q2Column from "~/components/y3q2_column.vue";
+import Y3q2Pie from "~/components/y3q2_pie.vue";
+import AnnualQ2Column from "~/components/annual_q2_column.vue";
+import AnnualQ2Pie from "~/components/annual_q2_pie.vue";
+import Y3Column from "~/components/y3_column.vue";
+import Y3Pie from "~/components/y3_pie.vue";
+import SecondY3q2Column from "~/components/second_y3q2_column.vue";
+import SecondY3q2Pie from "~/components/second_y3q2_pie.vue";
+import SecondAnnualQ2 from "~/components/second_annual_q2.vue";
+import SecondAnnualQ2Pie from "~/components/second_annual_q2_pie.vue";
+import IfbColumn from "~/components/ifb_column.vue";
+import IfbPie from "~/components/ifb_pie.vue";
+import Awash_first_trench_column from "~/components/awash_first_trench_column.vue";
+import Dashen_first_trench_column from "~/components/dashen_first_trench_column.vue";
+import AwashSecondTrenchColumn from "~/components/awash_second_trench_column.vue";
+import DashenSecondTrenchColumn from "~/components/dashen_second_trench_column.vue";
+import AwashThirdTrenchColumn from "~/components/awash_third_trench_column.vue";
 const currentDate = useState("currentDate", () => {
   const today = new Date();
   const options = { day: "2-digit", month: "long", year: "numeric" };
   const formatted = today.toLocaleDateString("en-US", options);
   return formatted.toUpperCase();
 });
-</script>
 
+const data = ref({
+  disability: { change: "0%" },
+  enterprises: { change: "0%" },
+  formalEnterprises: { change: "0%" },
+  informalEnterprises: { change: "0%" },
+  ifbRegistration: { change: "0%" },
+  ifbDisbursement: { change: "0%" },
+  outreach: { change: "0%" },
+  youthEmployment: { change: "0%" },
+  total: { change: "0%" },
+});
+
+onMounted(async () => {
+
+  try {
+    const res = await fetch("/api/get-change-data");
+    const changeData = await res.json();
+    data.value = changeData;
+  } catch (err) {
+    console.error("Failed to fetch change data:", err);
+  }
+
+
+  const LocomotiveScroll = (await import("locomotive-scroll")).default;
+  await import("locomotive-scroll/dist/locomotive-scroll.css");
+
+  locoScroll = new LocomotiveScroll({
+    el: document.querySelector("#scroll-container"),
+    smooth: true,
+  });
+});
+
+onBeforeUnmount(() => {
+  if (locoScroll) locoScroll.destroy();
+});
+</script>
 <template>
   <div id="scroll-container" data-scroll-container>
-  <div id="home" class="flex justify-center">
     <div
-      class="bg-gradient-to-r from-teal-700 to-blue-700 rounded-xl p-1 w-full max-w-3xl"
+      class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6"
     >
-      <h1
-        class="text-3xl font-bold font-serif text-white text-center tracking-wide"
-      >
-        Dashboard, {{ currentDate }}
-      </h1>
-    </div>
-  </div>
-  <div class="flex justify-center">
-    <div class="bg-white rounded-xl p-1 pt-8 w-full max-w-3xl">
-      <h1
-        class="text-3xl font-bold font-serif text-black text-center tracking-wide"
-      >
-        <p><span class="text-[#ff7f50] ">MESMER</span> Supported</p>
-      </h1>
-    </div>
-  </div>
-
-  <div class="bg-white rounded-xl shadow-md p-6 mb-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-      <!-- Left: Paragraph Content -->
-      <div class="space-y-6">
-        <div class="text-center flex-1">
-          <p class="text-3xl font-semibold text-black mb-3">Youth Employment</p>
-          <div
-            class="inline-block bg-gray-200 border border-gray-500 text-black font-bold font-mono px-5 py-3 rounded-xl shadow text-2xl"
+      <!-- Header Section -->
+      <div class="max-w-7xl mx-auto mb-12">
+        <div class="text-center space-y-4">
+          <h1
+            class="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent"
           >
-            <YouthEmployment />
+            Dashboard Overview
+          </h1>
+
+          <p class="text-xl text-gray-800 font-medium-sans">{{ currentDate }}</p>
+          <div class="inline-block">
+            <span class="text-2xl font-bold text-blue-600">MESMER</span>
+            <span class="text-2xl font-bold text-gray-700 ml-2">Analytics</span>
           </div>
-          <p class="mt-3 font-serif font-extrabold text-gray-1000 text-lg">
-            Employed
-          </p>
         </div>
       </div>
 
-      <!-- Right: Pie Chart + Image -->
-      <div class="flex flex-col items-center justify-center space-y-4">
-        <p class="text-3xl font-semibold text-black mb-1">Woman Employment</p>
-        <div class="pt-6 flex flex-row items-center justify-center space-x-8">
-          <!-- Chart -->
-          <div class="w-[200px] h-[200px]">
-            <ClientOnly>
-              <WomanEmploymentPie />
-            </ClientOnly>
-          </div>
-
-          <!-- Image -->
-          <div class="w-[150px] h-[150px]">
-            <img
-              src="@/assets/mesmerLogo/businesswoman.png"
-              alt="business woman"
-              class="rounded-lg shadow w-full h-full object-contain"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="bg-white rounded-xl shadow-md p-6 mb-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-      <!-- Left: Paragraph Content -->
-      <div class="space-y-6">
-        <div class="text-center flex-1">
-          <p class="text-3xl font-semibold text-black mb-3">Enterprises</p>
-          <div
-            class="inline-block bg-gray-200 border border-gray-500 text-black font-bold font-mono px-5 py-3 rounded-xl shadow text-2xl"
-          >
-            <EnterprisesSupported />
-          </div>
-          <p class="mt-3 font-serif font-extrabold text-gray-1000 text-lg">
-            Supported
-          </p>
-        </div>
-      </div>
-
-      <!-- Right: Pie Chart + Image -->
-      <div class="flex flex-col items-center justify-center space-y-4">
-        <div class="text-center flex-1">
-          <p class="text-3xl font-semibold text-black mb-3">Outreach Individuals</p>
-          <div
-            class="inline-block bg-gray-200 border border-gray-500 text-black font-bold font-mono px-5 py-3 rounded-xl shadow text-2xl"
-          >
-            <OutreachedIndividuals />
-          </div>
-          <p class="mt-3 font-serif font-extrabold text-gray-1000 text-lg">
-            Reached
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Informal Enterprise -->
-  <div class="flex justify-center">
-    <div
-      class="bg-gradient-to-r from-teal-700 to-blue-700 shadow-xl rounded-xl p-1 w-full max-w-3xl"
-    >
-      <h1
-        class="text-3xl font-bold font-serif text-white text-center tracking-wide"
-      >
-        Informal Enterprise
-      </h1>
-    </div>
-  </div>
-  <div class="bg-white pt-4 px-6 space-y-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div
-        class="md:col-span-1 bg-white shadow-lg rounded-xl p-6 min-h-[400px]"
-      >
-        <h2 class="text-[2rem] font-semibold mb-2 text-gray-800 text-center">
-          Grant
-        </h2>
-        <div class="w-full h-full flex items-center justify-center">
-          <client-only>
-            <GrantChart />
-          </client-only>
-        </div>
-      </div>
-      <div
-        class="md:col-span-1 bg-white shadow-lg rounded-xl p-6 min-h-[400px]"
-      >
-       <h2 class="text-[2rem] font-semibold mb-2 text-gray-800 text-center">
-          PSS
-        </h2>
-
-        <div class="w-full h-full flex items-center justify-between gap-x-4">
-          <div class="w-1/2 flex items-center justify-center">
-            <client-only>
-              <PssChart />
-            </client-only>
-          </div>
-          <div class="w-1/2 text-center">
-             <p class="text-gray-700 text-base">
-    <span class="inline-block"><InformalEnterprisesNumber /></span> Informal Enterprises
-  </p>
-   <p class="text-gray-700 text-base">
-    <span class="inline-block"><FormalEnterprisesNumber /></span> Formal Enterprises
-  </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flex justify-center">
-    <div
-      class="bg-gradient-to-r from-teal-700 to-blue-700 shadow-xl rounded-xl p-1 w-full max-w-3xl"
-    >
-      <h1
-        class="text-3xl font-bold font-serif text-white text-center tracking-wide"
-      >
-        Formal Enterprise
-      </h1>
-    </div>
-  </div>
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-2 items-stretch mt-4">
-      <!-- Registration (Left) -->
-      <div
-        id="registration"
-        class="bg-white rounded-xl p-4 min-h-[200px] w-full h-full flex flex-col md:col-span-3"
-      >
+      <!-- Main Grid  -->
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
         <div
-          class="w-full h-full flex items-center justify-center bg-white shadow-md rounded-lg"
+          class="lg:col-span-7 bg-white rounded-3xl shadow-xl border border-blue-100 overflow-hidden"
         >
-          <client-only>
-            <RegistrationChart />
-          </client-only>
-        </div>
-      </div>
-
-      <!-- BANKS (Middle) -->
-      <div
-        class="bg-white rounded-xl p-4 min-h-[200px] w-full h-full flex flex-col md:col-span-6 md:-mr-2"
-      >
-        <div
-          class="w-full h-full flex items-center justify-center bg-white shadow-md rounded-lg"
-        >
-          <client-only>
-            <banks />
-          </client-only>
-        </div>
-      </div>
-
-      <!-- IFB (Right) -->
-      <div
-        class="bg-white rounded-xl p-4 min-h-[200px] w-full h-full flex flex-col md:col-span-3"
-      >
-        <div
-          class="w-full h-full flex items-center justify-center bg-white shadow-md rounded-lg"
-        >
-          <div
-            class="bg-white rounded-xl p-4 w-full flex flex-col items-center justify-center space-y-6"
-          >
-            <!-- Interest-Free Banking -->
-            <div class="text-center">
-              <p class="text-xl font-semibold text-black mb-2">
-                Interest-Free Banking registration
-              </p>
-              <div
-                class="inline-block bg-blue-200 border border-blue-500 text-blue-800 font-bold px-4 py-2 rounded-lg shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
-              >
-                <IFBRegistration />
+          <div class="p-8">
+            <!-- Header with Icon -->
+            <div class="flex items-center justify-between mb-6">
+              <div class="flex items-center space-x-3">
+                <div
+                  class="w-12 h-12 bg-gradient-to-r from-blue-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg"
+                >
+                  <svg
+                    class="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h2 class="text-2xl font-bold text-gray-900">
+                    Employment Overview
+                  </h2>
+                  <p class="text-sm text-gray-600">
+                    Youth & Women Workforce Analytics
+                  </p>
+                </div>
+              </div>
+              <div class="hidden sm:block">
+                <div
+                  class="w-2 h-2 bg-green-400 rounded-full animate-pulse"
+                ></div>
               </div>
             </div>
 
-            <!-- Disability -->
-            <div class="text-center">
-              <p class="text-xl font-semibold text-black mb-2">
-                Disability registration
-              </p>
-              <div
-                class="inline-block bg-blue-200 border border-blue-500 text-blue-800 font-bold px-4 py-2  rounded-lg shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
-              >
-                <DisabilityRegistration />
+            <!-- Content Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+              <!-- Youth Employment Stats -->
+              <div class="text-center space-y-3 relative">
+                <!-- Circle -->
+                <div
+                  class="inline-flex items-center justify-center w-30 h-20 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-2xl shadow-lg relative"
+                >
+                  <div class="text-2xl font-bold text-black">
+                    <YouthEmployment />
+                  </div>
+
+                  <span
+                    class="absolute left-full ml-2 top-1/2 -translate-y-1/2 text-sm font-medium text-blue-900"
+                  >
+                    {{ data.youthEmployment.change }}
+                  </span>
+                </div>
+                <div>
+                  <p
+                    class="text-sm font-medium text-gray-800 uppercase tracking-wide"
+                  >
+                    Youth
+                  </p>
+                  <p class="text-lg font-semibold text-gray-900">Employed</p>
+                </div>
+              </div>
+
+              <!-- Woman Employment Chart -->
+              <div class="flex justify-center">
+                <div class="relative">
+                  <div class="w-32 h-32">
+                    <ClientOnly>
+                      <Woman />
+                    </ClientOnly>
+                  </div>
+                  <div
+                    class="absolute -bottom-2 left-1/2 transform -translate-x-1/2"
+                  >
+                    <span
+                      class="inline-block px-3 py-1 bg-purple-100 animate-bounce text-purple-700 text-xs font-semibold rounded-full"
+                    >
+                      Women
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Business Woman image -->
+              <div class="flex justify-center">
+                <div class="relative">
+                  <div
+                    class="w-32 h-32 bg-gradient-to-br from-orange-100 to-pink-100 rounded-2xl p-3 shadow-lg"
+                  >
+                  
+                    <img
+                      src="@/assets/mesmerLogo/businesswoman.png"
+                      alt="business woman"
+                      class="w-full h-full object-fill"
+                    />
+                  </div>
+                  <div
+                    class="absolute -top-2 -right-2 w-6 h-6 bg-orange-400 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-3 h-3 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- BDS -->
-    <div id="bds" class="flex justify-center">
-      <div
-        class="bg-gradient-to-r from-teal-700 to-blue-700 shadow-xl rounded-xl p-1 w-full max-w-3xl"
-      >
-        <h1
-          class="text-3xl font-bold font-serif text-white text-center tracking-wide"
+        <!-- Enterprises Card - Modern Metric Card -->
+        <div
+          class="lg:col-span-2 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
         >
-          BDS Status
-        </h1>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid grid-cols-1 pt-10 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-5 xl:gap-6">
-    <!-- Y3Q2 -->
-    <div class="bg-white shadow-lg rounded-xl p-4 lg:p-5 xl:p-6 min-h-[350px] lg:min-h-[380px] xl:min-h-[400px]">
-      <h3 class="text-base lg:text-lg font-extrabold mb-3 lg:mb-4 text-gray-800 text-center">
-        Y3Q2
-      </h3>
-
-      <div class="grid grid-cols-1 xl:grid-cols-2 gap-2 lg:gap-3 xl:gap-4">
-        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
-          <client-only>
-            <Y3q2Column />
-          </client-only>
-        </div>
-        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
-          <client-only>
-            <Y3q2Pie />
-          </client-only>
-        </div>
-      </div>
-    </div>
-    <!-- Annual Q2 -->
-    <div class="bg-white shadow-lg rounded-xl p-4 lg:p-5 xl:p-6 min-h-[350px] lg:min-h-[380px] xl:min-h-[400px]">
-      <h3 class="text-base lg:text-lg font-extrabold mb-3 lg:mb-4 text-gray-800 text-center">
-        Annual Q2
-      </h3>
-
-      <div class="grid grid-cols-1 xl:grid-cols-2 gap-2 lg:gap-3 xl:gap-4">
-        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
-          <client-only>
-            <AnnualQ2Column />
-          </client-only>
-        </div>
-        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
-          <client-only>
-            <AnnualQ2Pie />
-          </client-only>
-        </div>
-      </div>
-    </div>
-
-    <!-- program target vs achievement to Date -->
-    <div class="bg-white shadow-lg rounded-xl p-4 lg:p-5 xl:p-6 min-h-[350px] lg:min-h-[380px] xl:min-h-[400px] lg:col-span-2 xl:col-span-1">
-      <h3 class="text-base lg:text-lg font-extrabold mb-3 lg:mb-4 text-gray-800 text-center">
-        program target vs achievement to Date
-      </h3>
-
-      <div class="grid grid-cols-1 xl:grid-cols-2 gap-2 lg:gap-3 xl:gap-4">
-        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
-          <client-only>
-            <Y3Column />
-          </client-only>
-        </div>
-        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
-          <client-only>
-            <Y3Pie />
-          </client-only>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Credi Disbursement -->
-  <div id="credit" class="flex justify-center pt-6">
-    <div
-      class="bg-gradient-to-r from-teal-700 to-blue-700 shadow-xl rounded-xl p-1 w-full max-w-3xl"
-    >
-      <h1
-        class="text-3xl font-bold font-serif text-white text-center tracking-wide"
-      >
-        Credit Disbursement
-      </h1>
-    </div>
-  </div>
-  <div class="grid grid-cols-1 pt-10 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-5 xl:gap-6">
-    <!-- 2nd_Y3Q2 -->
-    <div class="bg-white shadow-lg rounded-xl p-4 lg:p-5 xl:p-6 min-h-[350px] lg:min-h-[380px] xl:min-h-[400px]">
-      <h3 class="text-base lg:text-lg font-extrabold mb-3 lg:mb-4 text-gray-800 text-center">
-        Y3Q2
-      </h3>
-
-      <div class="grid grid-cols-1 xl:grid-cols-2 gap-2 lg:gap-3 xl:gap-4">
-        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
-          <client-only>
-            <SecondY3q2Column />
-          </client-only>
-        </div>
-        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
-          <client-only>
-            <SecondY3q2Pie />
-          </client-only>
-        </div>
-      </div>
-    </div>
-    <!-- 2nd_Annual Q2 -->
-    <div class="bg-white shadow-lg rounded-xl p-4 lg:p-5 xl:p-6 min-h-[350px] lg:min-h-[380px] xl:min-h-[400px]">
-      <h3 class="text-base lg:text-lg font-extrabold mb-3 lg:mb-4 text-gray-800 text-center">
-        Annual Q2
-      </h3>
-      <div class="grid grid-cols-1 xl:grid-cols-2 gap-2 lg:gap-3 xl:gap-4">
-        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
-          <client-only>
-            <SecondAnnualQ2 />
-          </client-only>
-        </div>
-        <div class="flex items-center justify-center bg-white rounded-lg p-2 lg:p-3 xl:p-4 min-h-[120px] lg:min-h-[140px]">
-          <client-only>
-            <SecondAnnualQ2Pie />
-            <!-- create -->
-          </client-only>
-        </div>
-      </div>
-    </div>
-
-    <!-- program target vs achievement to Date -->
-    <div class="bg-white shadow-lg rounded-xl p-4 lg:p-5 xl:p-6 min-h-[350px] lg:min-h-[380px] xl:min-h-[400px] space-y-0 lg:space-y-0 xl:space-y-1 lg:col-span-2 xl:col-span-1">
-      <h3 class="text-base lg:text-lg font-extrabold text-gray-800 text-center">
-        Program Target vs Achievement to Date
-      </h3>
-
-      <!-- Top Charts -->
-      <div class="w-full bg-white rounded-lg px-2 py-2 lg:py-3 flex flex-col lg:flex-row items-center gap-4 lg:gap-6 xl:gap-8">
-        <div class="w-[100px] lg:w-[110px] xl:w-[120px]">
-          <IfbColumn />
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div
+                class="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  ></path>
+                </svg>
+              </div>
+              <div class="text-right">
+                <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <p
+                  class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                >
+                  Enterprises
+                </p>
+                <div class="flex items-baseline space-x-2">
+                  <div class="text-3xl font-bold text-gray-900">
+                    <EnterprisesSupported />
+                  </div>
+                  <span class="text-sm font-medium text-green-600">{{
+                    data.enterprises.change
+                  }}</span>
+                </div>
+                <p class="text-sm text-gray-600 mt-1">Successfully Supported</p>
+              </div>
+              <div class="pt-4 border-t border-gray-100">
+                <div class="flex items-center text-xs text-gray-500">
+                  <div class="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
+                  Active Programs
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="flex-1 w-full">
-          <client-only>
-            <IfbPie />
-          </client-only>
+        <!-- Outreach Card -->
+        <div
+          class="lg:col-span-3 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+        >
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div
+                class="w-10 h-10 bg-gradient-to-r from-rose-500 to-orange-500 rounded-xl flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="text-right">
+                <span
+                  class="inline-block px-2 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full "
+                >
+                  Outreach
+                </span>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <p
+                  class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                >
+                  Individuals Reached
+                </p>
+                <div class="flex items-baseline space-x-2">
+                  <div class="text-3xl font-bold text-gray-900">
+                    <OutreachedIndividuals />
+                  </div>
+                  <span class="text-sm font-medium text-orange-600">{{
+                    data.outreach.change
+                  }}</span>
+                </div>
+                <p class="text-sm text-gray-600 mt-1">Community Impact</p>
+              </div>
+              <div class="pt-4 border-t border-gray-100">
+                <div
+                  class="flex items-center justify-between text-xs text-gray-500"
+                >
+                  <div class="flex items-center">
+                    <div class="w-2 h-2 bg-orange-400 rounded-full mr-2"></div>
+                    Active Campaigns
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Bottom Container -->
-      <div
-        class="w-full text-lg lg:text-xl xl:text-2xl font-bold text-gray-700 rounded-lg pt-1 lg:pt-3 xl:pt-10 px-3 lg:px-4 py-3 lg:py-4 flex items-center gap-3 lg:gap-4"
-      >
-        <div class="text-center flex-1">
-          <p class="text-lg lg:text-xl xl:text-2xl font-semibold text-black mb-2">IFB Disbursement</p>
+      <!-- Informal Enterprise Section -->
+      <div class="max-w-7xl mx-auto mt-16">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-2">
+            Informal Enterprise
+          </h2>
+          <p class="text-gray-600">
+            Financial support and business development services
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-8">
+          <!-- Grant Card -->
           <div
-            class="inline-block bg-gray-200 border border-gray-500 text-black font-bold font-mono px-3 lg:px-4 py-2 rounded-lg shadow text-sm lg:text-base xl:text-lg"
+            class="lg:col-span-2 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
           >
-             <IfbDisbursement />
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-3">
+                  <div
+                    class="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-5 h-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900">
+                      Grant Distribution
+                    </h3>
+                    <p class="text-sm text-gray-600">
+                      Financial assistance
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="w-2 h-2 bg-green-400 rounded-full animate-pulse"
+                ></div>
+              </div>
+              <div class="bg-white rounded-2xl p-4">
+                <div class="h-64 flex items-center justify-center">
+                  <client-only>
+                    <GrantChart />
+                  </client-only>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <p class="mt-2 text-gray-700 text-sm lg:text-base"> <span class="inline-flex items-center">
-    <IFBFOMTotalDisbursement /><span>% </span></span> of the total Disbursement
-</p>
+          <!-- PSS Card with Enterprise Metrics -->
+          <div
+            class="lg:col-span-3 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+          >
+            <div class="p-6 ">
+              <div class="flex items-center justify-between mb-6 ">
+                <div class="flex items-center space-x-3 ">
+                  <div
+                    class="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-5 h-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900">
+                      PSS Analytics
+                    </h3>
+                    <p class="text-sm text-gray-600">
+                      Business support
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
+                ></div>
+              </div>
+              <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                <!-- PSS Chart -->
+                <div class=" bg-white rounded-2xl p-4 ">
+                  <div class="h-64 flex items-center justify-center">
+                    <client-only>
+                      <PssChart />
+                    </client-only>
+                  </div>
+                </div>
+
+                <div class="space-y-4 flex flex-col justify-center">
+                  <div
+                    class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100"
+                  >
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-sm font-medium text-blue-700"
+                        >Informal</span
+                      >
+                      <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    </div>
+                    <div
+                      class="text-2xl font-bold text-blue-900 flex items-baseline space-x-2"
+                    >
+                      <InformalEnterprisesNumber />
+                      <span class="text-sm font-medium text-blue-900">{{
+                        data.informalEnterprises.change
+                      }}</span>
+                    </div>
+                    <p class="text-xs text-blue-600 mt-1">Enterprises</p>
+                  </div>
+
+                  <div
+                    class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-4 border border-purple-100"
+                  >
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-sm font-medium text-purple-700"
+                        >Formal</span
+                      >
+                      <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    </div>
+                    <div
+                      class="text-2xl font-bold text-purple-900 flex items-baseline space-x-2"
+                    >
+                      <FormalEnterprisesNumber />
+                      <span class="text-sm font-medium text-purple-900">{{
+                        data.formalEnterprises.change
+                      }}</span>
+                    </div>
+                    <p class="text-xs text-purple-600 mt-1">Enterprises</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <!-- Formal Enterprise Section -->
+      <div class="max-w-7xl mx-auto mt-16">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-2">
+            Formal Enterprise
+          </h2>
+          <p class="text-gray-600">
+            Banking partnerships and registration services
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+          <!-- Registration Card -->
+          <div
+            class="lg:col-span-3 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+          >
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-4">
+                <div
+                  class="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center"
+                >
+                  <svg
+                    class="w-5 h-5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    ></path>
+                  </svg>
+                </div>
+                <span
+                  class="inline-block px-2 py-1 bg-cyan-100 text-cyan-700 text-xs font-semibold rounded-full"
+                >
+                  Active
+                </span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-4">Registration</h3>
+              <div class="h-48 flex items-center justify-center">
+                <client-only>
+                  <RegistrationChart />
+                </client-only>
+              </div>
+            </div>
+          </div>
+
+          <!-- Banks Card - Featured -->
+          <div
+            class="lg:col-span-6 bg-gradient-to-br from-white to-indigo-50 rounded-3xl shadow-xl border border-indigo-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+          >
+            <div class="p-8">
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-3">
+                  <div
+                    class="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg"
+                  >
+                    <svg
+                      class="w-6 h-6 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-gray-900">
+                      Assisted Bank Registration to date
+                    </h3>
+                  </div>
+                </div>
+                <div class="flex space-x-1 ">
+                  <div
+                    class="w-2 h-2 bg-green-600 rounded-full animate-pulse"
+                  ></div>
+                  <div
+                    class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"
+                    style="animation-delay: 0.2s"
+                  ></div>
+                  <div
+                    class="w-2 h-2 bg-red-600 rounded-full animate-pulse"
+                    style="animation-delay: 0.4s"
+                  ></div>
+                </div>
+              </div>
+              <div class="h-64 flex items-center justify-center">
+                <client-only>
+                  <banks />
+                </client-only>
+              </div>
+            </div>
+          </div>
+
+          <!-- IFB & Disability Registration Card -->
+          <div
+            class="lg:col-span-3 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+          >
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-6">
+                <div
+                  class="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center"
+                >
+                  <svg
+                    class="w-5 h-5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="text-right">
+                  <div class="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <!-- Interest-Free Banking -->
+                <div
+                  class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100"
+                >
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium text-blue-700">IFB</span>
+                    <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  </div>
+                  <div
+                    class="text-xl font-bold text-black flex items-baseline space-x-2"
+                  >
+                    <IFBRegistration />
+                    <span class="text-sm font-medium text-blue-900">{{
+                      data.ifbRegistration.change
+                    }}</span>
+                  </div>
+
+                  <p class="text-xs text-blue-600 mt-1">
+                    Interest-Free Banking
+                  </p>
+                </div>
+
+                <!-- Disability Registration -->
+                <div
+                  class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-4 border border-emerald-100"
+                >
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium text-emerald-700"
+                      >Disability</span
+                    >
+                    <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                  </div>
+                  <div
+                    class="text-xl font-bold text-black flex items-baseline space-x-2"
+                  >
+                    <DisabilityRegistration />
+                    <span class="text-sm font-medium text-emerald-900">{{
+                      data.disability.change
+                    }}</span>
+                  </div>
+                  <p class="text-xs text-emerald-600 mt-1">
+                    Special Registration
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BDS Status Section -->
+      <div class="max-w-7xl mx-auto mt-16">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-2">BDS Status</h2>
+          <p class="text-gray-600">
+            Business Development Services performance metrics
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+          <!-- Y3Q2 Card -->
+          <div
+            class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+          >
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-3">
+                  <div
+                    class="w-10 h-10 bg-gradient-to-r from-rose-500 to-pink-600 rounded-xl flex items-center justify-center"
+                  >
+                    <span class="text-white font-bold text-sm">Q2</span>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900">Y3Q2</h3>
+                    <p class="text-sm text-gray-600">Quarter 2 Analytics</p>
+                  </div>
+                </div>
+                <div
+                  class="w-2 h-2 bg-rose-400 rounded-full animate-pulse"
+                ></div>
+              </div>
+              <div class="grid grid-cols-1 gap-4">
+                <div
+                  class="bg-white rounded-2xl p-4 "
+                >
+                  <div class="h-32 flex items-center justify-center">
+                    <client-only>
+                      <Y3q2Column />
+                    </client-only>
+                  </div>
+                </div>
+                <div
+                  class="bg-white rounded-2xl p-4"
+                >
+                  <div class="h-32 flex items-center justify-center">
+                    <client-only>
+                      <Y3q2Pie />
+                    </client-only>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Annual Q2 Card -->
+          <div
+            class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+          >
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-3">
+                  <div
+                    class="w-10 h-10 bg-gradient-to-r from-amber-500 to-orange-600 rounded-xl flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-5 h-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900">Annual Q2</h3>
+                    <p class="text-sm text-gray-600">Yearly Performance</p>
+                  </div>
+                </div>
+                <div
+                  class="w-2 h-2 bg-amber-400 rounded-full animate-pulse"
+                ></div>
+              </div>
+              <div class="grid grid-cols-1 gap-4">
+                <div
+                  class="bg-white rounded-2xl p-4"
+                >
+                  <div class="h-32 flex items-center justify-center">
+                    <client-only>
+                      <AnnualQ2Column />
+                    </client-only>
+                  </div>
+                </div>
+                <div
+                  class="bg-white rounded-2xl p-4 "
+                >
+                  <div class="h-32 flex items-center justify-center">
+                    <client-only>
+                      <AnnualQ2Pie />
+                    </client-only>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Program Target vs Achievement Card -->
+          <div
+            class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+          >
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-3">
+                  <div
+                    class="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-5 h-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900">
+                      program target vs achievement
+                    </h3>
+                    <p class="text-sm text-gray-600">Progress Overview</p>
+                  </div>
+                </div>
+                <div
+                  class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"
+                ></div>
+              </div>
+              <div class="grid grid-cols-1 gap-4">
+                <div
+                  class="bg-white rounded-2xl p-4"
+                >
+                  <div class="h-32 flex items-center justify-center">
+                    <client-only>
+                      <Y3Column />
+                    </client-only>
+                  </div>
+                </div>
+                <div
+                  class="bg-white rounded-2xl p-4"
+                >
+                  <div class="h-32 flex items-center justify-center">
+                    <client-only>
+                      <Y3Pie />
+                    </client-only>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Credit Disbursement Section -->
+      <div class="max-w-7xl mx-auto mt-16">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-2">
+            Credit Disbursement
+          </h2>
+          <p class="text-gray-600">
+            Financial distribution and lending analytics
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
+          <!-- Y3Q2 Credit Card -->
+          <div
+            class="lg:col-span-4 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+          >
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-3">
+                  <div
+                    class="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center"
+                  >
+                    <span class="text-white font-bold text-sm">Q2</span>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900">Y3Q2 Credit</h3>
+                    <p class="text-sm text-gray-600">Quarter disbursement</p>
+                  </div>
+                </div>
+                <div
+                  class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
+                ></div>
+              </div>
+              <div class="grid grid-cols-1 gap-4">
+                <div
+                  class="bg-white rounded-2xl p-4 "
+                >
+                  <div class="h-32 flex items-center justify-center">
+                    <client-only>
+                      <SecondY3q2Column />
+                    </client-only>
+                  </div>
+                </div>
+                <div
+                  class="bg-white rounded-2xl p-4 "
+                >
+                  <div class="h-32 flex items-center justify-center">
+                    <client-only>
+                      <SecondY3q2Pie />
+                    </client-only>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Annual Q2 Credit Card -->
+          <div
+            class="lg:col-span-4 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+          >
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-3">
+                  <div
+                    class="w-10 h-10 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-5 h-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900">Annual Q2</h3>
+                    <p class="text-sm text-gray-600">Yearly credit flow</p>
+                  </div>
+                </div>
+                <div
+                  class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"
+                ></div>
+              </div>
+              <div class="grid grid-cols-1 gap-4">
+                <div
+                  class="bg-white rounded-2xl p-4"
+                >
+                  <div class="h-32 flex items-center justify-center">
+                    <client-only>
+                      <SecondAnnualQ2 />
+                    </client-only>
+                  </div>
+                </div>
+                <div
+                  class="bg-white rounded-2xl p-4 "
+                >
+                  <div class="h-32 flex items-center justify-center">
+                    <client-only>
+                      <SecondAnnualQ2Pie />
+                    </client-only>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- IFB Program Achievement Card -->
+          <div
+            class="lg:col-span-4 bg-white rounded-3xl shadow-xl border border-emerald-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+          >
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-3">
+                  <div
+                    class="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-5 h-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-900">
+                      program target vs achievement
+                    </h3>
+                    <p class="text-sm text-gray-600">Target achievement</p>
+                  </div>
+                </div>
+                <div
+                
+                  class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"
+                ></div>
+              </div>
+
+              <!-- Charts Section -->
+              <div
+                class="bg-white rounded-2xl p-4 mb-4"
+              >
+                <div class="flex items-center justify-center gap-4">
+                  <div class="w-24">
+                    <IfbColumn />
+                  </div>
+                  <div class="flex-1">
+                    <client-only>
+                      <IfbPie />
+                    </client-only>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Disbursement Metrics -->
+              <div
+                class="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-4 border border-teal-100"
+              >
+                <div class="flex justify-between mb-2">
+                  <span class="text-sm font-medium text-emerald-700"
+                    >IFB Disbursement</span
+                  >
+                  <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                </div>
+                <div
+                  class="flex text-xxl font-bold text-emerald-900 items-baseline space-x-2"
+                >
+                  <IfbDisbursement />
+                  <span class="text-sm font-medium text-emerald-900">{{
+                    data.ifbDisbursement.change
+                  }}</span>
+                </div>
+
+                <span
+                  class="inline-flex font-serif text-xl  font-bold text-emerald-600 mt-1"
+                >
+                  <IFBFOMTotalDisbursement /> of total disbursement
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Finance Section -->
+      <div class="max-w-7xl mx-auto mt-16 mb-16">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-2">Finance</h2>
+          <p class="text-gray-600">
+            Trench disbursement tracking across banking partners
+          </p>
+        </div>
+
+        <!-- 1st Trench -->
+        <div class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+            1st Trench Disbursement
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div
+              class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+            >
+              <client-only>
+                <Abyssinia_column />
+              </client-only>
+            </div>
+            <div
+              class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+            >
+              <ClientOnly>
+                <Hibret_first_trench_column />
+              </ClientOnly>
+            </div>
+            <div
+              class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+            >
+              <client-only>
+                <Awash_first_trench_column />
+              </client-only>
+            </div>
+            <div
+              class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+            >
+              <client-only>
+                <Dashen_first_trench_column />
+              </client-only>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2nd Trench -->
+        <div class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+            2nd Trench Disbursement
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div
+              class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+            >
+              <client-only>
+                <Hibret_column />
+              </client-only>
+            </div>
+            <div
+              class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+            >
+              <client-only>
+                <AwashSecondTrenchColumn />
+              </client-only>
+            </div>
+            <div
+              class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+            >
+              <client-only>
+                <DashenSecondTrenchColumn />
+              </client-only>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3rd Trench -->
+        <div class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+            3rd Trench Disbursement
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div
+              class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+            >
+              <client-only>
+                <AwashThirdTrenchColumn />
+              </client-only>
+            </div>
+            <div
+              class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+            >
+              <client-only>
+                <DashenThirdTrenchColumn />
+              </client-only>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- Finance -->
-  <div class="flex justify-center pt-6">
-    <div
-      class="bg-gradient-to-r from-teal-700 to-blue-700 shadow-xl rounded-xl p-1 w-full max-w-3xl"
-    >
-      <h1
-        class="text-3xl font-bold font-serif text-white text-center tracking-wide"
-      >
-        Finance
-      </h1>
-    </div>
-  </div>
-
-  <div class="space-y-8">
-    <!-- 1st Trench -->
-    <div class="bg-white rounded-xl p-6">
-      <h2 id="finance" class="text-2xl font-bold text-gray-800 mb-4">
-        1st Trench Disbursement
-      </h2>
-      <div class="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div
-          class="flex items-center justify-center bg-white shadow-md rounded-lg p-4"
-        >
-          <client-only>
-            <Abyssinia_column />
-          </client-only>
-        </div>
-        <div
-          class="flex items-center justify-center bg-white shadow-md rounded-lg p-4"
-        >
-          <ClientOnly>
-            <Hibret_first_trench_column />
-          </ClientOnly>
-        </div>
-        <div
-          class="flex items-center justify-center bg-white shadow-md rounded-lg p-4"
-        >
-          <client-only>
-            <Awash_first_trench_column />
-          </client-only>
-        </div>
-        <div
-          class="flex items-center justify-center bg-white shadow-md rounded-lg p-4"
-        >
-          <client-only>
-            <Dashen_first_trench_column />
-          </client-only>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2nd Trench -->
-    <div class="bg-white rounded-xl p-6">
-      <h2 class="text-2xl font-bold text-gray-800 mb-4">
-        2nd Trench Disbursement
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div
-          class="flex items-center justify-center bg-white shadow-md rounded-lg p-4"
-        >
-          <client-only>
-            <Hibret_column />
-          </client-only>
-        </div>
-        <div
-          class="flex items-center justify-center bg-white shadow-md rounded-lg p-4"
-        >
-          <client-only>
-            <AwashSecondTrenchColumn />
-          </client-only>
-        </div>
-        <div
-          class="flex items-center justify-center bg-white shadow-md rounded-lg p-4"
-        >
-          <client-only>
-            <DashenSecondTrenchColumn />
-          </client-only>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3rd Trench -->
-    <div class="bg-white rounded-xl p-6">
-      <h2 class="text-2xl font-bold text-gray-800 mb-4">
-        3rd Trench Disbursement
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div
-          class="flex items-center justify-center bg-white shadow-md rounded-lg p-4"
-        >
-          <client-only>
-            <AwashThirdTrenchColumn />
-          </client-only>
-        </div>
-        <div
-          class="flex items-center justify-center bg-white shadow-md rounded-lg p-4"
-        >
-          <client-only>
-            <DashenThirdTrenchColumn />
-          </client-only>
-        </div>
-      </div>
-    </div>
-  </div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <!-- /components/ifb_disbursement.vue -->
 <script setup>
 import { ref, onMounted } from 'vue'
-import CountUp from '/components/CountUp.vue'
+import CountUp from './countup.vue'
 const ifbDisbursement = ref(0)
 
 onMounted(async () => {

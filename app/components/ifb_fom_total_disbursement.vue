@@ -1,7 +1,7 @@
 <!-- components/IFB_FOM_Total_Disbursement.vue -->
 <script setup>
 import { ref, onMounted } from 'vue'
-import CountUp from '/components/CountUp.vue'
+import CountUp from './countup.vue'
 
 const ifbDisbursementPercent = ref(0)
 
