@@ -717,7 +717,7 @@ onBeforeUnmount(() => {
               </div>
               <div class="grid grid-cols-1 gap-4">
                 <div
-                  class="bg-gradient-to-r from-rose-50 to-pink-50 rounded-2xl p-4 border border-rose-100"
+                  class="bg-white rounded-2xl p-4 "
                 >
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
@@ -726,7 +726,7 @@ onBeforeUnmount(() => {
                   </div>
                 </div>
                 <div
-                  class="bg-gradient-to-r from-pink-50 to-rose-50 rounded-2xl p-4 border border-pink-100"
+                  class="bg-white rounded-2xl p-4"
                 >
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
@@ -773,7 +773,7 @@ onBeforeUnmount(() => {
               </div>
               <div class="grid grid-cols-1 gap-4">
                 <div
-                  class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-4 border border-amber-100"
+                  class="bg-white rounded-2xl p-4"
                 >
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
@@ -782,7 +782,7 @@ onBeforeUnmount(() => {
                   </div>
                 </div>
                 <div
-                  class="bg-gradient-to-r from-orange-50 to-amber-50 rounded-2xl p-4 border border-orange-100"
+                  class="bg-white rounded-2xl p-4 "
                 >
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
@@ -831,7 +831,7 @@ onBeforeUnmount(() => {
               </div>
               <div class="grid grid-cols-1 gap-4">
                 <div
-                  class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-4 border border-emerald-100"
+                  class="bg-white rounded-2xl p-4"
                 >
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
@@ -840,7 +840,7 @@ onBeforeUnmount(() => {
                   </div>
                 </div>
                 <div
-                  class="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-4 border border-teal-100"
+                  class="bg-white rounded-2xl p-4"
                 >
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
@@ -890,7 +890,7 @@ onBeforeUnmount(() => {
               </div>
               <div class="grid grid-cols-1 gap-4">
                 <div
-                  class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-4 border border-blue-100"
+                  class="bg-white rounded-2xl p-4 "
                 >
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
@@ -899,7 +899,7 @@ onBeforeUnmount(() => {
                   </div>
                 </div>
                 <div
-                  class="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-2xl p-4 border border-cyan-100"
+                  class="bg-white rounded-2xl p-4 "
                 >
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
@@ -946,7 +946,7 @@ onBeforeUnmount(() => {
               </div>
               <div class="grid grid-cols-1 gap-4">
                 <div
-                  class="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-2xl p-4 border border-purple-100"
+                  class="bg-white rounded-2xl p-4"
                 >
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
@@ -955,7 +955,7 @@ onBeforeUnmount(() => {
                   </div>
                 </div>
                 <div
-                  class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-4 border border-indigo-100"
+                  class="bg-white rounded-2xl p-4 "
                 >
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
@@ -969,7 +969,7 @@ onBeforeUnmount(() => {
 
           <!-- IFB Program Achievement Card -->
           <div
-            class="lg:col-span-4 bg-gradient-to-br from-white to-emerald-50 rounded-3xl shadow-xl border border-emerald-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+            class="lg:col-span-4 bg-white rounded-3xl shadow-xl border border-emerald-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
           >
             <div class="p-6">
               <div class="flex items-center justify-between mb-6">
@@ -999,13 +999,14 @@ onBeforeUnmount(() => {
                   </div>
                 </div>
                 <div
+                
                   class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"
                 ></div>
               </div>
 
               <!-- Charts Section -->
               <div
-                class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-4 border border-emerald-100 mb-4"
+                class="bg-white rounded-2xl p-4 mb-4"
               >
                 <div class="flex items-center justify-center gap-4">
                   <div class="w-24">

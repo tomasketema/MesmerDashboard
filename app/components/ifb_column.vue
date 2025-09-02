@@ -6,8 +6,8 @@ import VueApexCharts from 'vue3-apexcharts'
 const chartWidth = computed(() => {
   if (typeof window !== 'undefined') {
     const width = window.innerWidth
-    if (width < 1024) return '100%'   // mobile/tablet
-    if (width < 1400) return '140%'   // 14-inch laptops (1366x768)
+    if (width < 1024) return '200%'   // mobile/tablet
+    if (width < 1400) return '240%'   // 14-inch laptops (1366x768)
     return '170%'                     // larger screens
   }
   return '170%'
@@ -51,10 +51,13 @@ const chartOptions = {
   },
   dataLabels: {
     enabled: true,
-    formatter: function (val) {
+    formatter: function (val,opts) {
       return new Intl.NumberFormat('en-US').format(val);
     },
-    offsetY: -20,
+    offsetY: function({ seriesIndex, dataPointIndex, w }) {
+    const value = w.globals.series[seriesIndex][dataPointIndex];
+    return value < 100 ? -10 : -20;
+    },
     style: {
       fontSize: '10px',
       colors: ['#334155'],
