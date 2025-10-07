@@ -10,6 +10,10 @@ export default defineNuxtConfig({
         strategies: 'generateSW',
         registerType: 'autoUpdate',
         injectRegister: 'auto',
+        workbox: {
+          cleanupOutdatedCaches: true,
+          globPatterns: ['**/*.{js,css,html,png,svg,ico}']
+        },
         manifest: {
           name: 'Mesmer Dashboard',
           short_name: 'Mesmer',
@@ -19,10 +23,24 @@ export default defineNuxtConfig({
           display: 'standalone',
           orientation: 'portrait',
           icons: [
-            { src: '/monitor.png', sizes: '192x192', type: 'image/png' },
-            { src: '/monitor1.png', sizes: '512x512', type: 'image/png' }
+            {
+              src: '/monitor.png',
+              sizes: '512x512',
+              type: 'image/png',
+              purpose: 'any'
+            },
+            {
+              src: '/monitor1.png',
+              sizes: '512x512',
+              type: 'image/png',
+              purpose: 'maskable'
+            }
           ]
         },
+        devOptions: {
+          enabled: true,
+          type: 'module'
+        }
       }
     ]
   ]

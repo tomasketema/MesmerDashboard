@@ -58,7 +58,6 @@ const data = ref({
 });
 
 onMounted(async () => {
-
   try {
     const res = await fetch("/api/get-change-data");
     const changeData = await res.json();
@@ -66,7 +65,6 @@ onMounted(async () => {
   } catch (err) {
     console.error("Failed to fetch change data:", err);
   }
-
 
   const LocomotiveScroll = (await import("locomotive-scroll")).default;
   await import("locomotive-scroll/dist/locomotive-scroll.css");
@@ -95,7 +93,9 @@ onBeforeUnmount(() => {
             Dashboard Overview
           </h1>
 
-          <p class="text-xl text-gray-800 font-medium-sans">{{ currentDate }}</p>
+          <p class="text-xl text-gray-800 font-medium-sans">
+            {{ currentDate }}
+          </p>
           <div class="inline-block">
             <span class="text-2xl font-bold text-blue-600">MESMER</span>
             <span class="text-2xl font-bold text-gray-700 ml-2">Analytics</span>
@@ -105,7 +105,6 @@ onBeforeUnmount(() => {
 
       <!-- Main Grid  -->
       <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
-        
         <div
           class="lg:col-span-7 bg-white rounded-3xl shadow-xl border border-blue-100 overflow-hidden"
         >
@@ -175,9 +174,9 @@ onBeforeUnmount(() => {
               </div>
 
               <!-- Woman Employment Chart -->
-              <div class="flex justify-center">
+              <div class="flex justify-center items-center">
                 <div class="relative">
-                  <div class="w-32 h-32">
+                  <div class="w-32 h-32 flex items-center justify-center">
                     <ClientOnly>
                       <Woman />
                     </ClientOnly>
@@ -195,32 +194,22 @@ onBeforeUnmount(() => {
               </div>
 
               <!-- Business Woman image -->
-              <div class="flex justify-center">
+              <div class="flex justify-center items-center">
                 <div class="relative">
-                  <div
-                    class="w-32 h-32 bg-gradient-to-br from-orange-100 to-pink-100 rounded-2xl p-3 shadow-lg"
-                  >
-                  
-                    <img
-                      src="@/assets/mesmerLogo/businesswoman.png"
-                      alt="business woman"
-                      class="w-full h-full object-fill"
-                    />
+                  <div class="w-32 h-32 flex items-center justify-center">
+                    <ClientOnly>
+                      <SpecialEmploymentPie />
+                    </ClientOnly>
                   </div>
                   <div
-                    class="absolute -top-2 -right-2 w-6 h-6 bg-orange-400 rounded-full flex items-center justify-center"
+                    class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 text-center"
                   >
-                    <svg
-                      class="w-3 h-3 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
+                    <span
+                      class="inline-block px-3 py-1 bg-purple-100 animate-bounce text-purple-700 text-xs font-semibold rounded-full"
                     >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
+                      <div>Special</div>
+                      <div>Employment</div>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -228,7 +217,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
 
-        <!-- Enterprises Card - Modern Metric Card -->
+        <!-- Enterprises Card -->
         <div
           class="lg:col-span-2 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
         >
@@ -252,7 +241,9 @@ onBeforeUnmount(() => {
                 </svg>
               </div>
               <div class="text-right">
-                <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                <div
+                  class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
+                ></div>
               </div>
             </div>
             <div class="space-y-4">
@@ -307,7 +298,7 @@ onBeforeUnmount(() => {
               </div>
               <div class="text-right">
                 <span
-                  class="inline-block px-2 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full "
+                  class="inline-block px-2 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full"
                 >
                   Outreach
                 </span>
@@ -386,9 +377,7 @@ onBeforeUnmount(() => {
                     <h3 class="text-lg font-bold text-gray-900">
                       Grant Distribution
                     </h3>
-                    <p class="text-sm text-gray-600">
-                      Financial assistance
-                    </p>
+                    <p class="text-sm text-gray-600">Financial assistance</p>
                   </div>
                 </div>
                 <div
@@ -409,9 +398,9 @@ onBeforeUnmount(() => {
           <div
             class="lg:col-span-3 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
           >
-            <div class="p-6 ">
-              <div class="flex items-center justify-between mb-6 ">
-                <div class="flex items-center space-x-3 ">
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-3">
                   <div
                     class="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center"
                   >
@@ -433,9 +422,7 @@ onBeforeUnmount(() => {
                     <h3 class="text-lg font-bold text-gray-900">
                       PSS Analytics
                     </h3>
-                    <p class="text-sm text-gray-600">
-                      Business support
-                    </p>
+                    <p class="text-sm text-gray-600">Business support</p>
                   </div>
                 </div>
                 <div
@@ -444,7 +431,7 @@ onBeforeUnmount(() => {
               </div>
               <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
                 <!-- PSS Chart -->
-                <div class=" bg-white rounded-2xl p-4 ">
+                <div class="bg-white rounded-2xl p-4">
                   <div class="h-64 flex items-center justify-center">
                     <client-only>
                       <PssChart />
@@ -496,8 +483,6 @@ onBeforeUnmount(() => {
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
 
@@ -582,7 +567,7 @@ onBeforeUnmount(() => {
                     </h3>
                   </div>
                 </div>
-                <div class="flex space-x-1 ">
+                <div class="flex space-x-1">
                   <div
                     class="w-2 h-2 bg-green-600 rounded-full animate-pulse"
                   ></div>
@@ -708,7 +693,7 @@ onBeforeUnmount(() => {
                   </div>
                   <div>
                     <h3 class="text-lg font-bold text-gray-900">Y3Q2</h3>
-                    <p class="text-sm text-gray-600">Quarter 2 Analytics</p>
+                    <p class="text-sm text-gray-600">Quarter Analytics</p>
                   </div>
                 </div>
                 <div
@@ -716,18 +701,14 @@ onBeforeUnmount(() => {
                 ></div>
               </div>
               <div class="grid grid-cols-1 gap-4">
-                <div
-                  class="bg-white rounded-2xl p-4 "
-                >
+                <div class="bg-white rounded-2xl p-4">
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
                       <Y3q2Column />
                     </client-only>
                   </div>
                 </div>
-                <div
-                  class="bg-white rounded-2xl p-4"
-                >
+                <div class="bg-white rounded-2xl p-4">
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
                       <Y3q2Pie />
@@ -772,18 +753,14 @@ onBeforeUnmount(() => {
                 ></div>
               </div>
               <div class="grid grid-cols-1 gap-4">
-                <div
-                  class="bg-white rounded-2xl p-4"
-                >
+                <div class="bg-white rounded-2xl p-4">
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
                       <AnnualQ2Column />
                     </client-only>
                   </div>
                 </div>
-                <div
-                  class="bg-white rounded-2xl p-4 "
-                >
+                <div class="bg-white rounded-2xl p-4">
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
                       <AnnualQ2Pie />
@@ -830,18 +807,14 @@ onBeforeUnmount(() => {
                 ></div>
               </div>
               <div class="grid grid-cols-1 gap-4">
-                <div
-                  class="bg-white rounded-2xl p-4"
-                >
+                <div class="bg-white rounded-2xl p-4">
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
                       <Y3Column />
                     </client-only>
                   </div>
                 </div>
-                <div
-                  class="bg-white rounded-2xl p-4"
-                >
+                <div class="bg-white rounded-2xl p-4">
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
                       <Y3Pie />
@@ -889,18 +862,14 @@ onBeforeUnmount(() => {
                 ></div>
               </div>
               <div class="grid grid-cols-1 gap-4">
-                <div
-                  class="bg-white rounded-2xl p-4 "
-                >
+                <div class="bg-white rounded-2xl p-4">
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
                       <SecondY3q2Column />
                     </client-only>
                   </div>
                 </div>
-                <div
-                  class="bg-white rounded-2xl p-4 "
-                >
+                <div class="bg-white rounded-2xl p-4">
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
                       <SecondY3q2Pie />
@@ -945,18 +914,14 @@ onBeforeUnmount(() => {
                 ></div>
               </div>
               <div class="grid grid-cols-1 gap-4">
-                <div
-                  class="bg-white rounded-2xl p-4"
-                >
+                <div class="bg-white rounded-2xl p-4">
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
                       <SecondAnnualQ2 />
                     </client-only>
                   </div>
                 </div>
-                <div
-                  class="bg-white rounded-2xl p-4 "
-                >
+                <div class="bg-white rounded-2xl p-4">
                   <div class="h-32 flex items-center justify-center">
                     <client-only>
                       <SecondAnnualQ2Pie />
@@ -999,15 +964,12 @@ onBeforeUnmount(() => {
                   </div>
                 </div>
                 <div
-                
                   class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"
                 ></div>
               </div>
 
               <!-- Charts Section -->
-              <div
-                class="bg-white rounded-2xl p-4 mb-4"
-              >
+              <div class="bg-white rounded-2xl p-4 mb-4">
                 <div class="flex items-center justify-center gap-4">
                   <div class="w-24">
                     <IfbColumn />
@@ -1040,7 +1002,7 @@ onBeforeUnmount(() => {
                 </div>
 
                 <span
-                  class="inline-flex font-serif text-xl  font-bold text-emerald-600 mt-1"
+                  class="inline-flex font-serif text-xl font-bold text-emerald-600 mt-1"
                 >
                   <IFBFOMTotalDisbursement /> of total disbursement
                 </span>

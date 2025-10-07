@@ -24,11 +24,26 @@ const chartOptions = {
     offsetY: -20,
     style: { fontSize: "12px", colors: ["#304758"] },
   },
-  xaxis: {
+ xaxis: {
     categories: ["Trench amount", "Amount Dispursed"],
     position: "bottom",
     axisBorder: { show: false },
     axisTicks: { show: false },
+    labels: {
+      rotate: 0,
+      rotateAlways: false,
+      hideOverlappingLabels: false,
+      trim: false,
+      minHeight: undefined,
+      maxHeight: 100,
+      style: {
+        colors: [],
+        fontSize: '11px',
+        fontFamily: 'Helvetica, Arial, sans-serif',
+        fontWeight: 500,
+        cssClass: 'apexcharts-xaxis-label'
+      }
+    },
     crosshairs: {
       fill: {
         type: "gradient",
