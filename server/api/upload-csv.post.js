@@ -47,6 +47,7 @@ export default defineEventHandler(async (event) => {
     const insertValues = [];
     for (const row of records) {
       const section = row.section?.trim();
+      const subsection = row.subsection?.trim();
       const metric = row.metric?.trim();
       const type = row.type?.trim().toLowerCase();
       const value = parseFloat(row.value.replace(/,/g, ''));
@@ -54,14 +55,14 @@ export default defineEventHandler(async (event) => {
 
       if (!section || !metric || !type || isNaN(value)) continue;
 
-      insertValues.push([section, metric, type, value, new Date()]);
+      insertValues.push([section, subsection, metric, type, value, new Date()]);
     }
 
     if (!insertValues.length) throw new Error('No valid rows to insert');
 
 
     const insertQuery = `
-      INSERT INTO chart_data (section, name, chart_type, value, created_at)
+      INSERT INTO chart_data (section, subsection, name, chart_type, value, created_at)
       VALUES ?
     `;
     await db.query(insertQuery, [insertValues]);

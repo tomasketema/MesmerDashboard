@@ -6,10 +6,11 @@ const CACHE_TTL_SECONDS = 604800
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
-  const { section, names } = query
+  const { section, subsection, names } = query
 
   const keyParts = [
     section ? `section:${section.toLowerCase().trim()}` : '',
+    subsection ? `subsection:${subsection.toLowerCase().trim()}` : '',
     names ? `names:${names.toLowerCase().replace(/\s/g, '')}` : ''
   ].filter(Boolean)
 
