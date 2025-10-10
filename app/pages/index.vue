@@ -65,11 +65,28 @@ const data = ref({
 });
 
 
+const headers = ref({
+  bdsY3Q2: 'Y3Q2',
+  bdsAnnualQ2: 'Annual Q2',
+  bdsProgram: 'program target vs achievement',
+  creditY3Q2: 'Y3Q2',
+  creditAnnualQ2: 'Annual Q2',
+  creditProgram: 'program target vs achievement',
+});
+const getHeader = async (section, metricsCsv) => {
+  const params = new URLSearchParams({ section, metrics: metricsCsv });
+  const res = await fetch('/api/get-change-header?' + params.toString());
+  try {
+    const json = await res.json();
+    return json?.suggestedHeader || '';
+  } catch {
+    return '';
+  }
+};
 const showAbyssiniaSecondTrench = ref(false);
 const showAbyssiniaThirdTrench = ref(false);
 const showHibretThirdTrench = ref(false);
 
-// 4th Trench visibility flags
 const showAbyssiniaforthTrench = ref(false);
 const showHibretforthTrench = ref(false);
 const showAwashforthTrench = ref(false);
@@ -148,7 +165,6 @@ onMounted(async () => {
     showHibretThirdTrench.value = false;
   }
 
-  // 4th Trench visibility per bank
   try {
     const res = await fetch(
       "/api/get-latest-data?section=Finance - 4th Trench&names=Abyssinia Trench Amount,Hibret Trench Amount,Awash Trench Amount,Dashen Trench Amount"
@@ -166,6 +182,34 @@ onMounted(async () => {
     showHibretforthTrench.value = false;
     showAwashforthTrench.value = false;
     showDashenforthTrench.value = false;
+  }
+
+ 
+  try {
+    const y3q2 = await getHeader('BDS Status', 'Y3Q2 Target,Y3Q2 Achievement');
+    if (y3q2) headers.value.bdsY3Q2 = y3q2;
+
+    const annual = await getHeader('BDS Status', 'Annual Q2 Target,Annual Q2 Achievement');
+    if (annual) headers.value.bdsAnnualQ2 = annual;
+
+    const program = await getHeader('BDS Status', 'Program Target,Program Achievement');
+    if (program) headers.value.bdsProgram = program;
+  } catch (e) {
+    console.error('Failed to fetch dynamic headers:', e);
+  }
+
+
+  try {
+    const y3q2Credit = await getHeader('Credit Disbursement', 'Y3Q2 Target,Y3Q2 Achievement');
+    if (y3q2Credit) headers.value.creditY3Q2 = y3q2Credit;
+
+    const annualCredit = await getHeader('Credit Disbursement', 'Annual Q2 Target,Annual Q2 Achievement');
+    if (annualCredit) headers.value.creditAnnualQ2 = annualCredit;
+
+    const programCredit = await getHeader('Credit Disbursement', 'Program Target,Program Achievement');
+    if (programCredit) headers.value.creditProgram = programCredit;
+  } catch (e) {
+    console.error('Failed to fetch dynamic credit headers:', e);
   }
 
   const LocomotiveScroll = (await import("locomotive-scroll")).default;
@@ -208,7 +252,7 @@ onBeforeUnmount(() => {
       <!-- Main Grid  -->
       <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div
-          class="lg:col-span-7 bg-white rounded-3xl shadow-xl border border-blue-100 overflow-hidden"
+          class="lg:col-span-7 bg-black rounded-3xl shadow-xl border border-blue-100 overflow-hidden"
         >
           <div class="p-8">
             <!-- Header with Icon -->
@@ -794,7 +838,7 @@ onBeforeUnmount(() => {
                     <span class="text-white font-bold text-sm">Q2</span>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900">Y3Q2</h3>
+                    <h3 class="text-lg font-bold text-gray-900">{{ headers.bdsY3Q2 }}</h3>
                     <p class="text-sm text-gray-600">Quarter Analytics</p>
                   </div>
                 </div>
@@ -846,7 +890,7 @@ onBeforeUnmount(() => {
                     </svg>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900">Annual Q2</h3>
+                    <h3 class="text-lg font-bold text-gray-900">{{ headers.bdsAnnualQ2 }}</h3>
                     <p class="text-sm text-gray-600">Yearly Performance</p>
                   </div>
                 </div>
@@ -898,9 +942,7 @@ onBeforeUnmount(() => {
                     </svg>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900">
-                      program target vs achievement
-                    </h3>
+                    <h3 class="text-lg font-bold text-gray-900">{{ headers.bdsProgram }}</h3>
                     <p class="text-sm text-gray-600">Progress Overview</p>
                   </div>
                 </div>
@@ -955,7 +997,7 @@ onBeforeUnmount(() => {
                     <span class="text-white font-bold text-sm">Q2</span>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900">Y3Q2 Credit</h3>
+                    <h3 class="text-lg font-bold text-gray-900">{{ headers.creditY3Q2 }}</h3>
                     <p class="text-sm text-gray-600">Quarter disbursement</p>
                   </div>
                 </div>
@@ -1007,7 +1049,7 @@ onBeforeUnmount(() => {
                     </svg>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900">Annual Q2</h3>
+                    <h3 class="text-lg font-bold text-gray-900">{{ headers.creditAnnualQ2 }}</h3>
                     <p class="text-sm text-gray-600">Yearly credit flow</p>
                   </div>
                 </div>
@@ -1059,9 +1101,7 @@ onBeforeUnmount(() => {
                     </svg>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900">
-                      program target vs achievement
-                    </h3>
+                    <h3 class="text-lg font-bold text-gray-900">{{ headers.creditProgram }}</h3>
                     <p class="text-sm text-gray-600">Target achievement</p>
                   </div>
                 </div>
