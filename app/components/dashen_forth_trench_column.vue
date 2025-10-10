@@ -29,7 +29,7 @@ const chartOptions = {
     position: "bottom",
     axisBorder: { show: false },
     axisTicks: { show: false },
-    labels: {
+     labels: {
       rotate: 0,
       rotateAlways: false,
       hideOverlappingLabels: false,
@@ -69,7 +69,7 @@ const chartOptions = {
 onMounted(async () => {
   try {
     const res = await fetch(
-      "/api/get-latest-data?section=Finance - 3rd Trench&names=Dashen Trench Amount,Dashen Amount Disbursed"
+      "/api/get-latest-data?section=Finance - 4th Trench&names=Dashen Trench Amount,Dashen Amount Disbursed"
     );
     const data = await res.json();
     console.log("API data:", data);

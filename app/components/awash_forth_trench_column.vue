@@ -7,7 +7,7 @@ const series = ref([{ name: "value", data: [0, 0] }]);
 const chartOptions = {
   chart: { height: 50, type: "bar", toolbar: { show: false } },
   legend: { show: false },
-  colors: ['#0A1F44', '#7791C0'
+  colors: ['#F48C00', '#002366'
 ],
   plotOptions: {
     bar: {
@@ -18,7 +18,7 @@ const chartOptions = {
   },
   dataLabels: {
     enabled: true,
-    formatter: (val) => {
+     formatter: (val) => {
       return new Intl.NumberFormat('en-US').format(val);
     },
     offsetY: -20,
@@ -29,7 +29,7 @@ const chartOptions = {
     position: "bottom",
     axisBorder: { show: false },
     axisTicks: { show: false },
-    labels: {
+     labels: {
       rotate: 0,
       rotateAlways: false,
       hideOverlappingLabels: false,
@@ -69,18 +69,18 @@ const chartOptions = {
 onMounted(async () => {
   try {
     const res = await fetch(
-      "/api/get-latest-data?section=Finance - 3rd Trench&names=Dashen Trench Amount,Dashen Amount Disbursed"
+      "/api/get-latest-data?section=Finance - 4th Trench&names=Awash Trench Amount,Awash Amount Disbursed"
     );
     const data = await res.json();
     console.log("API data:", data);
 
     const trench =
       Number(
-        data.find((item) => item.name === "Dashen Trench Amount")?.value
+        data.find((item) => item.name === "Awash Trench Amount")?.value
       ) || 0;
     const dispursed =
       Number(
-        data.find((item) => item.name === "Dashen Amount Disbursed")?.value
+        data.find((item) => item.name === "Awash Amount Disbursed")?.value
       ) || 0;
     series.value[0].data = [trench, dispursed];
   } catch (err) {
@@ -93,8 +93,8 @@ onMounted(async () => {
   <client-only>
     <div class="flex flex-col items-center p-10 space-y-4">
       <img
-        src="/images/banks/Dashen-remove.png"
-        alt="Dashen Bank"
+        src="/images/banks/AwashLogo.png"
+        alt="Awash Bank"
         class="h-16 object-contain"
       />
       <VueApexCharts

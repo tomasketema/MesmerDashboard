@@ -1,0 +1,2 @@
+1. Make the cards on finance (on second,third trench) dynamic, and add a 4th trench
+2. make the headers of the cards on BDS Status and Credit Disbursement dynamic

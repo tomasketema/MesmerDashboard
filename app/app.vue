@@ -3,6 +3,7 @@
 </script>
 <template>
   <div>
+    <VitePwaManifest />
     <!-- <NuxtRouteAnnouncer />
     <NuxtWelcome /> -->
     <NuxtLayout>

@@ -208,7 +208,7 @@ onBeforeUnmount(() => {
       <!-- Main Grid  -->
       <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div
-          class="lg:col-span-7 bg-white rounded-3xl shadow-xl border border-blue-100 overflow-hidden"
+          class="lg:col-span-7 bg-black rounded-3xl shadow-xl border border-blue-100 overflow-hidden"
         >
           <div class="p-8">
             <!-- Header with Icon -->
