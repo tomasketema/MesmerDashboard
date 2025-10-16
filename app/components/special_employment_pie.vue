@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 
-const series = ref([70])
+const series = ref([0])
 
 const chartOptions = ref({
   chart: {

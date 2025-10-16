@@ -252,7 +252,7 @@ onBeforeUnmount(() => {
       <!-- Main Grid  -->
       <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div
-          class="lg:col-span-7 bg-black rounded-3xl shadow-xl border border-blue-100 overflow-hidden"
+          class="lg:col-span-7 bg-white rounded-3xl shadow-xl border border-blue-100 overflow-hidden"
         >
           <div class="p-8">
             <!-- Header with Icon -->
@@ -280,7 +280,7 @@ onBeforeUnmount(() => {
                     Employment Overview
                   </h2>
                   <p class="text-sm text-gray-600">
-                    Youth & Women Workforce Analytics
+                    Youth, Women, and Vulnerable Groups Workforce Analytics
                   </p>
                 </div>
               </div>
@@ -832,11 +832,25 @@ onBeforeUnmount(() => {
             <div class="p-6">
               <div class="flex items-center justify-between mb-6">
                 <div class="flex items-center space-x-3">
-                  <div
-                    class="w-10 h-10 bg-gradient-to-r from-rose-500 to-pink-600 rounded-xl flex items-center justify-center"
-                  >
-                    <span class="text-white font-bold text-sm">Q2</span>
-                  </div>
+                  <div 
+  class="w-10 h-10 bg-gradient-to-r from-rose-500 to-pink-600 rounded-xl flex items-center justify-center"
+>
+  <!-- Quarterly Report Icon -->
+  <svg
+    class="w-5 h-5 text-white"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M9 17v-4m3 4v-6m3 6v-8M5 21h14a2 2 0 002-2V7l-4-4H5a2 2 0 00-2 2v14a2 2 0 002 2z"
+    />
+  </svg>
+</div>
+
                   <div>
                     <h3 class="text-lg font-bold text-gray-900">{{ headers.bdsY3Q2 }}</h3>
                     <p class="text-sm text-gray-600">Quarter Analytics</p>
@@ -991,11 +1005,25 @@ onBeforeUnmount(() => {
             <div class="p-6">
               <div class="flex items-center justify-between mb-6">
                 <div class="flex items-center space-x-3">
-                  <div
-                    class="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center"
-                  >
-                    <span class="text-white font-bold text-sm">Q2</span>
-                  </div>
+                  <div 
+  class="w-10 h-10 bg-gradient-to-r from-teal-400 to-blue-700 rounded-xl flex items-center justify-center"
+>
+  <!-- Quarterly Report Icon -->
+  <svg
+    class="w-5 h-5 text-white"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M9 17v-4m3 4v-6m3 6v-8M5 21h14a2 2 0 002-2V7l-4-4H5a2 2 0 00-2 2v14a2 2 0 002 2z"
+    />
+  </svg>
+</div>
+
                   <div>
                     <h3 class="text-lg font-bold text-gray-900">{{ headers.creditY3Q2 }}</h3>
                     <p class="text-sm text-gray-600">Quarter disbursement</p>

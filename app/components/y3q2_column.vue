@@ -2,23 +2,34 @@
 import { ref, onMounted, computed } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 
-// Responsive chart sizing optimized for 14-inch screens
+
+const isFHD = computed(() => {
+  if (typeof window !== 'undefined') {
+    const w = window.innerWidth
+    const h = window.innerHeight
+    return w >= 1880 && w <= 1940 && h >= 1000 && h <= 1100
+  }
+  return false
+})
+
 const chartWidth = computed(() => {
+  if (isFHD.value) return '100%'
   if (typeof window !== 'undefined') {
     const width = window.innerWidth
-    if (width < 1024) return '100%'   // mobile/tablet
-    if (width < 1400) return '140%'   // 14-inch screens - wider charts for better labels
-    return '250%'                     // larger screens - restore original size
+    if (width < 1024) return '100%'
+    if (width < 1400) return '140%'
+    return '250%'
   }
-  return '250%'
+  return '100%'
 })
 
 const chartHeight = computed(() => {
+  if (isFHD.value) return '100%'
   if (typeof window !== 'undefined') {
     const width = window.innerWidth
-    if (width < 1024) return '200'    // mobile/tablet
-    if (width < 1400) return '220'    // 14-inch screens
-    return '250'                      // larger screens
+    if (width < 1024) return '200'
+    if (width < 1400) return '220'
+    return '250'
   }
   return '250'
 })
@@ -26,7 +37,7 @@ const chartHeight = computed(() => {
 const series = ref([
   {
     name: 'value',
-    data: [0, 0] // Initial values
+    data: [0, 0] 
   }
 ])
 
