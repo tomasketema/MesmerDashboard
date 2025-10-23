@@ -6,7 +6,7 @@ import VueApexCharts from 'vue3-apexcharts'
 const chartWidth = computed(() => {
   if (typeof window !== 'undefined') {
     const width = window.innerWidth
-    if (width < 1024) return '100%'   // mobile/tablet
+    if (width < 1024) return '150%'   // mobile/tablet
     if (width < 1400) return '150%'   // 14-inch laptops (1366x768)
     return '200%'                     // larger screens
   }
@@ -16,8 +16,8 @@ const chartWidth = computed(() => {
 const chartHeight = computed(() => {
   if (typeof window !== 'undefined') {
     const width = window.innerWidth
-    if (width < 1024) return '200px'  // mobile/tablet
-    if (width < 1400) return '220px'  // 14-inch laptops
+    if (width < 1024) return '250px'  // mobile/tablet
+    if (width < 1400) return '250px'  // 14-inch laptops
     return '250px'                    // larger screens
   }
   return '250px'
@@ -48,7 +48,7 @@ const chartOptions = {
     formatter: val => val + '%',
     offsetY: -20,
     style: {
-      fontSize: '12px',
+      fontSize: '12 px',
       colors: ['#304758']
     }
   },
