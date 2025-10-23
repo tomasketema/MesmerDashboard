@@ -31,16 +31,15 @@ const chartOptions = ref({
 
 onMounted(async () => {
   try {
-    const res = await fetch('/api/get-latest-data?section=MESMER Supported&names=special Employment')
+    const res = await fetch('/api/get-latest-data?section=MESMER Supported&names=Disadvantaged Groups')
     const data = await res.json()
-    const percentage = Number(data.find(item => item.name === 'Special Employment')?.value) || 0
+    const percentage = Number(data.find(item => item.name === 'Disadvantaged Groups')?.value) || 0
     series.value = [percentage]
   } catch (error) {
-    console.error('Failed to fetch Special Employment data:', error)
+    console.error('Failed to fetch Disadvantaged Groups data:', error)
   }
 })
 </script>
-
 <template>
   <client-only>
     <div class="w-full h-[140px] flex justify-center items-center">

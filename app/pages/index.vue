@@ -353,7 +353,7 @@ onBeforeUnmount(() => {
                     <span
                       class="inline-block px-3 py-1 bg-purple-100 animate-bounce text-purple-700 text-xs font-semibold rounded-full"
                     >
-                      <div>Vulnerable</div>
+                      <div>Disadvantaged</div>
                       <div>Groups</div>
                     </span>
                   </div>
