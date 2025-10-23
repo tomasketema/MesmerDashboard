@@ -280,7 +280,7 @@ onBeforeUnmount(() => {
                     Employment Overview
                   </h2>
                   <p class="text-sm text-gray-600">
-                    Youth, Women, and Vulnerable Groups Workforce Analytics
+                    Youth, Women, and Disadvantaged Groups Workforce Analytics
                   </p>
                 </div>
               </div>
@@ -1130,7 +1130,7 @@ onBeforeUnmount(() => {
                   </div>
                   <div>
                     <h3 class="text-lg font-bold text-gray-900">{{ headers.creditProgram }}</h3>
-                    <p class="text-sm text-gray-600">Target achievement</p>
+                    <p class="text-sm text-gray-600">Progress Overview</p>
                   </div>
                 </div>
                 <div

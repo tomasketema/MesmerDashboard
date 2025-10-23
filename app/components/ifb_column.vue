@@ -54,10 +54,7 @@ const chartOptions = {
     formatter: function (val,opts) {
       return new Intl.NumberFormat('en-US').format(val);
     },
-    offsetY: function({ seriesIndex, dataPointIndex, w }) {
-    const value = w.globals.series[seriesIndex][dataPointIndex];
-    return value < 100 ? -10 : -20;
-    },
+    offsetY: -15,
     style: {
       fontSize: '10px',
       colors: ['#334155'],
