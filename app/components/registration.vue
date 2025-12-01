@@ -26,7 +26,8 @@ const chartOptions = {
       breakpoint: 480,
       options: {
         chart: {
-          width: 200,
+          width: 160,
+          height: 220,
         },
         legend: {
           position: "bottom",
@@ -67,7 +68,7 @@ onMounted(async () => {
 <template>
   <client-only>
     <div>
-      <div class="flex justify-center p-10 gap-8 flex-wrap">
+      <div class="flex justify-center px-4 py-4 sm:p-10 gap-4 sm:gap-8 flex-wrap">
         <div class="flex flex-col gap-2">
           <div
             class="bg-gradient-to-r from-gray-100 to-gray-200 rounded-lg shadow-md text-center px-10 py-2"
@@ -75,7 +76,7 @@ onMounted(async () => {
             <div
               class="text-lg font-bold text-gray-800 whitespace-nowrap flex items-center space-x-2 justify-center"
             >
-              Total: <span class="font-bold"><CountUp :end="total" /></span>
+              Total: <span> </span> <span class="font-bold"><CountUp :end="total" /></span>
               <span class="text-sm font-medium text-blue-900 ">{{ data.total.change }}</span>
             </div>
           </div>

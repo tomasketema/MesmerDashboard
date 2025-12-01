@@ -64,23 +64,22 @@ const data = ref({
   total: { change: "0%" },
 });
 
-
 const headers = ref({
-  bdsY3Q2: 'Y3Q2',
-  bdsAnnualQ2: 'Annual Q2',
-  bdsProgram: 'program target vs achievement',
-  creditY3Q2: 'Y3Q2',
-  creditAnnualQ2: 'Annual Q2',
-  creditProgram: 'program target vs achievement',
+  bdsY3Q2: "Y3Q2",
+  bdsAnnualQ2: "Annual Q2",
+  bdsProgram: "program target vs achievement",
+  creditY3Q2: "Y3Q2",
+  creditAnnualQ2: "Annual Q2",
+  creditProgram: "program target vs achievement",
 });
 const getHeader = async (section, metricsCsv) => {
   const params = new URLSearchParams({ section, metrics: metricsCsv });
-  const res = await fetch('/api/get-change-header?' + params.toString());
+  const res = await fetch("/api/get-change-header?" + params.toString());
   try {
     const json = await res.json();
-    return json?.suggestedHeader || '';
+    return json?.suggestedHeader || "";
   } catch {
-    return '';
+    return "";
   }
 };
 const showAbyssiniaSecondTrench = ref(false);
@@ -92,21 +91,26 @@ const showHibretforthTrench = ref(false);
 const showAwashforthTrench = ref(false);
 const showDashenforthTrench = ref(false);
 
-const forthTrenchVisibleCount = computed(() => [
-  showAbyssiniaforthTrench.value,
-  showHibretforthTrench.value,
-  showAwashforthTrench.value,
-  showDashenforthTrench.value,
-].filter(Boolean).length);
+const forthTrenchVisibleCount = computed(
+  () =>
+    [
+      showAbyssiniaforthTrench.value,
+      showHibretforthTrench.value,
+      showAwashforthTrench.value,
+      showDashenforthTrench.value,
+    ].filter(Boolean).length
+);
 
-const showforthTrenchSection = computed(() => forthTrenchVisibleCount.value > 0);
+const showforthTrenchSection = computed(
+  () => forthTrenchVisibleCount.value > 0
+);
 
 const forthGridClass = computed(() => {
   const c = forthTrenchVisibleCount.value;
-  if (c === 1) return 'grid-cols-1';
-  if (c === 2) return 'grid-cols-1 md:grid-cols-2';
-  if (c === 3) return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3';
-  return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4';
+  if (c === 1) return "grid-cols-1";
+  if (c === 2) return "grid-cols-1 md:grid-cols-2";
+  if (c === 3) return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
+  return "grid-cols-1 md:grid-cols-2 lg:grid-cols-4";
 });
 
 onMounted(async () => {
@@ -118,7 +122,6 @@ onMounted(async () => {
     console.error("Failed to fetch change data:", err);
   }
 
-
   try {
     const res = await fetch(
       "/api/get-latest-data?section=Finance - 2nd Trench&names=Abyssinia Trench Amount,Abyssinia Amount Disbursed"
@@ -127,13 +130,14 @@ onMounted(async () => {
 
     const trenchAmount =
       Number(
-        abyssiniaData.find((item) => item.name === "Abyssinia Trench Amount")?.value
+        abyssiniaData.find((item) => item.name === "Abyssinia Trench Amount")
+          ?.value
       ) || 0;
     const amountDisbursed =
       Number(
-        abyssiniaData.find((item) => item.name === "Abyssinia Amount Disbursed")?.value
+        abyssiniaData.find((item) => item.name === "Abyssinia Amount Disbursed")
+          ?.value
       ) || 0;
-
 
     showAbyssiniaSecondTrench.value = trenchAmount > 0;
   } catch (err) {
@@ -170,7 +174,8 @@ onMounted(async () => {
       "/api/get-latest-data?section=Finance - 4th Trench&names=Abyssinia Trench Amount,Hibret Trench Amount,Awash Trench Amount,Dashen Trench Amount"
     );
     const forthData = await res.json();
-    const getVal = (name) => Number(forthData.find((item) => item.name === name)?.value) || 0;
+    const getVal = (name) =>
+      Number(forthData.find((item) => item.name === name)?.value) || 0;
 
     showAbyssiniaforthTrench.value = getVal("Abyssinia Trench Amount") > 0;
     showHibretforthTrench.value = getVal("Hibret Trench Amount") > 0;
@@ -184,32 +189,45 @@ onMounted(async () => {
     showDashenforthTrench.value = false;
   }
 
- 
   try {
-    const y3q2 = await getHeader('BDS Status', 'Y3Q2 Target,Y3Q2 Achievement');
+    const y3q2 = await getHeader("BDS Status", "Y3Q2 Target,Y3Q2 Achievement");
     if (y3q2) headers.value.bdsY3Q2 = y3q2;
 
-    const annual = await getHeader('BDS Status', 'Annual Q2 Target,Annual Q2 Achievement');
+    const annual = await getHeader(
+      "BDS Status",
+      "Annual Q2 Target,Annual Q2 Achievement"
+    );
     if (annual) headers.value.bdsAnnualQ2 = annual;
 
-    const program = await getHeader('BDS Status', 'Program Target,Program Achievement');
+    const program = await getHeader(
+      "BDS Status",
+      "Program Target,Program Achievement"
+    );
     if (program) headers.value.bdsProgram = program;
   } catch (e) {
-    console.error('Failed to fetch dynamic headers:', e);
+    console.error("Failed to fetch dynamic headers:", e);
   }
 
-
   try {
-    const y3q2Credit = await getHeader('Credit Disbursement', 'Y3Q2 Target,Y3Q2 Achievement');
+    const y3q2Credit = await getHeader(
+      "Credit Disbursement",
+      "Y3Q2 Target,Y3Q2 Achievement"
+    );
     if (y3q2Credit) headers.value.creditY3Q2 = y3q2Credit;
 
-    const annualCredit = await getHeader('Credit Disbursement', 'Annual Q2 Target,Annual Q2 Achievement');
+    const annualCredit = await getHeader(
+      "Credit Disbursement",
+      "Annual Q2 Target,Annual Q2 Achievement"
+    );
     if (annualCredit) headers.value.creditAnnualQ2 = annualCredit;
 
-    const programCredit = await getHeader('Credit Disbursement', 'Program Target,Program Achievement');
+    const programCredit = await getHeader(
+      "Credit Disbursement",
+      "Program Target,Program Achievement"
+    );
     if (programCredit) headers.value.creditProgram = programCredit;
   } catch (e) {
-    console.error('Failed to fetch dynamic credit headers:', e);
+    console.error("Failed to fetch dynamic credit headers:", e);
   }
 
   const LocomotiveScroll = (await import("locomotive-scroll")).default;
@@ -280,7 +298,7 @@ onBeforeUnmount(() => {
                     Employment Overview
                   </h2>
                   <p class="text-sm text-gray-600">
-                    Youth, Women, and Vulnerable Groups Workforce Analytics
+                    Youth, Women, and Disadvantaged Groups Workforce Analytics
                   </p>
                 </div>
               </div>
@@ -649,8 +667,8 @@ onBeforeUnmount(() => {
           <div
             class="lg:col-span-3 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
           >
-            <div class="p-6">
-              <div class="flex items-center justify-between mb-4">
+            <div class="p-4 sm:p-6 h-full flex flex-col">
+              <div class="flex items-center justify-between mb-4 gap-2">
                 <div
                   class="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center"
                 >
@@ -674,8 +692,12 @@ onBeforeUnmount(() => {
                   Active
                 </span>
               </div>
-              <h3 class="text-lg font-bold text-gray-900 mb-4">Registration</h3>
-              <div class="h-48 flex items-center justify-center">
+              <h3
+                class="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4"
+              >
+                Registration
+              </h3>
+              <div class="sm:h-48 flex items-center justify-center">
                 <client-only>
                   <RegistrationChart />
                 </client-only>
@@ -832,27 +854,29 @@ onBeforeUnmount(() => {
             <div class="p-6">
               <div class="flex items-center justify-between mb-6">
                 <div class="flex items-center space-x-3">
-                  <div 
-  class="w-10 h-10 bg-gradient-to-r from-rose-500 to-pink-600 rounded-xl flex items-center justify-center"
->
-  <!-- Quarterly Report Icon -->
-  <svg
-    class="w-5 h-5 text-white"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M9 17v-4m3 4v-6m3 6v-8M5 21h14a2 2 0 002-2V7l-4-4H5a2 2 0 00-2 2v14a2 2 0 002 2z"
-    />
-  </svg>
-</div>
+                  <div
+                    class="w-10 h-10 bg-gradient-to-r from-rose-500 to-pink-600 rounded-xl flex items-center justify-center"
+                  >
+                    <!-- Quarterly Report Icon -->
+                    <svg
+                      class="w-5 h-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 17v-4m3 4v-6m3 6v-8M5 21h14a2 2 0 002-2V7l-4-4H5a2 2 0 00-2 2v14a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </div>
 
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900">{{ headers.bdsY3Q2 }}</h3>
+                    <h3 class="text-lg font-bold text-gray-900">
+                      {{ headers.bdsY3Q2 }}
+                    </h3>
                     <p class="text-sm text-gray-600">Quarter Analytics</p>
                   </div>
                 </div>
@@ -904,7 +928,9 @@ onBeforeUnmount(() => {
                     </svg>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900">{{ headers.bdsAnnualQ2 }}</h3>
+                    <h3 class="text-lg font-bold text-gray-900">
+                      {{ headers.bdsAnnualQ2 }}
+                    </h3>
                     <p class="text-sm text-gray-600">Yearly Performance</p>
                   </div>
                 </div>
@@ -956,7 +982,9 @@ onBeforeUnmount(() => {
                     </svg>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900">{{ headers.bdsProgram }}</h3>
+                    <h3 class="text-lg font-bold text-gray-900">
+                      {{ headers.bdsProgram }}
+                    </h3>
                     <p class="text-sm text-gray-600">Progress Overview</p>
                   </div>
                 </div>
@@ -1005,27 +1033,29 @@ onBeforeUnmount(() => {
             <div class="p-6">
               <div class="flex items-center justify-between mb-6">
                 <div class="flex items-center space-x-3">
-                  <div 
-  class="w-10 h-10 bg-gradient-to-r from-teal-400 to-blue-700 rounded-xl flex items-center justify-center"
->
-  <!-- Quarterly Report Icon -->
-  <svg
-    class="w-5 h-5 text-white"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M9 17v-4m3 4v-6m3 6v-8M5 21h14a2 2 0 002-2V7l-4-4H5a2 2 0 00-2 2v14a2 2 0 002 2z"
-    />
-  </svg>
-</div>
+                  <div
+                    class="w-10 h-10 bg-gradient-to-r from-teal-400 to-blue-700 rounded-xl flex items-center justify-center"
+                  >
+                    <!-- Quarterly Report Icon -->
+                    <svg
+                      class="w-5 h-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 17v-4m3 4v-6m3 6v-8M5 21h14a2 2 0 002-2V7l-4-4H5a2 2 0 00-2 2v14a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </div>
 
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900">{{ headers.creditY3Q2 }}</h3>
+                    <h3 class="text-lg font-bold text-gray-900">
+                      {{ headers.creditY3Q2 }}
+                    </h3>
                     <p class="text-sm text-gray-600">Quarter disbursement</p>
                   </div>
                 </div>
@@ -1077,7 +1107,9 @@ onBeforeUnmount(() => {
                     </svg>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900">{{ headers.creditAnnualQ2 }}</h3>
+                    <h3 class="text-lg font-bold text-gray-900">
+                      {{ headers.creditAnnualQ2 }}
+                    </h3>
                     <p class="text-sm text-gray-600">Yearly credit flow</p>
                   </div>
                 </div>
@@ -1108,7 +1140,7 @@ onBeforeUnmount(() => {
           <div
             class="lg:col-span-4 bg-white rounded-3xl shadow-xl border border-emerald-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
           >
-            <div class="p-6">
+            <div class="p-4 sm:p-6">
               <div class="flex items-center justify-between mb-6">
                 <div class="flex items-center space-x-3">
                   <div
@@ -1129,8 +1161,10 @@ onBeforeUnmount(() => {
                     </svg>
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-gray-900">{{ headers.creditProgram }}</h3>
-                    <p class="text-sm text-gray-600">Target achievement</p>
+                    <h3 class="text-lg font-bold text-gray-900">
+                      {{ headers.creditProgram }}
+                    </h3>
+                    <p class="text-sm text-gray-600">Progress Overview</p>
                   </div>
                 </div>
                 <div
@@ -1140,11 +1174,13 @@ onBeforeUnmount(() => {
 
               <!-- Charts Section -->
               <div class="bg-white rounded-2xl p-4 mb-4">
-                <div class="flex items-center justify-center gap-4">
-                  <div class="w-24">
+                <div
+                  class="flex flex-col sm:flex-row items-center sm:items-center justify-center sm:justify-between gap-4 sm:gap-6"
+                >
+                  <div class="w-32 sm:w-32 flex justify-center sm:justify-start">
                     <IfbColumn />
                   </div>
-                  <div class="flex-1">
+                  <div class="w-40 sm:w-48 flex justify-center sm:justify-end -ml-2">
                     <client-only>
                       <IfbPie />
                     </client-only>
@@ -1152,6 +1188,7 @@ onBeforeUnmount(() => {
                 </div>
               </div>
 
+              
               <!-- Disbursement Metrics -->
               <div
                 class="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-4 border border-teal-100"
@@ -1172,7 +1209,7 @@ onBeforeUnmount(() => {
                 </div>
 
                 <span
-                  class="inline-flex font-serif text-xl font-bold text-emerald-600 mt-1"
+                  class="inline-flex font-serif text-lg sm:text-xl font-bold text-emerald-600 mt-1 whitespace-nowrap"
                 >
                   <IFBFOMTotalDisbursement /> of total disbursement
                 </span>
@@ -1229,7 +1266,6 @@ onBeforeUnmount(() => {
           </div>
         </div>
 
-        
         <!-- 2nd Trench -->
         <div class="mb-8">
           <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">
@@ -1304,22 +1340,30 @@ onBeforeUnmount(() => {
 
           <template v-if="showAbyssiniaThirdTrench">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]">
+              <div
+                class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+              >
                 <client-only>
                   <AbyssiniaThirdTrenchColumn />
                 </client-only>
               </div>
-              <div class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]">
+              <div
+                class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+              >
                 <client-only>
                   <HibretThirdTrenchColumn />
                 </client-only>
               </div>
-              <div class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]">
+              <div
+                class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+              >
                 <client-only>
                   <AwashThirdTrenchColumn />
                 </client-only>
               </div>
-              <div class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]">
+              <div
+                class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+              >
                 <client-only>
                   <DashenThirdTrenchColumn />
                 </client-only>
@@ -1330,7 +1374,11 @@ onBeforeUnmount(() => {
           <template v-else>
             <div
               class="grid gap-6"
-              :class="showHibretThirdTrench ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1 md:grid-cols-2'"
+              :class="
+                showHibretThirdTrench
+                  ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+                  : 'grid-cols-1 md:grid-cols-2'
+              "
             >
               <div
                 v-if="showHibretThirdTrench"
@@ -1340,12 +1388,16 @@ onBeforeUnmount(() => {
                   <HibretThirdTrenchColumn />
                 </client-only>
               </div>
-              <div class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]">
+              <div
+                class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+              >
                 <client-only>
                   <AwashThirdTrenchColumn />
                 </client-only>
               </div>
-              <div class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]">
+              <div
+                class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+              >
                 <client-only>
                   <DashenThirdTrenchColumn />
                 </client-only>
@@ -1360,30 +1412,40 @@ onBeforeUnmount(() => {
             4th Trench Disbursement
           </h2>
           <div class="grid gap-6" :class="forthGridClass">
-            <div v-if="showAbyssiniaforthTrench" class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]">
+            <div
+              v-if="showAbyssiniaforthTrench"
+              class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+            >
               <client-only>
                 <AbyssiniaForthTrenchColumn />
               </client-only>
             </div>
-            <div v-if="showHibretforthTrench" class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]">
+            <div
+              v-if="showHibretforthTrench"
+              class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+            >
               <client-only>
                 <HibretForthTrenchColumn />
               </client-only>
             </div>
-            <div v-if="showAwashforthTrench" class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]">
+            <div
+              v-if="showAwashforthTrench"
+              class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+            >
               <client-only>
                 <AwashForthTrenchColumn />
               </client-only>
             </div>
-            <div v-if="showDashenforthTrench" class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]">
+            <div
+              v-if="showDashenforthTrench"
+              class="bg-white rounded-2xl shadow p-6 flex items-center justify-center min-h-[200px]"
+            >
               <client-only>
                 <DashenForthTrenchColumn />
               </client-only>
             </div>
           </div>
         </div>
-
-
       </div>
     </div>
   </div>
