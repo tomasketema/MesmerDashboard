@@ -6,7 +6,7 @@ import VueApexCharts from 'vue3-apexcharts'
 const chartWidth = computed(() => {
   if (typeof window !== 'undefined') {
     const width = window.innerWidth
-    if (width < 1024) return '150%'   // mobile/tablet
+    if (width < 1024) return '130%'   // mobile/tablet
     if (width < 1400) return '150%'   // 14-inch laptops (1366x768)
     return '200%'                     // larger screens
   }
