@@ -2,13 +2,12 @@
 import { ref, onMounted, computed } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 
-// Responsive chart sizing optimized for 14-inch laptops
 const chartWidth = computed(() => {
   if (typeof window !== 'undefined') {
     const width = window.innerWidth
-    if (width < 1024) return '130%'   // mobile/tablet
-    if (width < 1400) return '150%'   // 14-inch laptops (1366x768)
-    return '200%'                     // larger screens
+    if (width < 1024) return '130%'
+    if (width < 1400) return '150%'
+    return '200%'
   }
   return '200%'
 })
@@ -16,9 +15,9 @@ const chartWidth = computed(() => {
 const chartHeight = computed(() => {
   if (typeof window !== 'undefined') {
     const width = window.innerWidth
-    if (width < 1024) return '250px'  // mobile/tablet
-    if (width < 1400) return '250px'  // 14-inch laptops
-    return '250px'                    // larger screens
+    if (width < 1024) return '250px'
+    if (width < 1400) return '250px'
+    return '250px'
   }
   return '250px'
 })
@@ -36,10 +35,11 @@ const chartOptions = {
     type: 'bar',
     toolbar: { show: false }
   },
-  colors: ['#155d99'],
+  colors: ['#FFAA00', '#F7923A', '#273274', '#00B7A9'],
   plotOptions: {
     bar: {
       borderRadius: 10,
+      distributed: true,
       dataLabels: { position: 'top' }
     }
   },
@@ -48,7 +48,7 @@ const chartOptions = {
     formatter: val => val + '%',
     offsetY: -20,
     style: {
-      fontSize: '12 px',
+      fontSize: '12px',
       colors: ['#304758']
     }
   },
@@ -84,27 +84,26 @@ const chartOptions = {
     yaxis: {
       lines: { show: false }
     }
-  }
+  },
+  legend: {
+  show: false
+},
 }
 
 onMounted(async () => {
   try {
     const res = await fetch('/api/get-latest-data?section=Formal Enterprise&names=Abyssinia,Awash,Dashen,Hibret')
     const data = await res.json()
-    console.log('Bank API raw data:', JSON.stringify(data, null, 2))
 
-    const getValue = name => {
-      const item = data.find(item => item.name === name)
-      console.log(`Matching item for ${name}:`, item)
-      return Number(item?.value) || 0
-    }
+    const getValue = name =>
+      Number(data.find(item => item.name === name)?.value) || 0
 
-    const abyssinia = getValue('Abyssinia')
-    const awash = getValue('Awash')
-    const dashen = getValue('Dashen')
-    const hibret = getValue('Hibret')
-    
-    series.value[0].data = [abyssinia, awash, dashen, hibret]
+    series.value[0].data = [
+      getValue('Abyssinia'),
+      getValue('Awash'),
+      getValue('Dashen'),
+      getValue('Hibret')
+    ]
   } catch (err) {
     console.error('Failed to fetch bank registration data:', err)
   }
@@ -114,8 +113,6 @@ onMounted(async () => {
 <template>
   <client-only>
     <div>
-      
-
       <div class="flex justify-center p-4 lg:p-6 xl:p-10 flex-col items-center w-full">
         <VueApexCharts
           type="bar"

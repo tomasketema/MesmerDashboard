@@ -2,13 +2,12 @@
 import { ref, onMounted, computed } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 
-// Responsive chart sizing optimized for 14-inch laptops
 const chartWidth = computed(() => {
   if (typeof window !== 'undefined') {
     const width = window.innerWidth
-    if (width < 1024) return '200%'   // mobile/tablet
-    if (width < 1400) return '240%'   // 14-inch laptops (1366x768)
-    return '170%'                     // larger screens
+    if (width < 1024) return '200%'   
+    if (width < 1400) return '240%'  
+    return '170%'                   
   }
   return '170%'
 })
@@ -16,9 +15,9 @@ const chartWidth = computed(() => {
 const chartHeight = computed(() => {
   if (typeof window !== 'undefined') {
     const width = window.innerWidth
-    if (width < 1024) return '180px'  // mobile/tablet
-    if (width < 1400) return '200px'  // 14-inch laptops
-    return '250px'                    // larger screens
+    if (width < 1024) return '180px'  
+    if (width < 1400) return '200px'  
+    return '250px'                   
   }
   return '250px'
 })
@@ -39,7 +38,7 @@ const chartOptions = {
   },
   },
   legend: { show: false },
-  colors: ['#38bdf8', '#1e3a8a'],
+  colors: ['#f38429', '#003366'],
   plotOptions: {
     bar: {
       borderRadius: 6,

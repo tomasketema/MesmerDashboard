@@ -77,7 +77,7 @@ onMounted(async () => {
               class="text-lg font-bold text-gray-800 whitespace-nowrap flex items-center space-x-2 justify-center"
             >
               Total: <span> </span> <span class="font-bold"><CountUp :end="total" /></span>
-              <span class="text-sm font-medium text-blue-900 ">{{ data.total.change }}</span>
+              <!-- <span class="text-sm font-medium text-blue-900 ">{{ data.total.change }}</span> -->
             </div>
           </div>
         </div>

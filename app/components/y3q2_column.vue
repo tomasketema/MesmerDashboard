@@ -48,7 +48,7 @@ const chartOptions = ref({
     toolbar: { show: false }
   },
   legend: { show: false },
-  colors: ['#f38429', '#155d99'],
+  colors: ['#f38429', '#003366'],
   plotOptions: {
     bar: {
       borderRadius: 10,

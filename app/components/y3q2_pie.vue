@@ -2,54 +2,38 @@
 import { ref, onMounted } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 
-const series = ref([0]) // default, to be replaced with percentage
+const series = ref([0])
 
-const chartOptions = {
+const chartOptions = ref({
   chart: {
-    height: 350,
     type: 'radialBar',
-    offsetY: -10
   },
   plotOptions: {
     radialBar: {
-      startAngle: -135,
-      endAngle: 135,
+      hollow: { size: '50%' },
+      track: { strokeWidth: '100%' },
       dataLabels: {
         name: {
-          fontSize: '16px',
-          color: undefined,
-          offsetY: 120
+          show: false,
+          fontSize: '14px',
+          fontWeight: 500,
+          color: '#1E293B',
         },
         value: {
-          offsetY: 76,
-          fontSize: '22px',
-          color: undefined,
-          formatter: val => val + '%'
-        }
-      }
-    }
+          show: true,
+          fontSize: '18px',
+          fontWeight: 600,
+          color: '#1E293B',
+          offsetY: 10
+        },
+      },
+    },
   },
   fill: {
-    type: 'gradient',
-    gradient: {
-      shade: 'light',
-      type: 'horizontal',
-      shadeIntensity: 0.5,
-      gradientToColors: ['#155d99'],
-      inverseColors: false,
-      opacityFrom: 1,
-      opacityTo: 1,
-      stops: [0, 100]
-    },
-    colors: ['#4d84b3']
+    colors: ['#003366'],
   },
-  stroke: {
-    dashArray: 4
-  },
-  labels: ['']
-}
+})
 
-// 🔄 On mount, fetch "Y3Q2 Target" and "Y3Q2 Achievement" from API
 onMounted(async () => {
   try {
     const res = await fetch('/api/get-latest-data?section=BDS Status&names=Y3Q2 Target,Y3Q2 Achievement')

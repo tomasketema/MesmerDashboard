@@ -30,7 +30,7 @@ const chartOptions = ref({
     },
   },
   fill: {
-    colors: ['#1e3a8a'],
+    colors: ['#003366'],
   },
 })
 

@@ -321,11 +321,11 @@ onBeforeUnmount(() => {
                     <YouthEmployment />
                   </div>
 
-                  <span
+                  <!-- <span
                     class="absolute left-full ml-2 top-1/2 -translate-y-1/2 text-sm font-medium text-blue-900"
                   >
                     {{ data.youthEmployment.change }}
-                  </span>
+                  </span> -->
                 </div>
                 <div>
                   <p
@@ -349,7 +349,7 @@ onBeforeUnmount(() => {
                     class="absolute -bottom-2 left-1/2 transform -translate-x-1/2"
                   >
                     <span
-                      class="inline-block px-3 py-1 bg-purple-100 animate-bounce text-purple-700 text-xs font-semibold rounded-full"
+                      class="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-x font-semibold rounded-xl"
                     >
                       Women
                     </span>
@@ -369,7 +369,7 @@ onBeforeUnmount(() => {
                     class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 text-center"
                   >
                     <span
-                      class="inline-block px-3 py-1 bg-purple-100 animate-bounce text-purple-700 text-xs font-semibold rounded-full"
+                      class="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded-2xl"
                     >
                       <div>Disadvantaged</div>
                       <div>Groups</div>
@@ -421,9 +421,9 @@ onBeforeUnmount(() => {
                   <div class="text-3xl font-bold text-gray-900">
                     <EnterprisesSupported />
                   </div>
-                  <span class="text-sm font-medium text-green-600">{{
+                  <!-- <span class="text-sm font-medium text-green-600">{{
                     data.enterprises.change
-                  }}</span>
+                  }}</span> -->
                 </div>
                 <p class="text-sm text-gray-600 mt-1">Successfully Supported</p>
               </div>
@@ -479,9 +479,9 @@ onBeforeUnmount(() => {
                   <div class="text-3xl font-bold text-gray-900">
                     <OutreachedIndividuals />
                   </div>
-                  <span class="text-sm font-medium text-orange-600">{{
+                  <!-- <span class="text-sm font-medium text-orange-600">{{
                     data.outreach.change
-                  }}</span>
+                  }}</span> -->
                 </div>
                 <p class="text-sm text-gray-600 mt-1">Community Impact</p>
               </div>
@@ -617,9 +617,9 @@ onBeforeUnmount(() => {
                       class="text-2xl font-bold text-blue-900 flex items-baseline space-x-2"
                     >
                       <InformalEnterprisesNumber />
-                      <span class="text-sm font-medium text-blue-900">{{
+                      <!-- <span class="text-sm font-medium text-blue-900">{{
                         data.informalEnterprises.change
-                      }}</span>
+                      }}</span> -->
                     </div>
                     <p class="text-xs text-blue-600 mt-1">Enterprises</p>
                   </div>
@@ -637,9 +637,9 @@ onBeforeUnmount(() => {
                       class="text-2xl font-bold text-purple-900 flex items-baseline space-x-2"
                     >
                       <FormalEnterprisesNumber />
-                      <span class="text-sm font-medium text-purple-900">{{
+                      <!-- <span class="text-sm font-medium text-purple-900">{{
                         data.formalEnterprises.change
-                      }}</span>
+                      }}</span> -->
                     </div>
                     <p class="text-xs text-purple-600 mt-1">Enterprises</p>
                   </div>
@@ -798,9 +798,9 @@ onBeforeUnmount(() => {
                     class="text-xl font-bold text-black flex items-baseline space-x-2"
                   >
                     <IFBRegistration />
-                    <span class="text-sm font-medium text-blue-900">{{
+                    <!-- <span class="text-sm font-medium text-blue-900">{{
                       data.ifbRegistration.change
-                    }}</span>
+                    }}</span> -->
                   </div>
 
                   <p class="text-xs text-blue-600 mt-1">
@@ -822,9 +822,9 @@ onBeforeUnmount(() => {
                     class="text-xl font-bold text-black flex items-baseline space-x-2"
                   >
                     <DisabilityRegistration />
-                    <span class="text-sm font-medium text-emerald-900">{{
+                    <!-- <span class="text-sm font-medium text-emerald-900">{{
                       data.disability.change
-                    }}</span>
+                    }}</span> -->
                   </div>
                   <p class="text-xs text-emerald-600 mt-1">
                     Special Registration
@@ -1203,9 +1203,9 @@ onBeforeUnmount(() => {
                   class="flex text-xxl font-bold text-emerald-900 items-baseline space-x-2"
                 >
                   <IfbDisbursement />
-                  <span class="text-sm font-medium text-emerald-900">{{
+                  <!-- <span class="text-sm font-medium text-emerald-900">{{
                     data.ifbDisbursement.change
-                  }}</span>
+                  }}</span> -->
                 </div>
 
                 <span
