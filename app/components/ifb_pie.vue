@@ -23,7 +23,7 @@ const chartOptions = {
     },
   },
   fill: {
-  colors: ['#1e3a8a'],
+  colors: ['#003366'],
   },
 
   labels: [],

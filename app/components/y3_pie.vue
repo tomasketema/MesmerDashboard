@@ -6,47 +6,32 @@ const series = ref([0])
 
 const chartOptions = ref({
   chart: {
-    height: 350,
     type: 'radialBar',
-    offsetY: -10
   },
   plotOptions: {
     radialBar: {
-      startAngle: -135,
-      endAngle: 135,
+      hollow: { size: '50%' },
+      track: { strokeWidth: '100%' },
       dataLabels: {
         name: {
-          fontSize: '16px',
-          color: undefined,
-          offsetY: 120
+          show: false,
+          fontSize: '14px',
+          fontWeight: 500,
+          color: '#1E293B',
         },
         value: {
-          offsetY: 76,
-          fontSize: '22px',
-          color: undefined,
-          formatter: val => val + '%'
-        }
-      }
-    }
+          show: true,
+          fontSize: '18px',
+          fontWeight: 600,
+          color: '#1E293B',
+          offsetY: 10
+        },
+      },
+    },
   },
   fill: {
-    type: 'gradient',
-    gradient: {
-      shade: 'light',
-      type: 'horizontal',
-      shadeIntensity: 0.5,
-      gradientToColors: ['#1E293B'],
-      inverseColors: false,
-      opacityFrom: 1,
-      opacityTo: 1,
-      stops: [0, 100]
-    },
-    colors: ['#475569']
+    colors: ['#003366'],
   },
-  stroke: {
-    dashArray: 4
-  },
-  labels: ['']
 })
 
 onMounted(async () => {
