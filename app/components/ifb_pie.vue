@@ -18,6 +18,7 @@ const chartOptions = {
           fontSize: '18px',
           fontWeight: 600,
           color: '#1E293B',
+          formatter: val => `${val}%`,
         },
       },
     },
@@ -28,11 +29,23 @@ const chartOptions = {
 
   labels: [],
 }
+
+const props = defineProps({
+  width: {
+    type: [String, Number],
+    default: 200,
+  },
+  height: {
+    type: [String, Number],
+    default: '150%',
+  },
+})
 onMounted(async () => {
   try {
     const res = await fetch('/api/get-latest-data?section=Credit Disbursement&names=Program Target,Program Achievement'
     )
     const data = await res.json()
+    console.log("data",data);
 
     const target = Number(data.find(item => item.name === 'Program Target')?.value) || 0
     const achievement = Number(data.find(item => item.name === 'Program Achievement')?.value) || 0
@@ -53,8 +66,8 @@ onMounted(async () => {
         type="radialBar"
         :options="chartOptions"
         :series="series"
-        height="150%"
-        width="200"
+        :height="props.height"
+        :width="props.width"
       />
     </div>
   </client-only>

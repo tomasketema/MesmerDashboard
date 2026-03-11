@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
 
   const cachedResult = chartCache.get(cacheKey)
   if (cachedResult) {
-    console.log(`Serving cached data for key: ${cacheKey}`)
+    // console.log(`Serving cached data for key: ${cacheKey}`)
     return cachedResult
   }
 

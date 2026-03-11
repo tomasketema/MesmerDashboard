@@ -13,6 +13,8 @@ import IfbDisbursement from "~/components/ifb_disbursement.vue";
 import YouthEmployment from "~/components/youth_employment.vue";
 import IFBFOMTotalDisbursement from "~/components/ifb_fom_total_disbursement.vue";
 import IFBRegistration from "~/components/ifb_registration.vue";
+import IFBRegistrationWomen from "~/components/ifb_women_registartion.vue";
+import IFBDisbursementWomen from "~/components/ifb_women_disbusment.vue";
 import DisabilityRegistration from "~/components/disability_registration.vue";
 import FormalEnterprisesNumber from "~/components/formal_enterprises_number.vue";
 import Y3Q2Column from "~/components/y3q2_column.vue";
@@ -98,11 +100,11 @@ const forthTrenchVisibleCount = computed(
       showHibretforthTrench.value,
       showAwashforthTrench.value,
       showDashenforthTrench.value,
-    ].filter(Boolean).length
+    ].filter(Boolean).length,
 );
 
 const showforthTrenchSection = computed(
-  () => forthTrenchVisibleCount.value > 0
+  () => forthTrenchVisibleCount.value > 0,
 );
 
 const forthGridClass = computed(() => {
@@ -124,19 +126,19 @@ onMounted(async () => {
 
   try {
     const res = await fetch(
-      "/api/get-latest-data?section=Finance - 2nd Trench&names=Abyssinia Trench Amount,Abyssinia Amount Disbursed"
+      "/api/get-latest-data?section=Finance - 2nd Trench&names=Abyssinia Trench Amount,Abyssinia Amount Disbursed",
     );
     const abyssiniaData = await res.json();
 
     const trenchAmount =
       Number(
         abyssiniaData.find((item) => item.name === "Abyssinia Trench Amount")
-          ?.value
+          ?.value,
       ) || 0;
     const amountDisbursed =
       Number(
         abyssiniaData.find((item) => item.name === "Abyssinia Amount Disbursed")
-          ?.value
+          ?.value,
       ) || 0;
 
     showAbyssiniaSecondTrench.value = trenchAmount > 0;
@@ -148,17 +150,18 @@ onMounted(async () => {
   // Check if Abyssinia/Hibret 3rd Trench have data
   try {
     const res = await fetch(
-      "/api/get-latest-data?section=Finance - 3rd Trench&names=Abyssinia Trench Amount,Hibret Trench Amount"
+      "/api/get-latest-data?section=Finance - 3rd Trench&names=Abyssinia Trench Amount,Hibret Trench Amount",
     );
     const thirdData = await res.json();
 
     const abyssiniaThirdAmount =
       Number(
-        thirdData.find((item) => item.name === "Abyssinia Trench Amount")?.value
+        thirdData.find((item) => item.name === "Abyssinia Trench Amount")
+          ?.value,
       ) || 0;
     const hibretThirdAmount =
       Number(
-        thirdData.find((item) => item.name === "Hibret Trench Amount")?.value
+        thirdData.find((item) => item.name === "Hibret Trench Amount")?.value,
       ) || 0;
 
     showAbyssiniaThirdTrench.value = abyssiniaThirdAmount > 0;
@@ -171,7 +174,7 @@ onMounted(async () => {
 
   try {
     const res = await fetch(
-      "/api/get-latest-data?section=Finance - 4th Trench&names=Abyssinia Trench Amount,Hibret Trench Amount,Awash Trench Amount,Dashen Trench Amount"
+      "/api/get-latest-data?section=Finance - 4th Trench&names=Abyssinia Trench Amount,Hibret Trench Amount,Awash Trench Amount,Dashen Trench Amount",
     );
     const forthData = await res.json();
     const getVal = (name) =>
@@ -195,13 +198,13 @@ onMounted(async () => {
 
     const annual = await getHeader(
       "BDS Status",
-      "Annual Q2 Target,Annual Q2 Achievement"
+      "Annual Q2 Target,Annual Q2 Achievement",
     );
     if (annual) headers.value.bdsAnnualQ2 = annual;
 
     const program = await getHeader(
       "BDS Status",
-      "Program Target,Program Achievement"
+      "Program Target,Program Achievement",
     );
     if (program) headers.value.bdsProgram = program;
   } catch (e) {
@@ -211,19 +214,19 @@ onMounted(async () => {
   try {
     const y3q2Credit = await getHeader(
       "Credit Disbursement",
-      "Y3Q2 Target,Y3Q2 Achievement"
+      "Y3Q2 Target,Y3Q2 Achievement",
     );
     if (y3q2Credit) headers.value.creditY3Q2 = y3q2Credit;
 
     const annualCredit = await getHeader(
       "Credit Disbursement",
-      "Annual Q2 Target,Annual Q2 Achievement"
+      "Annual Q2 Target,Annual Q2 Achievement",
     );
     if (annualCredit) headers.value.creditAnnualQ2 = annualCredit;
 
     const programCredit = await getHeader(
       "Credit Disbursement",
-      "Program Target,Program Achievement"
+      "Program Target,Program Achievement",
     );
     if (programCredit) headers.value.creditProgram = programCredit;
   } catch (e) {
@@ -808,6 +811,48 @@ onBeforeUnmount(() => {
                   </p>
                 </div>
 
+                <!-- IFB Women Registration -->
+                <div
+                  class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100"
+                >
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium text-blue-700"
+                      >IFB Women Registration</span
+                    >
+                  </div>
+                  <div
+                    class="text-xl font-bold text-black flex items-baseline space-x-2"
+                  >
+                    <IFBRegistrationWomen />
+                  </div>
+                  <p class="text-xs text-blue-600 mt-1">
+                    Interest-Free Banking
+                  </p>
+                  <!-- <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium text-teal-700"
+                      >IFB Loan Provided</span
+                    >
+                    <div class="w-2 h-2 bg-teal-500 rounded-full"></div>
+                  </div>
+                  <div
+                    class="flex flex-col sm:flex-row items-center justify-between gap-2"
+                  >
+                    <div
+                      class="text-xl font-bold text-black flex items-baseline space-x-2"
+                    >
+                      <IfbDisbursement />
+                    </div>
+                    <div class="h-24 w-24 flex items-center justify-center">
+                      <client-only>
+                        <IfbPie width="130" height="130" />
+                      </client-only>
+                      </div>
+                  </div>
+                  <p class="text-xs text-teal-600 mt-1">
+                    Achievement percent
+                  </p> -->
+                </div>
+
                 <!-- Disability Registration -->
                 <div
                   class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-4 border border-emerald-100"
@@ -1177,10 +1222,14 @@ onBeforeUnmount(() => {
                 <div
                   class="flex flex-col sm:flex-row items-center sm:items-center justify-center sm:justify-between gap-4 sm:gap-6"
                 >
-                  <div class="w-32 sm:w-32 flex justify-center sm:justify-start">
+                  <div
+                    class="w-32 sm:w-32 flex justify-center sm:justify-start"
+                  >
                     <IfbColumn />
                   </div>
-                  <div class="w-40 sm:w-48 flex justify-center sm:justify-end -ml-2">
+                  <div
+                    class="w-40 sm:w-48 flex justify-center sm:justify-end -ml-2"
+                  >
                     <client-only>
                       <IfbPie />
                     </client-only>
@@ -1188,31 +1237,28 @@ onBeforeUnmount(() => {
                 </div>
               </div>
 
-              
               <!-- Disbursement Metrics -->
               <div
-                class="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-4 border border-teal-100"
+                class="flex flex-col bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-4 border border-teal-100"
               >
                 <div class="flex justify-between mb-2">
-                  <span class="text-sm font-medium text-emerald-700"
-                    >IFB Disbursement</span
-                  >
-                  <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                  <div>
+                    <span class="text-sm font-medium text-emerald-700"
+                      >IFB Disbursement</span
+                    >
+                    <IfbDisbursement />
+                  </div>
+                  <div>
+                    <span
+                      class="text-sm font-medium text-emerald-700"
+                      >IFB Disbursement Women</span
+                    >
+                    <IFBDisbursementWomen />
+                  </div>
                 </div>
-                <div
-                  class="flex text-xxl font-bold text-emerald-900 items-baseline space-x-2"
-                >
-                  <IfbDisbursement />
-                  <!-- <span class="text-sm font-medium text-emerald-900">{{
-                    data.ifbDisbursement.change
-                  }}</span> -->
-                </div>
-
-                <span
-                  class="inline-flex font-serif text-lg sm:text-xl font-bold text-emerald-600 mt-1 whitespace-nowrap"
-                >
-                  <IFBFOMTotalDisbursement /> of total disbursement
-                </span>
+                <!-- <span class="text-sm font-medium text-emerald-700 text-left">
+                  <IFBFOMTotalDisbursement /> 
+                </span> -->
               </div>
             </div>
           </div>

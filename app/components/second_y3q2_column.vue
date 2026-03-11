@@ -17,7 +17,7 @@ const chartWidth = computed(() => {
     const width = window.innerWidth
     if (width < 1024) return '100%'
     if (width < 1400) return '140%'
-    return '250%'
+    return '150%'
   }
   return '100%'
 })
