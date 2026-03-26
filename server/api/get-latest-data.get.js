@@ -2,7 +2,7 @@ import { getDbConnection } from '../utils/db'
 import { chartCache } from '../utils/cache'
 import { getQuery } from 'h3'
 
-const CACHE_TTL_SECONDS = 604800
+const CACHE_TTL_SECONDS = 10
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)

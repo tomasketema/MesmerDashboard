@@ -20,7 +20,9 @@ export default defineEventHandler(async (event) => {
     { section: 'Informal Enterprise', name: 'Formal Enterprises', key: 'formalEnterprises' },
     { section: 'Informal Enterprise', name: 'Informal Enterprises', key: 'informalEnterprises' },
     { section: 'Formal Enterprise', name: 'IFB Registration', key: 'ifbRegistration' },
+    { section: 'Formal Enterprise', name: 'IFB Registration Women', key: 'ifbRegistrationWomen' },
     { section: 'Credit Disbursement', name: 'IFB Disbursement', key: 'ifbDisbursement' },
+    { section: 'Credit Disbursement', name: 'IFB Disbursement Women', key: 'ifbDisbursementWomen' },
     { section: 'MESMER Supported', name: 'Outreach Individuals', key: 'outreach' },
     { section: 'MESMER Supported', name: 'Youth Employment', key: 'youthEmployment' },
     { section: 'Formal Enterprise', name: 'Total', key: 'total' }
