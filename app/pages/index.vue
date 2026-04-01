@@ -418,7 +418,7 @@ onBeforeUnmount(() => {
                 <p
                   class="text-sm font-medium text-gray-500 uppercase tracking-wide"
                 >
-                  Enterprises
+                  Enterprises Supported
                 </p>
                 <div class="flex items-baseline space-x-2">
                   <div class="text-3xl font-bold text-gray-900">
@@ -428,7 +428,6 @@ onBeforeUnmount(() => {
                     data.enterprises.change
                   }}</span> -->
                 </div>
-                <p class="text-sm text-gray-600 mt-1">Successfully Supported</p>
               </div>
               <div class="pt-4 border-t border-gray-100">
                 <div class="flex items-center text-xs text-gray-500">
@@ -486,7 +485,6 @@ onBeforeUnmount(() => {
                     data.outreach.change
                   }}</span> -->
                 </div>
-                <p class="text-sm text-gray-600 mt-1">Community Impact</p>
               </div>
               <div class="pt-4 border-t border-gray-100">
                 <div
@@ -508,10 +506,10 @@ onBeforeUnmount(() => {
         <!-- Section Header -->
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-2">
-            Informal Enterprise
+            Grant and PSS
           </h2>
           <p class="text-gray-600">
-            Financial support and business development services
+            Financial Support and Psychosocial Support
           </p>
         </div>
 
@@ -587,9 +585,8 @@ onBeforeUnmount(() => {
                   </div>
                   <div>
                     <h3 class="text-lg font-bold text-gray-900">
-                      PSS Analytics
+                      Psychosocial Support
                     </h3>
-                    <p class="text-sm text-gray-600">Business support</p>
                   </div>
                 </div>
                 <div
@@ -612,7 +609,7 @@ onBeforeUnmount(() => {
                   >
                     <div class="flex items-center justify-between mb-2">
                       <span class="text-sm font-medium text-blue-700"
-                        >Informal</span
+                        >Informal Enterprises</span
                       >
                       <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
                     </div>
@@ -624,7 +621,7 @@ onBeforeUnmount(() => {
                         data.informalEnterprises.change
                       }}</span> -->
                     </div>
-                    <p class="text-xs text-blue-600 mt-1">Enterprises</p>
+                    
                   </div>
 
                   <div
@@ -632,7 +629,7 @@ onBeforeUnmount(() => {
                   >
                     <div class="flex items-center justify-between mb-2">
                       <span class="text-sm font-medium text-purple-700"
-                        >Formal</span
+                        >Formal Enterprises</span
                       >
                       <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
                     </div>
@@ -644,7 +641,6 @@ onBeforeUnmount(() => {
                         data.formalEnterprises.change
                       }}</span> -->
                     </div>
-                    <p class="text-xs text-purple-600 mt-1">Enterprises</p>
                   </div>
                 </div>
               </div>
@@ -661,7 +657,7 @@ onBeforeUnmount(() => {
             Formal Enterprise
           </h2>
           <p class="text-gray-600">
-            Banking partnerships and registration services
+            MESMER Loan Registration
           </p>
         </div>
 
@@ -734,7 +730,7 @@ onBeforeUnmount(() => {
                   </div>
                   <div>
                     <h3 class="text-xl font-bold text-gray-900">
-                      Assisted Bank Registration to date
+                      Assisted Bank Registration
                     </h3>
                   </div>
                 </div>
@@ -794,7 +790,7 @@ onBeforeUnmount(() => {
                   class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100"
                 >
                   <div class="flex items-center justify-between mb-2">
-                    <span class="text-sm font-medium text-blue-700">IFB</span>
+                    <span class="text-sm font-medium text-blue-700">IFB Registration</span>
                     <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
                   </div>
                   <div
@@ -806,9 +802,9 @@ onBeforeUnmount(() => {
                     }}</span> -->
                   </div>
 
-                  <p class="text-xs text-blue-600 mt-1">
+                  <!-- <p class="text-xs text-blue-600 mt-1">
                     Interest-Free Banking
-                  </p>
+                  </p> -->
                 </div>
 
                 <!-- IFB Women Registration -->
@@ -825,9 +821,9 @@ onBeforeUnmount(() => {
                   >
                     <IFBRegistrationWomen />
                   </div>
-                  <p class="text-xs text-blue-600 mt-1">
+                  <!-- <p class="text-xs text-blue-600 mt-1">
                     Interest-Free Banking
-                  </p>
+                  </p> -->
                   <!-- <div class="flex items-center justify-between mb-2">
                     <span class="text-sm font-medium text-teal-700"
                       >IFB Loan Provided</span
@@ -859,7 +855,7 @@ onBeforeUnmount(() => {
                 >
                   <div class="flex items-center justify-between mb-2">
                     <span class="text-sm font-medium text-emerald-700"
-                      >Disability</span
+                      >Persons with disabilities</span
                     >
                     <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
                   </div>
@@ -871,9 +867,9 @@ onBeforeUnmount(() => {
                       data.disability.change
                     }}</span> -->
                   </div>
-                  <p class="text-xs text-emerald-600 mt-1">
+                  <!-- <p class="text-xs text-emerald-600 mt-1">
                     Special Registration
-                  </p>
+                  </p> -->
                 </div>
               </div>
             </div>
@@ -887,7 +883,7 @@ onBeforeUnmount(() => {
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-2">BDS Status</h2>
           <p class="text-gray-600">
-            Business Development Services performance metrics
+            Business Development Services
           </p>
         </div>
 
@@ -1063,10 +1059,10 @@ onBeforeUnmount(() => {
         <!-- Section Header -->
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-2">
-            Credit Disbursement
+            Loan Provided
           </h2>
           <p class="text-gray-600">
-            Financial distribution and lending analytics
+            Financial distribution and lending 
           </p>
         </div>
 
