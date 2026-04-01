@@ -429,12 +429,12 @@ onBeforeUnmount(() => {
                   }}</span> -->
                 </div>
               </div>
-              <div class="pt-4 border-t border-gray-100">
+              <!-- <div class="pt-4 border-t border-gray-100">
                 <div class="flex items-center text-xs text-gray-500">
                   <div class="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
                   Active Programs
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -486,7 +486,7 @@ onBeforeUnmount(() => {
                   }}</span> -->
                 </div>
               </div>
-              <div class="pt-4 border-t border-gray-100">
+              <!-- <div class="pt-4 border-t border-gray-100">
                 <div
                   class="flex items-center justify-between text-xs text-gray-500"
                 >
@@ -495,7 +495,7 @@ onBeforeUnmount(() => {
                     Active Campaigns
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -505,9 +505,7 @@ onBeforeUnmount(() => {
       <div class="max-w-7xl mx-auto mt-16">
         <!-- Section Header -->
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-2">
-            Grant and PSS
-          </h2>
+          <h2 class="text-3xl font-bold text-gray-900 mb-2">Grant and PSS</h2>
           <p class="text-gray-600">
             Financial Support and Psychosocial Support
           </p>
@@ -519,7 +517,7 @@ onBeforeUnmount(() => {
             class="lg:col-span-2 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
           >
             <div class="p-6">
-              <div class="flex items-center justify-between mb-6">
+              <div class="flex items-center justify-between mb-2">
                 <div class="flex items-center space-x-3">
                   <div
                     class="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center"
@@ -548,6 +546,17 @@ onBeforeUnmount(() => {
                 <div
                   class="w-2 h-2 bg-green-400 rounded-full animate-pulse"
                 ></div>
+              </div>
+              <div
+                class="bg-gradient-to-r from-gray-100 to-gray-200 rounded-lg shadow-md text-center px-10 py-1 mb-3"
+              >
+                <div
+                  class="text-lg font-bold text-gray-800 whitespace-nowrap flex items-center space-x-2 justify-center"
+                >
+                  Total: <span> </span>
+                  <span class="font-bold"><CountUp :end="14000" /></span>
+                  <!-- <span class="text-sm font-medium text-blue-900 ">{{ data.total.change }}</span> -->
+                </div>
               </div>
               <div class="bg-white rounded-2xl p-4">
                 <div class="h-64 flex items-center justify-center">
@@ -621,7 +630,6 @@ onBeforeUnmount(() => {
                         data.informalEnterprises.change
                       }}</span> -->
                     </div>
-                    
                   </div>
 
                   <div
@@ -656,9 +664,7 @@ onBeforeUnmount(() => {
           <h2 class="text-3xl font-bold text-gray-900 mb-2">
             Formal Enterprise
           </h2>
-          <p class="text-gray-600">
-            MESMER Loan Registration
-          </p>
+          <p class="text-gray-600">MESMER Loan Registration</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
@@ -790,7 +796,9 @@ onBeforeUnmount(() => {
                   class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100"
                 >
                   <div class="flex items-center justify-between mb-2">
-                    <span class="text-sm font-medium text-blue-700">IFB Registration</span>
+                    <span class="text-sm font-medium text-blue-700"
+                      >IFB Registration</span
+                    >
                     <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
                   </div>
                   <div
@@ -882,9 +890,7 @@ onBeforeUnmount(() => {
         <!-- Section Header -->
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-2">BDS Status</h2>
-          <p class="text-gray-600">
-            Business Development Services
-          </p>
+          <p class="text-gray-600">Business Development Services</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
@@ -1058,12 +1064,8 @@ onBeforeUnmount(() => {
       <div class="max-w-7xl mx-auto mt-16">
         <!-- Section Header -->
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-2">
-            Loan Provided
-          </h2>
-          <p class="text-gray-600">
-            Financial distribution and lending 
-          </p>
+          <h2 class="text-3xl font-bold text-gray-900 mb-2">Loan Provided</h2>
+          <p class="text-gray-600">Financial distribution and lending</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
@@ -1245,8 +1247,7 @@ onBeforeUnmount(() => {
                     <IfbDisbursement />
                   </div>
                   <div>
-                    <span
-                      class="text-sm font-medium text-emerald-700"
+                    <span class="text-sm font-medium text-emerald-700"
                       >IFB Disbursement Women</span
                     >
                     <IFBDisbursementWomen />
@@ -1267,7 +1268,7 @@ onBeforeUnmount(() => {
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-2">Finance</h2>
           <p class="text-gray-600">
-            Trench disbursement tracking across banking partners
+            Trench disbursement tracking across partners
           </p>
         </div>
 
