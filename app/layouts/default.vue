@@ -13,6 +13,11 @@
       </a>
 
       <div class="flex items-center">
+           <img
+          src="../assets/FCLogo/fcafrica.png"
+          alt="FCAfrica Logo"
+           class="h-10 w-auto object-contain mx-10 transform scale-150"
+        />
        <img
           src="../assets/MasterCardLogo/mastercard_foundation.svg"
           alt="MasterCard Foundation Logo"

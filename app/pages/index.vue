@@ -300,9 +300,9 @@ onBeforeUnmount(() => {
                   <h2 class="text-2xl font-bold text-gray-900">
                     Employment Overview
                   </h2>
-                  <p class="text-sm text-gray-600">
+                  <!-- <p class="text-sm text-gray-600">
                     Youth, Women, and Disadvantaged Groups Workforce Analytics
-                  </p>
+                  </p> -->
                 </div>
               </div>
               <div class="hidden sm:block">
@@ -334,9 +334,9 @@ onBeforeUnmount(() => {
                   <p
                     class="text-sm font-medium text-gray-800 uppercase tracking-wide"
                   >
-                    Youth
+                    Youth Employment
                   </p>
-                  <p class="text-lg font-semibold text-gray-900">Employed</p>
+                  <p class="text-lg font-semibold text-gray-900">Supported</p>
                 </div>
               </div>
 
