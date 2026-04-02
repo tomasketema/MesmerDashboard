@@ -14,7 +14,7 @@
 
       <div class="flex items-center">
            <img
-          src="../assets/FCLogo/fcafrica.png"
+          src="../assets/FCLogo/fclogolarge.png"
           alt="FCAfrica Logo"
            class="h-10 w-auto object-contain mx-10 transform scale-150"
         />
