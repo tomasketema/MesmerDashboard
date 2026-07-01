@@ -1288,14 +1288,14 @@ onBeforeUnmount(() => {
                       <CreditWomenPercentage />
                     </div>
                   </div>
-                  <div>
+                  <!-- <div>
                     <span class="text-sm font-medium text-emerald-700 block"
                       >People with Disability</span
                     >
                     <div class="text-xl font-semibold text-gray-800">
                       <CreditPeopleWithDisability />
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
