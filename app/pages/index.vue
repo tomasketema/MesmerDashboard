@@ -1268,26 +1268,27 @@ onBeforeUnmount(() => {
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <span class="text-sm font-medium text-emerald-700 block"
-                      >IFB Disbursement</span
-                    >
-                    <IfbDisbursement />
-                  </div>
-                  <div>
-                    <span class="text-sm font-medium text-emerald-700 block"
-                      >MFI</span
-                    >
-                    <div class="text-xl font-semibold text-gray-800">
-                      <MFI />
-                    </div>
-                  </div>
-                  <div>
-                    <span class="text-sm font-medium text-emerald-700 block"
                       >Women</span
                     >
                     <div class="text-xl font-semibold text-gray-800">
                       <CreditWomenPercentage />
                     </div>
                   </div>
+                  <div>
+                    <span class="text-sm font-medium text-emerald-700 block"
+                      >IFB Disbursement</span
+                    >
+                    <IfbDisbursement />
+                  </div>
+                  <div>
+                    <span class="text-sm font-medium text-emerald-700 block"
+                      >MFI Disbursement</span
+                    >
+                    <div class="text-xl font-semibold text-gray-800">
+                      <MFI />
+                    </div>
+                  </div>
+                  
                   <!-- <div>
                     <span class="text-sm font-medium text-emerald-700 block"
                       >People with Disability</span
