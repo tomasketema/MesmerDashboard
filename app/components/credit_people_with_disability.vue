@@ -1,8 +1,9 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import CountUp from './countup.vue'
 
-const disabilityRegistration = ref(0)
+const value = ref(0)
+const isPercentage = ref(false)
 const metricNames = [
   'People with Disability',
   'People with Disabilities',
@@ -12,27 +13,30 @@ const metricNames = [
   'Disability Registration',
 ]
 
+const roundedValue = computed(() => Math.round(value.value))
+
 onMounted(async () => {
   try {
     const params = new URLSearchParams({
-      section: 'Formal Enterprise',
+      section: 'Credit Disbursement',
       names: metricNames.join(','),
     })
     const res = await fetch(`/api/get-latest-data?${params.toString()}`)
     const data = await res.json()
-
     const lowerMetricNames = metricNames.map((name) => name.toLowerCase())
     const row = data.find((item) =>
       lowerMetricNames.includes(item.name?.toLowerCase()),
     )
-    const value = Number(row?.value) || 0
-    disabilityRegistration.value = value
+
+    value.value = Number(row?.value) || 0
+    isPercentage.value = row?.chart_type === 'percentage'
   } catch (err) {
-    console.error('Failed to fetch people with disability data:', err)
+    console.error('Failed to fetch credit people with disability data:', err)
   }
 })
 </script>
 
 <template>
-  <CountUp :end="disabilityRegistration" />
+  <span v-if="isPercentage">{{ roundedValue }}%</span>
+  <CountUp v-else :end="roundedValue" />
 </template>

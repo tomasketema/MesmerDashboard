@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
 
 
   const db = await getDbConnection()
-  let sql = `SELECT name, value FROM chart_data WHERE 1`
+  let sql = `SELECT name, chart_type, value FROM chart_data WHERE 1`
   const params = []
 
   if (section) {
@@ -34,9 +34,10 @@ export default defineEventHandler(async (event) => {
   }
 
   if (names) {
-    const placeholders = names.split(',').map(() => '?').join(',')
-    sql += ` AND name IN (${placeholders})`
-    params.push(...names.split(','))
+    const metricNames = names.split(',').map((name) => name.trim().toLowerCase())
+    const placeholders = metricNames.map(() => '?').join(',')
+    sql += ` AND LOWER(name) IN (${placeholders})`
+    params.push(...metricNames)
   }
 
   sql += ' ORDER BY created_at DESC'

@@ -60,12 +60,17 @@ export default defineEventHandler(async (event) => {
     items = Array.from(latestMap.values())
   }
 
+  const normalizeHeader = (value) => {
+    if (/^program overall$/i.test(value)) return 'Program Overall'
+    return value
+  }
+
   let suggestedHeader = ''
   const targetItem = items.find(it => /target/i.test(it.name))
   if (targetItem && targetItem.subsection) {
-    suggestedHeader = targetItem.subsection
+    suggestedHeader = normalizeHeader(targetItem.subsection)
   } else if (items[0]?.subsection) {
-    suggestedHeader = items[0].subsection
+    suggestedHeader = normalizeHeader(items[0].subsection)
   }
 
   const result = { items, suggestedHeader }

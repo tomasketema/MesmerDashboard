@@ -11,12 +11,15 @@ import CountUp from "~/components/countup.vue";
 import Hibret_first_trench_column from "~/components/hibret_first_trench_column.vue";
 import IfbDisbursement from "~/components/ifb_disbursement.vue";
 import YouthEmployment from "~/components/youth_employment.vue";
-import IFBFOMTotalDisbursement from "~/components/ifb_fom_total_disbursement.vue";
 import IFBRegistration from "~/components/ifb_registration.vue";
 import IFBRegistrationWomen from "~/components/ifb_women_registartion.vue";
-import IFBDisbursementWomen from "~/components/ifb_women_disbusment.vue";
 import DisabilityRegistration from "~/components/disability_registration.vue";
 import FormalEnterprisesNumber from "~/components/formal_enterprises_number.vue";
+import PssTotal from "~/components/pss_total.vue";
+import MFI from "~/components/mfi.vue";
+import CreditWomenPercentage from "~/components/credit_women_percentage.vue";
+import CreditPeopleWithDisability from "~/components/credit_people_with_disability.vue";
+import DigitalBdsPercentage from "~/components/digital_bds_percentage.vue";
 import Y3Q2Column from "~/components/y3q2_column.vue";
 import EnterprisesSupported from "~/components/enterprises_supported.vue";
 import OutreachedIndividuals from "~/components/Outreached_Individuals.vue";
@@ -602,6 +605,16 @@ onBeforeUnmount(() => {
                   class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
                 ></div>
               </div>
+              <div
+                class="bg-gradient-to-r from-gray-100 to-gray-200 rounded-lg shadow-md text-center px-10 py-1 mb-3"
+              >
+                <div
+                  class="text-lg font-bold text-gray-800 whitespace-nowrap flex items-center space-x-2 justify-center"
+                >
+                  Total: <span> </span>
+                  <span class="font-bold"><PssTotal /></span>
+                </div>
+              </div>
               <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
                 <!-- PSS Chart -->
                 <div class="bg-white rounded-2xl p-4">
@@ -1054,6 +1067,19 @@ onBeforeUnmount(() => {
                     </client-only>
                   </div>
                 </div>
+                <div
+                  class="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-2xl p-4 border border-cyan-100"
+                >
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium text-cyan-700"
+                      >Digital BDS</span
+                    >
+                    <div class="w-2 h-2 bg-cyan-500 rounded-full"></div>
+                  </div>
+                  <div class="text-xl font-bold text-cyan-900">
+                    <DigitalBdsPercentage />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1207,7 +1233,7 @@ onBeforeUnmount(() => {
                     <h3 class="text-lg font-bold text-gray-900">
                       {{ headers.creditProgram }}
                     </h3>
-                    <p class="text-sm text-gray-600">Progress Overview</p>
+                    <!-- <p class="text-sm text-gray-600">Progress Overview</p> -->
                   </div>
                 </div>
                 <div
@@ -1239,23 +1265,38 @@ onBeforeUnmount(() => {
               <div
                 class="flex flex-col bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-4 border border-teal-100"
               >
-                <div class="flex justify-between mb-2">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <span class="text-sm font-medium text-emerald-700"
+                    <span class="text-sm font-medium text-emerald-700 block"
                       >IFB Disbursement</span
                     >
                     <IfbDisbursement />
                   </div>
                   <div>
-                    <span class="text-sm font-medium text-emerald-700"
-                      >IFB Disbursement Women</span
+                    <span class="text-sm font-medium text-emerald-700 block"
+                      >MFI</span
                     >
-                    <IFBDisbursementWomen />
+                    <div class="text-xl font-semibold text-gray-800">
+                      <MFI />
+                    </div>
+                  </div>
+                  <div>
+                    <span class="text-sm font-medium text-emerald-700 block"
+                      >Women</span
+                    >
+                    <div class="text-xl font-semibold text-gray-800">
+                      <CreditWomenPercentage />
+                    </div>
+                  </div>
+                  <div>
+                    <span class="text-sm font-medium text-emerald-700 block"
+                      >People with Disability</span
+                    >
+                    <div class="text-xl font-semibold text-gray-800">
+                      <CreditPeopleWithDisability />
+                    </div>
                   </div>
                 </div>
-                <!-- <span class="text-sm font-medium text-emerald-700 text-left">
-                  <IFBFOMTotalDisbursement /> 
-                </span> -->
               </div>
             </div>
           </div>
