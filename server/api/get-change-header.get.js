@@ -29,8 +29,8 @@ export default defineEventHandler(async (event) => {
   const params = []
 
   if (section) {
-    sql += ' AND section = ?'
-    params.push(section)
+    sql += ' AND LOWER(section) = ?'
+    params.push(section.toLowerCase().trim())
   }
 
   if (metrics.length) {
