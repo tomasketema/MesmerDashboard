@@ -21,7 +21,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="text-xl font-semibold text-center text-gray-800">
+  <div class="text-xl font-semibold text-gray-800">
     <CountUp :end="ifbDisbursement" />
   </div>
 </template>

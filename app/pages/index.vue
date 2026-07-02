@@ -1265,38 +1265,31 @@ onBeforeUnmount(() => {
               <div
                 class="flex flex-col bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-4 border border-teal-100"
               >
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  <div class="min-w-0 rounded-xl bg-white/70 p-3 text-left">
                     <span class="text-sm font-medium text-emerald-700 block"
                       >Women</span
                     >
-                    <div class="text-xl font-semibold text-gray-800">
+                    <div class="mt-1 text-2xl font-bold text-gray-800">
                       <CreditWomenPercentage />
                     </div>
                   </div>
-                  <div>
+                  <div class="min-w-0 rounded-xl bg-white/70 p-3 text-left">
                     <span class="text-sm font-medium text-emerald-700 block"
                       >IFB Disbursement</span
                     >
-                    <IfbDisbursement />
+                    <div class="mt-1 text-2xl font-bold text-gray-800">
+                      <IfbDisbursement />
+                    </div>
                   </div>
-                  <div>
+                  <div class="min-w-0 rounded-xl bg-white/70 p-3 text-left">
                     <span class="text-sm font-medium text-emerald-700 block"
                       >MFI Disbursement</span
                     >
-                    <div class="text-xl font-semibold text-gray-800">
+                    <div class="mt-1 text-2xl font-bold text-gray-800">
                       <MFI />
                     </div>
                   </div>
-                  
-                  <!-- <div>
-                    <span class="text-sm font-medium text-emerald-700 block"
-                      >People with Disability</span
-                    >
-                    <div class="text-xl font-semibold text-gray-800">
-                      <CreditPeopleWithDisability />
-                    </div>
-                  </div> -->
                 </div>
               </div>
             </div>
